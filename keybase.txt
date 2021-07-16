@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/appellation
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://wnelson.dev
+  * I am appellation (https://keybase.io/appellation) on keybase.
+  * I have a public key with fingerprint 4A0E 761F C417 F78D C57C  B99D F67F 4796 E0C5 446B
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120b2cf7694feb3b6beb870632d0bff43fdaf5a81e627075834427769f3d9945adc0a",
+      "fingerprint": "4a0e761fc417f78dc57cb99df67f4796e0c5446b",
+      "host": "keybase.io",
+      "key_id": "f67f4796e0c5446b",
+      "kid": "010189f9d9ceefe74a1c49d397b83a106b0f44553bc810b56454b4c8313390ce280d0a",
+      "uid": "ffa733db6c069b0831efe73637d25d19",
+      "username": "appellation"
+    },
+    "service": {
+      "hostname": "wnelson.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1626404865,
+  "expire_in": 157680000,
+  "prev": "3c134c0ec5d5e4637edd667ed984abe387a971ffc41e1d777632b35bc073d308",
+  "seqno": 38,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMN1AnicbZJ9TBRHGMbvpJIWP7EVq41Gt2kxhdPdm9md3aNBDTS2UuXDD4iUHDs7
+s7DluD3uSw5EGo1NqiZGrBRNVWJLJSLSqgkUycmnxEiKVrGkRaNCsLG0qCWGGoXu
+Uv2v88dOZuf3PO/zzkznrAhLlPVJ+drKO13JBdYrbUcCltyH49ZSBuskxDhKmQI6
+NVEXoT6/s0AjjINhOTuL7YqKBAmqFAMsYIpFxArATlisqhCoRFZ5WeSoYEcs4kUA
+oR0ZuAqIJEFeJgorM/GMqrnzqNfj1dx+wxbKLEUCpyqQQyoSicIjBUsSUQWkQiQJ
+lFV4CAVsCPN1n6kwwmHZR1douvHPWDin4v0P/zI3y4mSKhFJoVSlCMqcAiUCJIRF
+IHOsgFkVQp4HWBE5FvMC5CGGigg4ACRWoXaRJVO5A//VUWUEAMGCwgoSZg3MNAUC
+QMTOE04yQR/1uuVCatCyx0NdLtmv6W6mLJ4xNoKaQs2zNZt5AW1zU5dPd68gNGio
+PV7dryu6y9jI9/s9Pocp9Ic8UyTFzhceTqy5iXGShiJIvT6zgIMzSMWvmaacYBcg
+C0WBj2dosUfzUqdmEjwSRNYYZh2jnIMBCgegwlKFJzyFRhuUEEEwvpIIZUyBiGQJ
+cap5P5QjyLhPYMeAxwqLAAGsyJhdFbl1xgFEI6ecZ3j6tDy37A94KVPW3vbJKxZr
+lCVy+jTziVmiXpv78uHVp86ZTJ6xtHHJ2o1pizf88EftnUbLkeEmsHzj7YbMsG32
+vsDJscv9KbUk9lJd16cTXNrTv2P3txzb0db/+pry9DHh0cG5tzaPDKRmRe5dUlo8
+EBVddWjaYCg7IWlf5A3/xM1fqttXtT0Jbhv9+fO0mjPfZe5JLEagsAGkrqebb10Y
+CJe/M574TcRvd7d0HwwUBXcEsO/WzaY9tyOP7smYszciPeaR/ZC2btPKpNwjrfN+
+/PO5FnYlLJpXsSDUcV/qnrl+19DZ1afOteB1D67mTev9xxo7c/T7+gVl96qaHy7d
+333Kkh23cKSkdvmamIamrOhXM8L5x8seXEvI+UIPLw1vqX/m3ZnhU3u+bOyvSBoj
+907YYsI/Pd5wesb7H8regexVB4ZqcxfBiRTdeblZHtu+t/34ryOV5yuiSyY7c1r3
+Zy67kotqpvfUrEmEMcsvvX2y7vjgm9FdJ5IvDH67+t0eedcH00/OP7Y2ofru1h5x
+4/30j+DFw4P9O1vy+4Tu+bsrt/fG2x7HNz6Nrdz5VlRohjJunVNYcD7reZfk+7q6
+7frV0F+d93vPXccjEbajjE2OOxznjB2uqtp0KWH0q6TJmqt1WbOLuAs3Dne8UYHy
+P24Z3u1cWXK6z9YzvmioNcW2ePJiZfLWoO7oe5697Ma1wNyxz5o7ylKcC3PQe78/
+a35w7uzpvs6w40ypeq9r1r6V/wL3X8rV
+=cF3j
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/appellation
+
+==================================================================
