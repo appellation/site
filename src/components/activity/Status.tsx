@@ -33,7 +33,7 @@ export default function Status(): JSX.Element {
 			<StatusIcon status={activity.discord_status} />
 			{activities[0]
 				? <ShortActivity short={activities[0]} activities={activities} spotify={activity.spotify} />
-				: <p>{statuses[activity.discord_status] ?? 'Unknown'}</p>
+				: <StatusText>{statuses[activity.discord_status] ?? 'Unknown'}</StatusText>
 			}
 		</div>
 	);
