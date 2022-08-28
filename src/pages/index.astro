@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+import IconButton from "../components/IconButton.astro";
+import Status from "../components/activity/Status";
+---
+
+<Layout title="Will Nelson">
+	<main>
+		<h1>Hi, I'm <span class="text-gradient">Will</span>!</h1>
+		<h2>
+			Software Engineer @
+			<a class="discordLink" href="https://discord.com" target="_blank"
+				>Discord</a
+			>
+		</h2>
+		<Status client:load />
+		<ul role="list" class="link-card-grid">
+			<IconButton
+				href="mailto:me@wnelson.dev"
+				iconClass="fa-solid fa-at fa-lg"
+			/>
+			<IconButton
+				href="https://github.com/appellation"
+				iconClass="fa-brands fa-github fa-lg"
+			/>
+			<IconButton
+				href="https://linkedin.com/in/williamonelson"
+				iconClass="fa-brands fa-linkedin fa-lg"
+				hoverColor="#0077b5"
+			/>
+			<IconButton
+				href="https://twitter.com/appelation_"
+				iconClass="fa-brands fa-twitter fa-lg"
+				hoverColor="#1DA1F2"
+			/>
+			<IconButton
+				href="https://keybase.io/appellation"
+				iconClass="fa-brands fa-keybase fa-lg"
+			/>
+		</ul>
+	</main>
+</Layout>
+
+<style>
+	:root {
+		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+	}
+
+	h1 {
+		margin: 0;
+		margin-bottom: 0.25rem;
+	}
+
+	h2 {
+		margin: 0;
+		margin-bottom: 0.1rem;
+		font-weight: 300;
+	}
+
+	body {
+		display: flex;
+		height: 100vh;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: auto;
+		padding: 0 1em;
+		max-width: 60ch;
+		align-self: center;
+		justify-self: center;
+		flex-grow: 1;
+	}
+
+	hr {
+		margin-bottom: 2rem;
+	}
+
+	.text-gradient {
+		font-family: Roboto Slab;
+		font-weight: 900;
+		background-image: var(--astro-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 100% 200%;
+		background-position-y: 100%;
+		border-radius: 0.4rem;
+		animation: pulse 4s ease-in-out infinite;
+	}
+
+	.discordLink {
+		color: #5865f2;
+		text-decoration: none;
+	}
+
+	@keyframes pulse {
+		0%,
+		100% {
+			background-position-y: 0%;
+		}
+		50% {
+			background-position-y: 80%;
+		}
+	}
+
+	.link-card-grid {
+		display: flex;
+		gap: 1rem;
+		padding: 0;
+		margin: 3rem 0;
+		color: black;
+	}
+</style>

@@ -1,0 +1,14 @@
+.container {
+	display: inline;
+}
+
+.image {
+	height: 0.75em;
+	margin-right: 0.25rem;
+	display: inline;
+}
+
+.text {
+	display: inline;
+	font-weight: 300;
+}
