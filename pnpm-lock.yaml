@@ -5,14 +5,12 @@ specifiers:
   '@types/luxon': ^3.0.0
   '@types/react': ^18.0.17
   astro: ^1.1.1
-  luxon: ^3.0.1
   modern-normalize: ^1.1.0
   react: ^18.0.0
   react-dom: ^18.0.0
   use-lanyard: ^1.2.0
 
 dependencies:
-  luxon: 3.0.1
   modern-normalize: 1.1.0
   use-lanyard: 1.2.0_react@18.2.0
 
@@ -1730,11 +1728,6 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
-
-  /luxon/3.0.1:
-    resolution: {integrity: sha512-hF3kv0e5gwHQZKz4wtm4c+inDtyc7elkanAsBq+fundaCdUBNJB1dHEGUZIM6SfSBUlbVFduPwEtNjFK8wLtcw==}
-    engines: {node: '>=12'}
-    dev: false
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}

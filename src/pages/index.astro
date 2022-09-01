@@ -1,19 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import IconButton from "../components/IconButton.astro";
-import Status from "../components/activity/Status";
 ---
 
 <Layout title="Will Nelson">
 	<main>
 		<h1>Hi, I'm <span class="text-gradient">Will</span>!</h1>
-		<h2>
-			Software Engineer @
-			<a class="discordLink" href="https://discord.com" target="_blank"
-				>Discord</a
-			>
-		</h2>
-		<Status client:load />
+		<h2>Software Engineer @ Discord</h2>
 		<ul role="list" class="link-card-grid">
 			<IconButton
 				href="mailto:me@wnelson.dev"
