@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@iconify-json/fa-brands': ^1.1.2
   '@iconify-json/fa-solid': ^1.1.2
-  '@iconify-json/logos': ^1.1.15
   '@unocss/preset-icons': ^0.45.18
   astro: ^1.1.1
   classnames: ^2.3.1
@@ -12,7 +11,6 @@ specifiers:
   vite: ^3.1.0
 
 dependencies:
-  '@iconify-json/logos': 1.1.15
   modern-normalize: 1.1.0
 
 devDependencies:
@@ -413,14 +411,9 @@ packages:
       '@iconify/types': 1.1.0
     dev: true
 
-  /@iconify-json/logos/1.1.15:
-    resolution: {integrity: sha512-J5NtHiM78fSgeHyFhipDdpnOQsKsHYXlqI1w+jsCqFA8R7HkacsKWxQ739AvTBdmK67lW8O3/TyacATaAp/lUA==}
-    dependencies:
-      '@iconify/types': 1.1.0
-    dev: false
-
   /@iconify/types/1.1.0:
     resolution: {integrity: sha512-Jh0llaK2LRXQoYsorIH8maClebsnzTcve+7U3rQUSnC11X4jtPnFuyatqFLvMxZ8MLG8dB4zfHsbPfuvxluONw==}
+    dev: true
 
   /@iconify/utils/1.0.33:
     resolution: {integrity: sha512-vGeAqo7aGPxOQmGdVoXFUOuyN+0V7Lcrx2EvaiRjxUD1x6Om0Tvq2bdm7E24l2Pz++4S0mWMCVFXe/17EtKImQ==}
