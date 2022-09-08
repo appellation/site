@@ -1,7 +1,9 @@
+import presetIcons from '@unocss/preset-icons';
 import { defineConfig } from 'astro/config';
-import react from "@astrojs/react";
+import { presetUno } from 'unocss';
+import Unocss from 'unocss/astro';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()]
+  integrations: [Unocss({ presets: [presetIcons(), presetUno()] })],
 });

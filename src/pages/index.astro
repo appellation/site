@@ -1,34 +1,46 @@
 ---
+import classNames from "classnames";
+
 import Layout from "../layouts/Layout.astro";
 import IconButton from "../components/IconButton.astro";
 ---
 
 <Layout title="Will Nelson">
-	<main>
-		<h1>Hi, I'm <span class="text-gradient">Will</span>!</h1>
-		<h2>Software Engineer @ Discord</h2>
-		<ul role="list" class="link-card-grid">
+	<main
+		class={classNames([
+			"flex",
+			"flex-col",
+			"justify-center",
+			"grow",
+			"ma",
+			"px-4",
+			"max-w-2xl",
+		])}
+	>
+		<h1 class="text-6xl font-bold leading-tight">
+			Hi, I'm <span class="text-gradient">Will</span>!
+		</h1>
+		<h2 class="font-light text-2xl">Software Engineer @ Discord</h2>
+		<ul role="list" class="flex gap-4 mt-12">
 			<IconButton
 				href="mailto:me@wnelson.dev"
-				iconClass="fa-solid fa-at fa-lg"
+				iconClass="i-fa-solid-at hover:bg-violet-700"
 			/>
 			<IconButton
 				href="https://github.com/appellation"
-				iconClass="fa-brands fa-github fa-lg"
+				iconClass="i-fa-brands-github hover:bg-[#2da44e]"
 			/>
 			<IconButton
 				href="https://linkedin.com/in/williamonelson"
-				iconClass="fa-brands fa-linkedin fa-lg"
-				hoverColor="#0077b5"
+				iconClass="i-fa-brands-linkedin hover:bg-[#0077B5]"
 			/>
 			<IconButton
 				href="https://twitter.com/appelation_"
-				iconClass="fa-brands fa-twitter fa-lg"
-				hoverColor="#1DA1F2"
+				iconClass="i-fa-brands-twitter hover:bg-[#1DA1F2]"
 			/>
 			<IconButton
 				href="https://keybase.io/appellation"
-				iconClass="fa-brands fa-keybase fa-lg"
+				iconClass="i-fa-brands-keybase hover:bg-[#ff6f21]"
 			/>
 		</ul>
 	</main>
@@ -39,35 +51,7 @@ import IconButton from "../components/IconButton.astro";
 		--astro-gradient: linear-gradient(0deg, #355aee, #5be687);
 	}
 
-	h1 {
-		margin: 0;
-	}
-
-	h2 {
-		margin: 0;
-		margin-bottom: 1rem;
-		font-weight: 300;
-	}
-
-	body {
-		display: flex;
-		height: 100vh;
-	}
-
-	main {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		margin: auto;
-		padding: 0 1em;
-		max-width: 60ch;
-		align-self: center;
-		justify-self: center;
-		flex-grow: 1;
-	}
-
 	.text-gradient {
-		font-family: Roboto Slab;
 		font-weight: 900;
 		background-image: var(--astro-gradient);
 		-webkit-background-clip: text;
@@ -86,13 +70,5 @@ import IconButton from "../components/IconButton.astro";
 		50% {
 			background-position-y: 80%;
 		}
-	}
-
-	.link-card-grid {
-		display: flex;
-		gap: 1rem;
-		padding: 0;
-		margin: 3rem 0;
-		color: black;
 	}
 </style>

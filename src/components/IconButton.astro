@@ -1,21 +1,12 @@
 ---
+import classNames from "classnames";
+
 export interface Props {
 	href: string;
 	iconClass: string;
-	hoverColor?: string;
 }
 
-const { iconClass, href, hoverColor } = Astro.props;
+const { iconClass, href } = Astro.props;
 ---
 
-<a href={href}><i class={iconClass}></i></a>
-
-<style define:vars={{ hoverColor: hoverColor ?? "#4f39fa" }}>
-	i {
-		color: black;
-	}
-
-	i:hover {
-		color: var(--hoverColor);
-	}
-</style>
+<a href={href}><div class={classNames("text-2xl", iconClass)}></div></a>
