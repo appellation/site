@@ -15,22 +15,18 @@ const faviconUrl = new URL("/poggers.webp", Astro.url);
 		<link rel="icon" type="image/png" href="/poggers.webp" />
 		<meta name="generator" content={Astro.generator} />
 
-		<meta property="og:title" content="Will Nelson" />
-		<meta property="og:description" content="Software engineer @ Discord" />
-		<meta property="og:image" content={faviconUrl} />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:type" content="profile" />
-		<meta property="og:profile:first_name" content="Will" />
-		<meta property="og:profile:last_name" content="Nelson" />
-		<meta property="og:profile:username" content="appellation" />
-		<meta property="og:profile:gender" content="male" />
+		<meta name="og:title" content="Will Nelson" />
+		<meta name="og:description" content="Software engineer @ Discord" />
+		<meta name="og:image" content={faviconUrl} />
+		<meta name="og:url" content={Astro.url} />
+		<meta name="og:type" content="profile" />
+		<meta name="og:profile:first_name" content="Will" />
+		<meta name="og:profile:last_name" content="Nelson" />
+		<meta name="og:profile:username" content="appellation" />
+		<meta name="og:profile:gender" content="male" />
 
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta property="twitter:domain" content={Astro.url.hostname} />
-		<meta property="twitter:url" content={Astro.url} />
-		<meta name="twitter:title" content="Will Nelson" />
-		<meta name="twitter:description" content="Software engineer @ Discord" />
-		<meta name="twitter:image" content={faviconUrl} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@appellation_" />
 
 		<title>{title}</title>
 	</head>
