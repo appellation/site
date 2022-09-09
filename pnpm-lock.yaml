@@ -6,12 +6,10 @@ specifiers:
   '@unocss/preset-icons': ^0.45.18
   astro: ^1.1.1
   classnames: ^2.3.1
-  modern-normalize: ^1.1.0
+  postcss: ^8.4.16
+  postcss-font-magician: ^3.0.0
   unocss: ^0.45.18
   vite: ^3.1.0
-
-dependencies:
-  modern-normalize: 1.1.0
 
 devDependencies:
   '@iconify-json/fa-brands': 1.1.2
@@ -19,6 +17,8 @@ devDependencies:
   '@unocss/preset-icons': 0.45.18
   astro: 1.1.1
   classnames: 2.3.1
+  postcss: 8.4.16
+  postcss-font-magician: 3.0.0_postcss@8.4.16
   unocss: 0.45.18_vite@3.1.0
   vite: 3.1.0
 
@@ -777,6 +777,11 @@ packages:
     hasBin: true
     dev: true
 
+  /amdefine/1.0.1:
+    resolution: {integrity: sha512-S2Hw0TtNkMJhIabBwIojKL9YHO5T0n5eNqWJ7Lrlel/zDbftQpxpapi8tZs3X1HWa+u+QeydGmzzNU0m09+Rcg==}
+    engines: {node: '>=0.4.2'}
+    dev: true
+
   /ansi-align/3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
     dependencies:
@@ -906,6 +911,10 @@ packages:
       - ts-node
     dev: true
 
+  /b3b/0.0.1:
+    resolution: {integrity: sha512-wWUK79hNEsHN1PTHwHsGYpTNupgaovM39g6374uoIL1gfVSwK2q9flM1DFyvSEYkELRWf5aMGSf7bkGGNSl0Jw==}
+    dev: true
+
   /bail/2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
     dev: true
@@ -927,6 +936,12 @@ packages:
       readable-stream: 3.6.0
     dev: true
 
+  /bootstrap-fonts-complete/1.0.0:
+    resolution: {integrity: sha512-5K+ELLuM3NepCFr1OlkNNkAwrUg4MNM0BeCBhj2qDbCbl2FwqOL0Uu49UVU0hKO8b6sgtXtgoh1o3qoWMTbpDw==}
+    dependencies:
+      postcss: 4.1.16
+    dev: true
+
   /boxen/6.2.1:
     resolution: {integrity: sha512-H4PEsJXfFI/Pt8sjDWbHlQPx4zL/bvSQjcilJmaulGt5mLDorHOHpmdXAJcBcmru7PhYSp/cDMWRko4ZUMFkSw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -946,6 +961,12 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.0.1
+    dev: true
+
+  /brotli/1.3.3:
+    resolution: {integrity: sha512-oTKjJdShmDuGW94SyyaoQvAjf30dZaHnjJ8uAF+u2/vGJkJbJPJAT1gDiOJP5v1Zb6f9KEyW/1HpuaWIXtGHPg==}
+    dependencies:
+      base64-js: 1.5.1
     dev: true
 
   /browserslist/4.21.3:
@@ -1184,6 +1205,17 @@ packages:
     engines: {node: '>=0.3.1'}
     dev: true
 
+  /directory-fonts-complete/1.2.0:
+    resolution: {integrity: sha512-/d3kxZmVS+2v774mZ9SoU7H93TsAvQNpf4s/guQTva3pQSxtwUWN9dSF+Zls7sfA8ybReuR92SQMhxxUTSIGvA==}
+    dependencies:
+      brotli: 1.3.3
+      is-eot: 1.0.0
+      is-otf: 0.1.2
+      is-ttf: 0.2.2
+      is-woff: 1.0.3
+      is-woff2: 1.0.0
+    dev: true
+
   /dlv/1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
     dev: true
@@ -1226,6 +1258,10 @@ packages:
 
   /es-module-lexer/0.10.5:
     resolution: {integrity: sha512-+7IwY/kiGAacQfY+YBhKMvEmyAJnw5grTUgjG85Pe7vcUI/6b7pZjZG8nQ7+48YhzEAEqrEgD2dCz/JIK+AYvw==}
+    dev: true
+
+  /es6-promise/2.3.0:
+    resolution: {integrity: sha512-oyOjMhyKMLEjOOtvkwg0G4pAzLQ9WdbbeX7WdqKzvYXu+UFgD0Zo/Brq5Q49zNmnGPPzV5rmYvrr0jz1zWx8Iw==}
     dev: true
 
   /esbuild-android-64/0.14.54:
@@ -1831,6 +1867,12 @@ packages:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
+  /google-fonts-complete/2.1.1:
+    resolution: {integrity: sha512-6e7jXyadmW4iHrrmYitcsoyVpcymjndBsgXLeo0XXXbAqU9xhM06OxxJAiPqSrp9Xn2bvBueOTe091lwkKVc1g==}
+    dependencies:
+      postcss: 7.0.39
+    dev: true
+
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
@@ -2048,6 +2090,11 @@ packages:
     hasBin: true
     dev: true
 
+  /is-eot/1.0.0:
+    resolution: {integrity: sha512-hPQF4rLYEe9VGVGr6aGrc0Yf5s8MOaEsY8SUi/IySicowWu10/Cr60+JVsVEl7v2MD+TbhwBWjudCK6OycPr7g==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /is-extendable/0.1.1:
     resolution: {integrity: sha512-5BMULNob1vgFX6EjQw5izWDxrecWK9AM72rugNr0TFldMOi0fj6Jk+zeKIt0xGj4cEfQIJth4w3OKWOJ4f+AFw==}
     engines: {node: '>=0.10.0'}
@@ -2084,6 +2131,13 @@ packages:
     engines: {node: '>=0.12.0'}
     dev: true
 
+  /is-otf/0.1.2:
+    resolution: {integrity: sha512-0usgFT/986IQ0zFN4iQUKebPpHNAwA34f8qQC+Y8L1R379odRzS4pc1GCqBRL6P6AlGUoK/0/GYY6AYgD0anRA==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      b3b: 0.0.1
+    dev: true
+
   /is-plain-obj/4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
@@ -2099,9 +2153,26 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
+  /is-ttf/0.2.2:
+    resolution: {integrity: sha512-0NWCiYnyH8gvyBkLcnG8nBBgz6ZqFqgSS37jTTQKGF/y7Wrf6KKr9EmW7ExcxFoE0WU1mKcnMElRf9QOUNxAmQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      b3b: 0.0.1
+    dev: true
+
   /is-unicode-supported/1.2.0:
     resolution: {integrity: sha512-wH+U77omcRzevfIG8dDhTS0V9zZyweakfD01FULl97+0EHiJTTZtJqxPSkIIo/SDPv/i07k/C9jAPY+jwLLeUQ==}
     engines: {node: '>=12'}
+    dev: true
+
+  /is-woff/1.0.3:
+    resolution: {integrity: sha512-gm8k3MyCWQaum1kE91X8GYPuUIS/SeBleKfi85Oszeqn2pHNSY4TP5AUKFCLTaruX2HzLv9dQmS8+N8vDJtrQA==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  /is-woff2/1.0.0:
+    resolution: {integrity: sha512-7RmH5rCoOpB0FpHtMHuQOXZjWyaFoCHmjCA72DlyHQ5SAVZC0/RDhhs/88Dzucr5qyU4eA0QvDbiW56IarjsnQ==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /is-wsl/2.2.0:
@@ -2118,6 +2189,10 @@ packages:
   /jiti/1.15.0:
     resolution: {integrity: sha512-cClBkETOCVIpPMjX3ULlivuBvmt8l2Xtz+SHrULO06OqdtV0QFR2cuhc4FJnXByjUUX4CY0pl1nph0aFh9D3yA==}
     hasBin: true
+    dev: true
+
+  /js-base64/2.1.9:
+    resolution: {integrity: sha512-f+5mYh8iF7FlF7zgmj/yqvvYQUHI0kAxGiLjIfNxZzqJ7RQNc4sjgp8crVJw0Kzv2O6aFGZWgMTnO71I9utHSg==}
     dev: true
 
   /js-tokens/4.0.0:
@@ -2721,11 +2796,6 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /modern-normalize/1.1.0:
-    resolution: {integrity: sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==}
-    engines: {node: '>=6'}
-    dev: false
-
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -2937,6 +3007,10 @@ packages:
     resolution: {integrity: sha512-NOT9AcKiDGpnV/HBhI22Str++XWcErO/bALvHCuhv33owZW/CjH8KAFLZDCmu3727sihe0wTxpDhyGc6M8qacQ==}
     dev: true
 
+  /picocolors/0.2.1:
+    resolution: {integrity: sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==}
+    dev: true
+
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
@@ -2958,6 +3032,18 @@ packages:
       find-up: 4.1.0
     dev: true
 
+  /postcss-font-magician/3.0.0_postcss@8.4.16:
+    resolution: {integrity: sha512-PqGk9TeIoWzytZeLW6AtgzuL1sJb0bO0xPr4daI6MEhidqyCMECJmwXIlAS6ypf18y6tR04cDFbLqlQruXQiIA==}
+    engines: {node: ^10 || ^12 || >=14}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      bootstrap-fonts-complete: 1.0.0
+      directory-fonts-complete: 1.2.0
+      google-fonts-complete: 2.1.1
+      postcss: 8.4.16
+    dev: true
+
   /postcss-load-config/3.1.4_postcss@8.4.16:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
@@ -2973,6 +3059,22 @@ packages:
       lilconfig: 2.0.6
       postcss: 8.4.16
       yaml: 1.10.2
+    dev: true
+
+  /postcss/4.1.16:
+    resolution: {integrity: sha512-aAutxE8MvL1bHylFMYb2c2nniFax8XDztHzZ+x5DVsNJnoW6VHvGSNSqdW3+ip255HCWfPjayVVFzMmyiL7opA==}
+    dependencies:
+      es6-promise: 2.3.0
+      js-base64: 2.1.9
+      source-map: 0.4.4
+    dev: true
+
+  /postcss/7.0.39:
+    resolution: {integrity: sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      picocolors: 0.2.1
+      source-map: 0.6.1
     dev: true
 
   /postcss/8.4.16:
@@ -3300,6 +3402,13 @@ packages:
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /source-map/0.4.4:
+    resolution: {integrity: sha512-Y8nIfcb1s/7DcobUz1yOO1GSp7gyL+D9zLHDehT7iRESqGSxjJ448Sg7rvfgsRJCnKLdSl11uGf0s9X80cH0/A==}
+    engines: {node: '>=0.8.0'}
+    dependencies:
+      amdefine: 1.0.1
     dev: true
 
   /source-map/0.6.1:
