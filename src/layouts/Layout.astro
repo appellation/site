@@ -30,13 +30,7 @@ const faviconUrl = new URL("/poggers.webp", Astro.url);
 
 		<title>{title}</title>
 	</head>
-	<body class="flex h-screen">
+	<body class="flex h-screen bg-stone-200 font-serif">
 		<slot />
-		<style>
-			body {
-				font-family: "Roboto Slab", system-ui, serif;
-				background-color: hsl(10, 21%, 95%);
-			}
-		</style>
 	</body>
 </html>

@@ -5,6 +5,11 @@ import Unocss from 'unocss/astro';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [Unocss({ presets: [presetIcons(), presetUno()] })],
+  integrations: [
+    Unocss({
+      presets: [presetIcons(), presetUno()],
+      theme: { fontFamily: { serif: ['"Roboto Slab"', 'serif'] } },
+    }),
+  ],
   site: 'https://wnelson.dev',
 });
