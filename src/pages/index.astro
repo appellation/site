@@ -3,22 +3,34 @@ import classNames from "classnames";
 
 import Layout from "../layouts/Layout.astro";
 import IconButton from "../components/IconButton.astro";
+
+const mainClasses = classNames([
+	"flex",
+	"flex-col",
+	"justify-center",
+	"grow",
+	"ma",
+	"px-4",
+	"max-w-2xl",
+]);
+
+const nameGradientClasses = classNames([
+	"font-black",
+	"bg-gradient-to-b",
+	"from-violet-600",
+	"to-teal-600",
+	"bg-clip-text",
+	"bg-[length:100%_300%]",
+	"[background-position-y:100%]",
+	"text-transparent",
+	"animate-bg-pulse",
+]);
 ---
 
 <Layout title="Will Nelson">
-	<main
-		class={classNames([
-			"flex",
-			"flex-col",
-			"justify-center",
-			"grow",
-			"ma",
-			"px-4",
-			"max-w-2xl",
-		])}
-	>
+	<main class={mainClasses}>
 		<h1 class="text-6xl font-bold leading-tight">
-			Hi, I'm <span class="text-gradient">Will</span>!
+			Hi, I'm <span class={nameGradientClasses}>Will</span>!
 		</h1>
 		<h2 class="font-light text-2xl">Software Engineer @ Discord</h2>
 		<ul role="list" class="flex gap-4 mt-12">
@@ -45,26 +57,3 @@ import IconButton from "../components/IconButton.astro";
 		</ul>
 	</main>
 </Layout>
-
-<style>
-	.text-gradient {
-		font-weight: 900;
-		background-image: linear-gradient(0deg, #355aee, #5be687);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 100% 200%;
-		background-position-y: 100%;
-		border-radius: 0.4rem;
-		animation: pulse 4s ease-in-out infinite;
-	}
-
-	@keyframes pulse {
-		0%,
-		100% {
-			background-position-y: 0%;
-		}
-		50% {
-			background-position-y: 80%;
-		}
-	}
-</style>
