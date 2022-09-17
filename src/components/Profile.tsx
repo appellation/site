@@ -1,15 +1,19 @@
 import { autoUpdate, offset, ReferenceElement, shift } from '@floating-ui/dom';
-import { useFloating } from 'solid-floating-ui';
-import { createEffect, createSignal, JSX } from 'solid-js';
+import { useFloating } from './util/floating-ui';
+import { createEffect, createSignal, JSX, lazy, Show, Suspense } from 'solid-js';
+import { Portal } from 'solid-js/web';
+
 import useLanyard from './lanyard/useLanyard';
 import StatusText from './StatusText';
-import SmallProfile from './SmallProfile';
+
+const SmallProfile = lazy(() => import('./SmallProfile'));
 
 const USER_ID = '618570414855028767';
 
 export default function Profile(): JSX.Element {
 	const [ref, setRef] = createSignal<ReferenceElement>();
 	const [floating, setFloating] = createSignal<HTMLElement>();
+	const [cardVisible, setCardVisible] = createSignal<boolean>(false);
 
 	const position = useFloating(ref, floating, {
 		whileElementsMounted: autoUpdate,
@@ -25,18 +29,33 @@ export default function Profile(): JSX.Element {
 
 	return (
 		<div class='relative'>
-			<span class='text-lg' ref={setRef}><StatusText presence={presence()} /></span>
-			<div
-				ref={setFloating}
-				class='z-10'
-				style={{
-					position: position.strategy,
-					left: `${position.x ?? 0}px`,
-					top: `${position.y ?? 0}px`,
-				}}
-			>
-				<SmallProfile presence={presence()} />
-			</div>
+			<span class='text-lg' ref={setRef}>
+				<Show when={presence()} fallback={<span>👀</span>}>
+					<span class='cursor-pointer' onClick={() => setCardVisible(v => !v)}>
+						<StatusText presence={presence()!} />
+					</span>
+				</Show>
+			</span>
+			<Show when={cardVisible() && presence()}>
+				<div
+					ref={setFloating}
+					class='z-10'
+					style={{
+						position: position.strategy,
+						left: `${position.x ?? 0}px`,
+						top: `${position.y ?? 0}px`,
+					}}
+				>
+					<div class='bg-white p-3 rounded shadow flex flex-col w-96 gap-3'>
+						<Suspense>
+							<SmallProfile presence={presence()!} />
+						</Suspense>
+					</div>
+				</div>
+			</Show>
+			<Portal>
+				<div class='fixed inset-0' style={{ display: cardVisible() ? 'block' : 'none' }} onClick={() => setCardVisible(v => !v)} />
+			</Portal>
 		</div>
 	)
 }

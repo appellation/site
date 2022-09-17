@@ -3,7 +3,7 @@ import type { Presence } from './lanyard/useLanyard';
 import CustomStatus from './profile/CustomStatus';
 
 export interface Props {
-	presence?: Presence;
+	presence: Presence;
 }
 
 const adverbs = {
@@ -16,7 +16,7 @@ const adverbs = {
 
 export default function StatusText(props: Props) {
 	const text = createMemo(() => {
-		const first = props.presence?.activities.sort((a, b) => a.type - b.type).at(0);
+		const first = props.presence.activities.sort((a, b) => a.type - b.type).at(0);
 
 		switch (first?.type) {
 			case 0:
@@ -29,7 +29,7 @@ export default function StatusText(props: Props) {
 			case 4:
 				return <CustomStatus activity={first} />;
 			default:
-				return <span>{props.presence?.discord_status}</span>;
+				return <span>{props.presence.discord_status}</span>;
 		}
 	});
 

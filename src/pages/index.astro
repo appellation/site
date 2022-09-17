@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import Layout from "../layouts/Layout.astro";
 import IconButton from "../components/IconButton.astro";
-// import Profile from "../components/Profile";
+import Profile from "../components/Profile";
 
 const mainClasses = classNames([
 	"flex",
@@ -34,9 +34,9 @@ const nameGradientClasses = classNames([
 			Hi, I'm <span class={nameGradientClasses}>Will</span>!
 		</h1>
 		<h2 class="font-light text-2xl">Software Engineer @ Discord</h2>
-		<!-- <div class="mt-6">
+		<div class="mt-6">
 			<Profile client:load />
-		</div> -->
+		</div>
 		<ul role="list" class="flex gap-4 mt-12">
 			<IconButton
 				href="mailto:me@wnelson.dev"

@@ -13,7 +13,6 @@ specifiers:
   discord-api-types: ^0.37.8
   postcss: ^8.4.16
   postcss-font-magician: ^3.0.0
-  solid-floating-ui: ^0.1.0
   solid-js: ^1.4.3
   unocss: ^0.45.18
   vite: ^3.1.0
@@ -22,7 +21,6 @@ dependencies:
   '@astrojs/solid-js': 1.1.0_grpjmxwk3vrl3yov3475jfuady
   '@floating-ui/dom': 1.0.1
   discord-api-types: 0.37.8
-  solid-floating-ui: 0.1.0_u6whnbaoxxysuqsuzy3pzitzye
   solid-js: 1.5.4
 
 devDependencies:
@@ -3903,17 +3901,6 @@ packages:
     resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
     engines: {node: '>=12'}
     dev: true
-
-  /solid-floating-ui/0.1.0_u6whnbaoxxysuqsuzy3pzitzye:
-    resolution: {integrity: sha512-HjGF8X3xSMmwFUMvET1Q68RZuqtcRAsmY6iI4eb3kB3gHtmwLdwEre+cO9iSRrxfnh3CiCyn9LNui72CQPQvdg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@floating-ui/dom': ^1.0
-      solid-js: ^1.3
-    dependencies:
-      '@floating-ui/dom': 1.0.1
-      solid-js: 1.5.4
-    dev: false
 
   /solid-js/1.5.4:
     resolution: {integrity: sha512-+65anSHhH27htkhP5LuC912fviMIckgc7/yN+WWrKhS9Kp3dvtDNl5/m4GWX1lpCvcubjShqJjGt16HET5z5Ig==}
