@@ -1,4 +1,5 @@
 import { createSignal, onCleanup } from 'solid-js';
+
 import type { Spotify } from '../lanyard/useLanyard';
 
 export interface Props {
@@ -18,7 +19,7 @@ export default function Spotify(props: Props) {
 	onCleanup(() => clearInterval(interval));
 
 	return (
-		<div class='flex bg-[#1DB954] text-white p-2 rounded-lg'>
+		<a class='flex bg-[#1DB954] text-white p-2 rounded-lg' href={`https://open.spotify.com/track/${props.spotify.track_id}`} target="_blank">
 			<img class='w-18 h-18 rounded mr-2' src={props.spotify.album_art_url} />
 			<div class='flex flex-col w-full truncate'>
 				<span class='font-bold'>{props.spotify.song}</span>
@@ -30,6 +31,7 @@ export default function Spotify(props: Props) {
 					</div>
 				</div>
 			</div>
-		</div>
+			<img class='w-6 h-6 ml-2' src={'/Spotify_Icon_RGB_White.png'} />
+		</a>
 	);
 }
