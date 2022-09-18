@@ -1,6 +1,6 @@
-import { autoUpdate, offset, ReferenceElement, shift } from '@floating-ui/dom';
+import { autoUpdate, flip, inline, offset, ReferenceElement } from '@floating-ui/dom';
 import { useFloating } from './util/floating-ui';
-import { createEffect, createSignal, JSX, lazy, Show, Suspense } from 'solid-js';
+import { createSignal, JSX, lazy, Show, Suspense } from 'solid-js';
 import { Portal } from 'solid-js/web';
 
 import useLanyard from './lanyard/useLanyard';
@@ -17,15 +17,11 @@ export default function Profile(): JSX.Element {
 
 	const position = useFloating(ref, floating, {
 		whileElementsMounted: autoUpdate,
-		middleware: [shift({ crossAxis: true }), offset(10)],
+		middleware: [flip({ fallbackPlacements: ['bottom', 'top'] }), offset(10)],
 		placement: 'right',
 	});
 
 	const presence = useLanyard(USER_ID);
-
-	createEffect(() => {
-		if (presence()) position.update();
-	});
 
 	return (
 		<div class='relative'>
