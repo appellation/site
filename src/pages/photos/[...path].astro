@@ -1,0 +1,79 @@
+---
+import type { GetStaticPathsOptions, GetStaticPathsResult } from "astro";
+import { partition, flatten } from "lodash";
+
+interface Item {
+	Guid: string;
+	StorageZoneName: string;
+	Path: string;
+	ObjectName: string;
+	Length: number;
+	LastChanged: string;
+	ServerId: number;
+	ArrayNumber: number;
+	IsDirectory: boolean;
+	UserId: string;
+	ContentType: string;
+	DateCreated: string;
+	StorageZoneId: number;
+	Checksum: null;
+	ReplicatedZones: null;
+}
+
+export interface Props {
+	photos: Item[];
+	dirs: Item[];
+}
+
+export async function getStaticPaths(options: GetStaticPathsOptions) {
+	async function fetchItems(path?: string): Promise<GetStaticPathsResult> {
+		const res = await fetch(
+			`https://la.storage.bunnycdn.com/photos-main/${path ? `${path}/` : ""}`,
+			{
+				headers: {
+					accept: "application/json",
+					accesskey: import.meta.env.BUNNY_STORAGE_PASSWORD,
+				},
+			}
+		);
+
+		if (!res.ok) {
+			console.warn(path, await res.text());
+			return [];
+		}
+
+		const body: Item[] = await res.json();
+
+		const [dirs, files] = partition(body, (f) => f.IsDirectory);
+		const nested = flatten(
+			await Promise.all(dirs.map((f) => fetchItems(f.ObjectName)))
+		);
+		return [{ params: { path }, props: { photos: files, dirs } }, ...nested];
+	}
+
+	return fetchItems();
+}
+
+const { photos, dirs } = Astro.props;
+---
+
+<div>
+	<h1>Dirs</h1>
+	{
+		dirs.map((i) => (
+			<a href={`${Astro.url.pathname}/${i.ObjectName}`}>{i.ObjectName}</a>
+		))
+	}
+	<h1>Photos</h1>
+	{
+		photos.map((i) => {
+			const path = i.Path.substring("/photos-main".length);
+			return (
+				<img
+					src={`https://photos.wnelson.dev${path}${i.ObjectName}?width=250`}
+					alt={i.ObjectName}
+				/>
+			);
+		})
+	}
+</div>

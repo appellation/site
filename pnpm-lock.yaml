@@ -6,11 +6,13 @@ specifiers:
   '@floating-ui/dom': ^1.0.1
   '@iconify-json/fa-brands': ^1.1.2
   '@iconify-json/fa-solid': ^1.1.2
+  '@types/lodash': ^4.14.185
   '@unocss/preset-icons': ^0.45.18
   astro: ^1.1.1
   classnames: ^2.3.1
   cssnano: ^5.1.13
   discord-api-types: ^0.37.8
+  lodash: ^4.17.21
   postcss: ^8.4.16
   postcss-font-magician: ^3.0.0
   solid-js: ^1.4.3
@@ -27,10 +29,12 @@ devDependencies:
   '@babel/core': 7.18.13
   '@iconify-json/fa-brands': 1.1.2
   '@iconify-json/fa-solid': 1.1.2
+  '@types/lodash': 4.14.185
   '@unocss/preset-icons': 0.45.18
   astro: 1.1.1
   classnames: 2.3.1
   cssnano: 5.1.13_postcss@8.4.16
+  lodash: 4.17.21
   postcss: 8.4.16
   postcss-font-magician: 3.0.0_postcss@8.4.16
   unocss: 0.45.18_vite@3.1.0
@@ -585,6 +589,10 @@ packages:
 
   /@types/json5/0.0.30:
     resolution: {integrity: sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==}
+    dev: true
+
+  /@types/lodash/4.14.185:
+    resolution: {integrity: sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==}
     dev: true
 
   /@types/mdast/3.0.10:
@@ -2477,6 +2485,10 @@ packages:
 
   /lodash.uniq/4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
+    dev: true
+
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
   /log-symbols/5.1.0:
