@@ -50,9 +50,9 @@ const title = Astro.url.pathname
 			{
 				Object.entries(files).map(([path, photo]) => {
 					return (
-						<a href={`https://thumbs.photos.wnelson.dev${path}`}>
+						<a href={`https://thumbnails.wnelson.dev${path}`}>
 							<img
-								src={`https://thumbs.photos.wnelson.dev${path}?width=250`}
+								src={`https://thumbnails.wnelson.dev${path}?width=250`}
 								alt={photo.ObjectName}
 							/>
 						</a>
