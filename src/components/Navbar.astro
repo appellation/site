@@ -1,0 +1,35 @@
+---
+import { intersperse } from "../util";
+import { getAllPages } from "../path";
+import Dropdown from "./Dropdown";
+
+const segments = Astro.url.pathname.split("/").filter((p) => p);
+const segmentPaths = segments.map((_, i) =>
+	i === 0 ? "/" : "/" + segments.slice(0, i).join("/") + "/"
+);
+
+const allPages = await getAllPages();
+---
+
+<div class="my-6 text-lg text-stone-600 flex items-center gap-4">
+	<a class="i-bi-folder-fill inline-block" href="/"></a>
+	<div>/</div>
+	{
+		intersperse(
+			segments.map((s, i) => {
+				const links = allPages[segmentPaths[i]]?.dirs ?? {};
+
+				return (
+					<Dropdown
+						client:load
+						links={links}
+						self={"/" + segments[0] + segmentPaths[i]}
+					>
+						{decodeURIComponent(s)}
+					</Dropdown>
+				);
+			}),
+			<div>/</div>
+		)
+	}
+</div>

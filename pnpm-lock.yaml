@@ -4,15 +4,16 @@ specifiers:
   '@astrojs/solid-js': ^1.1.0
   '@babel/core': '7'
   '@floating-ui/dom': ^1.0.1
+  '@iconify-json/bi': ^1.1.8
   '@iconify-json/fa-brands': ^1.1.2
   '@iconify-json/fa-solid': ^1.1.2
-  '@types/lodash': ^4.14.185
+  '@types/lodash-es': ^4.17.6
   '@unocss/preset-icons': ^0.45.18
   astro: ^1.1.1
   classnames: ^2.3.1
   cssnano: ^5.1.13
   discord-api-types: ^0.37.8
-  lodash: ^4.17.21
+  lodash-es: ^4.17.21
   postcss: ^8.4.16
   postcss-font-magician: ^3.0.0
   solid-js: ^1.4.3
@@ -27,14 +28,15 @@ dependencies:
 
 devDependencies:
   '@babel/core': 7.18.13
+  '@iconify-json/bi': 1.1.8
   '@iconify-json/fa-brands': 1.1.2
   '@iconify-json/fa-solid': 1.1.2
-  '@types/lodash': 4.14.185
+  '@types/lodash-es': 4.17.6
   '@unocss/preset-icons': 0.45.18
   astro: 1.1.1
   classnames: 2.3.1
   cssnano: 5.1.13_postcss@8.4.16
-  lodash: 4.17.21
+  lodash-es: 4.17.21
   postcss: 8.4.16
   postcss-font-magician: 3.0.0_postcss@8.4.16
   unocss: 0.45.18_vite@3.1.0
@@ -422,6 +424,12 @@ packages:
       '@floating-ui/core': 1.0.1
     dev: false
 
+  /@iconify-json/bi/1.1.8:
+    resolution: {integrity: sha512-aUmRT4iKjpz9fRF2/6d2JcMd7Lz6Fwn4rQnMZy8rhAw3CCBKPRpcbSW3tf+O1K4+oVe/+gV2FqO50ZZiWsjaEw==}
+    dependencies:
+      '@iconify/types': 1.1.0
+    dev: true
+
   /@iconify-json/fa-brands/1.1.2:
     resolution: {integrity: sha512-ByUw5MMEsc6gjbtHD3FTrX1689/CN1Mg+qPOnofckOw/M2SOH8qFgoQTi3bafQQQWNxUV45ttM85bscou52AzA==}
     dependencies:
@@ -589,6 +597,12 @@ packages:
 
   /@types/json5/0.0.30:
     resolution: {integrity: sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==}
+    dev: true
+
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
+    dependencies:
+      '@types/lodash': 4.14.185
     dev: true
 
   /@types/lodash/4.14.185:
@@ -2479,16 +2493,16 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: true
+
   /lodash.memoize/4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
     dev: true
 
   /lodash.uniq/4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
-    dev: true
-
-  /lodash/4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
   /log-symbols/5.1.0:
