@@ -31,8 +31,7 @@ async function loadPhotos(path: string): Promise<Photo[]> {
 	);
 
 	if (!res.ok) {
-		console.warn(path, await res.text());
-		return [];
+		throw new Error(await res.text());
 	}
 
 	return res.json();
