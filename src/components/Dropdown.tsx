@@ -1,17 +1,20 @@
 import { autoUpdate, offset, ReferenceElement, shift } from '@floating-ui/dom';
-import { createMemo, createSignal, ParentProps, Show } from 'solid-js';
+import { createMemo, createSignal, mergeProps, ParentProps, Show } from 'solid-js';
 import { useFloating } from './util/floating-ui';
 
 export interface Props {
 	links: Record<string, string>;
-	self: string;
+	collapseSingle?: boolean;
 }
 
 export default function Dropdown(props: ParentProps<Props>) {
+	props = mergeProps({ collapseSingle: true }, props);
+
 	const [isOpen, setOpen] = createSignal(false);
 	const [ref, setRef] = createSignal<ReferenceElement>();
 	const [floating, setFloating] = createSignal<HTMLElement>();
-	const hasLinks = createMemo(() => Boolean(Object.keys(props.links).length));
+	const firstLink = createMemo(() => Object.keys(props.links)[0]);
+	const hasManyLinks = createMemo(() => !Boolean(props.collapseSingle) || Object.keys(props.links).length > 1);
 
 	const position = useFloating(ref, floating, {
 		whileElementsMounted: autoUpdate,
@@ -20,13 +23,15 @@ export default function Dropdown(props: ParentProps<Props>) {
 	});
 
 	return (
-		<div onClick={() => setOpen(isOpen => hasLinks() && !isOpen)}>
+		<div onClick={() => setOpen(isOpen => hasManyLinks() && !isOpen)}>
 			<div ref={setRef} class='relative transition-colors hover:bg-stone-300 rounded px-1 cursor-pointer'>
-				<Show when={hasLinks()} fallback={<a href={props.self}>{props.children}</a>}>
-					<div>
-						{props.children}
+				<Show when={hasManyLinks()} fallback={<a href={firstLink()}>{props.children}</a>}>
+					<div class='flex flex-row'>
+						<span class='mr-2' classList={{
+							hidden: !props.children,
+						}}>{props.children}</span>
 						<span
-							class='inline-block ml-2 align-middle'
+							class='inline-block align-middle'
 							classList={{
 								'i-bi-chevron-up': isOpen(),
 								'i-bi-chevron-down': !isOpen(),

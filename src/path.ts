@@ -1,4 +1,4 @@
-import { mapValues } from 'lodash-es';
+import { basename } from 'node:path';;
 
 /**
  * Map of path to contents.
@@ -21,7 +21,10 @@ function makePaths(files: string[]): Pages<string> {
 			lastPage = lastPage.get(segment)!;
 		}
 
-		// if (filename) lastPage.set(filename, null);
+		if (filename) {
+			const name = basename(filename, '.astro');
+			if (name !== 'index') lastPage.set(name, null);
+		}
 	}
 
 	return contents;
