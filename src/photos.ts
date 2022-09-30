@@ -39,13 +39,21 @@ async function loadPhotos(path: string): Promise<Photo[]> {
 
 const memoLoadPhotos = memoize(loadPhotos);
 
-export async function fetchPhotos(base: string, replace: string = '/', path: string = base): Promise<Pages<Photo>> {
+export interface FetchPhotosOptions {
+	replace?: string;
+	path?: string;
+	recursive?: boolean;
+}
+
+export async function fetchPhotos(base: string, { replace = '/', path = base, recursive }: FetchPhotosOptions = {}): Promise<Pages<Photo>> {
 	const body: Photo[] = await memoLoadPhotos(path);
 
 	const [dirs, files] = partition(body, (f) => f.IsDirectory);
 
 	const baseRegex = new RegExp('^' + escapeRegExp(base) + '/?');
 	const actualPath = path.replace(baseRegex, replace);
+	const nested = recursive ? Promise.all(dirs.map((f) => fetchPhotos(base, { replace, path: f.Path + f.ObjectName }))) : Promise.resolve([]);
+
 	return merge(
 		{
 			[actualPath]: {
@@ -53,6 +61,6 @@ export async function fetchPhotos(base: string, replace: string = '/', path: str
 				dirs: keyBy(dirs, f => (f.Path + f.ObjectName + '/').replace(baseRegex, replace)),
 			},
 		},
-		...await Promise.all(dirs.map((f) => fetchPhotos(base, replace, f.Path + f.ObjectName)))
+		...await nested
 	);
 }

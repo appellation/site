@@ -1,18 +1,33 @@
 import { mapValues } from 'lodash-es';
-import { fetchPhotos } from './photos';
 
-export type Pages<T> = Record<string, Contents<T>>;
+/**
+ * Map of path to contents.
+ */
+export type Pages<T> = Map<string, Pages<T> | null>;
 
-export interface Contents<T> {
-	files: Record<string, T>;
-	dirs: Record<string, T>;
+
+function makePaths(files: string[]): Pages<string> {
+	const contents: Pages<string> = new Map();
+	for (const file of files) {
+		const segments = file.split('/');
+		const filename = segments.pop();
+		let lastPage = contents;
+
+		for (const segment of segments) {
+			if (!lastPage.get(segment)) {
+				lastPage.set(segment, new Map());
+			}
+
+			lastPage = lastPage.get(segment)!;
+		}
+
+		// if (filename) lastPage.set(filename, null);
+	}
+
+	return contents;
 }
 
-export async function getAllPages(): Promise<Pages<string>> {
-	const photos = await fetchPhotos('/wnelson-photos', '/photos/');
-	// console.log(photos);
-	return mapValues(photos, (v) => ({
-		files: mapValues(v.files, f => decodeURIComponent(f.ObjectName)),
-		dirs: mapValues(v.dirs, f => decodeURIComponent(f.ObjectName)),
-	}));
+export function getAllPages(): Pages<string> {
+	const staticPages = import.meta.glob('./pages/**/*.astro');
+	return makePaths(Object.keys(staticPages));
 }

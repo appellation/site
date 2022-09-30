@@ -1,14 +1,14 @@
 ---
+import { keyBy } from "lodash-es";
+
 import { intersperse } from "../util";
 import { getAllPages } from "../path";
 import Dropdown from "./Dropdown";
 
 const segments = Astro.url.pathname.split("/").filter((p) => p);
-const segmentPaths = segments.map((_, i) =>
-	i === 0 ? "/" : "/" + segments.slice(0, i).join("/") + "/"
-);
 
-const allPages = await getAllPages();
+let pages = getAllPages().get(".")?.get("pages");
+let prefix = "/";
 ---
 
 <div class="my-6 text-lg text-stone-600 flex items-center gap-4">
@@ -16,15 +16,15 @@ const allPages = await getAllPages();
 	<div>/</div>
 	{
 		intersperse(
-			segments.map((s, i) => {
-				const links = allPages[segmentPaths[i]]?.dirs ?? {};
+			segments.map((s) => {
+				const keys = pages ? [...pages.keys()] : [];
+				const links = keyBy(keys, (link) => prefix + link);
+
+				prefix += `${s}/`;
+				pages = pages?.get(s);
 
 				return (
-					<Dropdown
-						client:load
-						links={links}
-						self={"/" + segments[0] + segmentPaths[i]}
-					>
+					<Dropdown client:load links={links} self={"/" + prefix}>
 						{decodeURIComponent(s)}
 					</Dropdown>
 				);

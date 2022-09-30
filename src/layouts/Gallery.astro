@@ -1,0 +1,32 @@
+---
+import { DateTime } from "luxon";
+
+import Navbar from "../components/Navbar.astro";
+import Layout from "./Layout.astro";
+
+type Props = {
+	title: string;
+	start: string;
+	end: string;
+};
+
+const { props } = Astro;
+const start = DateTime.fromISO(props.start);
+const end = DateTime.fromISO(props.end);
+---
+
+<Layout title={props.title}>
+	<div class="container mx-auto">
+		<Navbar />
+		<h1 class="text-6xl font-bold mt-6">{props.title}</h1>
+		<div class="text-stone-600">
+			{start.toLocaleString(DateTime.DATE_FULL)} - {
+				end.toLocaleString(DateTime.DATE_FULL)
+			}
+		</div>
+		<div class="my-6">
+			<slot />
+		</div>
+		<p class="my-6">&copy; Will Nelson</p>
+	</div>
+</Layout>

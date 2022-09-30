@@ -15,6 +15,7 @@
     "@iconify-json/fa-brands": "^1.1.2",
     "@iconify-json/fa-solid": "^1.1.2",
     "@types/lodash-es": "^4.17.6",
+    "@types/luxon": "^3.0.1",
     "@unocss/preset-icons": "^0.45.18",
     "astro": "^1.1.1",
     "classnames": "^2.3.1",
@@ -29,6 +30,7 @@
     "@astrojs/solid-js": "^1.1.0",
     "@floating-ui/dom": "^1.0.1",
     "discord-api-types": "^0.37.8",
+    "luxon": "^3.0.4",
     "solid-js": "^1.4.3"
   }
 }
