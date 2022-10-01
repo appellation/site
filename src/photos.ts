@@ -1,5 +1,4 @@
 import { partition, memoize, keyBy, escapeRegExp, merge } from "lodash-es";
-import type { Pages } from './path';
 
 export interface Photo {
 	Guid: string;
@@ -45,7 +44,9 @@ export interface FetchPhotosOptions {
 	recursive?: boolean;
 }
 
-export async function fetchPhotos(base: string, { replace = '/', path = base, recursive }: FetchPhotosOptions = {}): Promise<Pages<Photo>> {
+export type PhotoPage = Record<string, { files: Photo, dirs: Photo }>;
+
+export async function fetchPhotos(base: string, { replace = '/', path = base, recursive }: FetchPhotosOptions = {}): Promise<PhotoPage> {
 	const body: Photo[] = await memoLoadPhotos(path);
 
 	const [dirs, files] = partition(body, (f) => f.IsDirectory);
