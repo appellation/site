@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { intersperse } from "../util";
 import { getAllPages } from "../path";
 import Dropdown from "./Dropdown";
+import { Show } from "solid-js";
 
 const segments = Astro.url.pathname.split("/").filter((p) => p);
 
@@ -41,8 +42,10 @@ const next = keyBy([...(pages?.keys() ?? [])], (page) =>
 			<div>/</div>
 		)
 	}
-	<div>/</div>
-	<div class="text-stone-400">
-		<Dropdown links={next} collapseSingle={false} client:load />
-	</div>
+	<Show when={Object.keys(next).length > 0}>
+		<div>/</div>
+		<div class="text-stone-400">
+			<Dropdown links={next} collapseSingle={false} client:load />
+		</div>
+	</Show>
 </div>
