@@ -1,0 +1,30 @@
+---
+import { fetchPhotos } from "../photos";
+
+export interface Props {
+	path: string;
+}
+
+const files = await fetchPhotos("/wnelson-photos", {
+	replace: "/",
+	recursive: false,
+	path: Astro.props.path,
+});
+const contents = Object.values(files)[0];
+---
+
+<div class="flex flex-wrap gap-2">
+	{
+		Object.entries(contents.files).map(([path, photo]) => {
+			return (
+				<a href={`https://thumbnails.wnelson.dev${path}`}>
+					<img
+						src={`https://thumbnails.wnelson.dev${path}?width=250`}
+						alt={photo.ObjectName}
+						loading="lazy"
+					/>
+				</a>
+			);
+		})
+	}
+</div>
