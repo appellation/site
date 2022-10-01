@@ -25,7 +25,7 @@ export default function Dropdown(props: ParentProps<Props>) {
 	return (
 		<div onClick={() => setOpen(isOpen => hasManyLinks() && !isOpen)}>
 			<div ref={setRef} class='relative transition-colors hover:bg-stone-300 rounded px-1 cursor-pointer'>
-				<Show when={hasManyLinks()} fallback={<a href={firstLink()}>{props.children}</a>}>
+				<Show when={hasManyLinks()} fallback={<a href={firstLink()} rel="prefetch">{props.children}</a>}>
 					<div class='flex flex-row'>
 						<span class='mr-2' classList={{
 							hidden: !props.children,
@@ -52,7 +52,7 @@ export default function Dropdown(props: ParentProps<Props>) {
 			>
 				<ul>
 					{Object.entries(props.links).map(([url, name]) => (
-						<a class='block transition-colors hover:bg-stone-200 rounded px-1' href={url}>{name}</a>
+						<a class='block transition-colors hover:bg-stone-200 rounded px-1' href={url} rel='prefetch'>{name}</a>
 					))}
 				</ul>
 			</div>

@@ -1,5 +1,6 @@
-import solidJs from "@astrojs/solid-js";
+import prefetch from '@astrojs/prefetch';
 import presetIcons from '@unocss/preset-icons';
+import solidJs from "@astrojs/solid-js";
 import { defineConfig } from 'astro/config';
 import { presetUno } from 'unocss';
 import Unocss from 'unocss/astro';
@@ -38,6 +39,7 @@ export default defineConfig({
         }
       }
     }),
+    prefetch(),
   ],
   site: 'https://wnelson.dev'
 });
