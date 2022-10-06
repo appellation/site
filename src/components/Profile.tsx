@@ -10,6 +10,14 @@ const SmallProfile = lazy(() => import('./SmallProfile'));
 
 const USER_ID = '618570414855028767';
 
+function LazyProfile() {
+	return (
+		<Suspense>
+			<Profile />
+		</Suspense>
+	);
+}
+
 export default function Profile(): JSX.Element {
 	const [ref, setRef] = createSignal<ReferenceElement>();
 	const [floating, setFloating] = createSignal<HTMLElement>();
