@@ -35,32 +35,38 @@ const nameGradientClasses = classNames([
 		</h1>
 		<h2 class="font-light text-2xl">Software Engineer @ Discord</h2>
 		<div class="mt-6">
-			<Profile client:load />
+			<Profile client:idle />
 		</div>
-		<ul role="list" class="flex gap-4 mt-12">
+		<ul role="navigation" class="flex gap-4 mt-12">
 			<IconButton
 				href="mailto:me@wnelson.dev"
 				iconClass="i-fa-solid-at hover:bg-violet-700"
+				label="Email"
 			/>
 			<IconButton
 				href="https://github.com/appellation"
 				iconClass="i-fa-brands-github hover:bg-[#2da44e]"
+				label="Github"
 			/>
 			<IconButton
 				href="/discord"
 				iconClass="i-fa-brands-discord hover:bg-[#5865F2]"
+				label="Discord"
 			/>
 			<IconButton
 				href="https://linkedin.com/in/williamonelson"
 				iconClass="i-fa-brands-linkedin hover:bg-[#0077B5]"
+				label="LinkedIn"
 			/>
 			<IconButton
 				href="https://twitter.com/appellation_"
 				iconClass="i-fa-brands-twitter hover:bg-[#1DA1F2]"
+				label="Twitter"
 			/>
 			<IconButton
 				href="https://keybase.io/appellation"
 				iconClass="i-fa-brands-keybase hover:bg-[#ff6f21]"
+				label="Keybase"
 			/>
 		</ul>
 	</main>

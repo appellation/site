@@ -4,9 +4,10 @@ import classNames from "classnames";
 export interface Props {
 	href: string;
 	iconClass: string;
+	label: string;
 }
 
-const { iconClass, href } = Astro.props;
+const { iconClass, href, label } = Astro.props;
 ---
 
-<a href={href}><div class={classNames("text-2xl", iconClass)}></div></a>
+<a href={href} aria-label={label}><div class={classNames("text-2xl", iconClass)}></div></a>
