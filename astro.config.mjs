@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [
     solidJs(),
     Unocss({
-      presets: [presetIcons(), presetUno()],
+      presets: [presetIcons(), presetUno({ dark: 'media' })],
       theme: {
         fontFamily: {
           serif: ['"Roboto Slab"', 'serif']
