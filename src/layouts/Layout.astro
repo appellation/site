@@ -14,6 +14,7 @@ const faviconUrl = new URL("/poggers.webp", Astro.url);
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/poggers.webp" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="manifest" href="/manifest.json" />
 
 		<meta name="og:title" content="Will Nelson" />
 		<meta name="og:description" content="Software engineer @ Discord" />
@@ -30,7 +31,9 @@ const faviconUrl = new URL("/poggers.webp", Astro.url);
 
 		<title>{title}</title>
 	</head>
-	<body class="flex h-screen bg-stone-200 dark:bg-stone-800 dark:text-white font-serif">
+	<body
+		class="flex h-screen bg-stone-200 dark:bg-stone-800 dark:text-white font-serif"
+	>
 		<slot />
 	</body>
 </html>

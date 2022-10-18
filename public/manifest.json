@@ -1,0 +1,15 @@
+{
+	"$schema": "https://json.schemastore.org/web-manifest-combined.json",
+	"name": "Will Nelson",
+	"start_url": ".",
+	"background_color": "#e7e5e4",
+	"theme_color": "#e7e5e4",
+	"description": "Software engineer @ Discord",
+	"icons": [
+		{
+			"src": "poggers.webp",
+			"sizes": "56x56",
+			"type": "image/webp"
+		}
+	]
+}
