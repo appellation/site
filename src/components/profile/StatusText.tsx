@@ -1,6 +1,6 @@
 import { createMemo } from 'solid-js';
-import type { Presence } from './lanyard/useLanyard';
-import CustomStatus from './profile/CustomStatus';
+import type { Presence } from '../lanyard/useLanyard';
+import CustomStatus from './CustomStatus';
 
 export interface Props {
 	presence: Presence;

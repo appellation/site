@@ -2,11 +2,11 @@ import type { ReferenceElement } from '@floating-ui/dom';
 import { createSignal, JSX, lazy, Show, Suspense } from 'solid-js';
 import { Portal } from 'solid-js/web';
 
-import useLanyard from './lanyard/useLanyard';
+import useLanyard from '../lanyard/useLanyard';
 import SmallProfile from './SmallProfile';
-import StatusText from './StatusText';
+import StatusText from '../StatusText';
 
-const FloatingCard = lazy(() => import('./FloatingCard'));
+const FloatingCard = lazy(() => import('../FloatingCard'));
 
 const USER_ID = '618570414855028767';
 

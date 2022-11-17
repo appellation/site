@@ -1,8 +1,8 @@
 import { createMemo, For, Show } from 'solid-js';
-import type { Presence } from './lanyard/useLanyard';
-import Game from './profile/Game';
-import Spotify from './profile/Spotify';
-import UserInfo from './profile/UserInfo';
+import type { Presence } from '../lanyard/useLanyard';
+import Game from './Game';
+import Spotify from './Spotify';
+import UserInfo from './UserInfo';
 
 // @unocss-include
 
