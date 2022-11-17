@@ -4,7 +4,7 @@ import { Portal } from 'solid-js/web';
 
 import useLanyard from '../lanyard/useLanyard';
 import SmallProfile from './SmallProfile';
-import StatusText from '../StatusText';
+import StatusText from './StatusText';
 
 const FloatingCard = lazy(() => import('../FloatingCard'));
 

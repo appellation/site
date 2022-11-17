@@ -27,11 +27,11 @@ export default function Dropdown(props: ParentProps<Props>) {
 			<div ref={setRef} class='relative transition-colors hover:bg-stone-300 rounded px-1 cursor-pointer'>
 				<Show when={hasManyLinks()} fallback={<a href={firstLink()} rel="prefetch">{props.children}</a>}>
 					<div class='flex flex-row'>
-						<span class='mr-2' classList={{
-							hidden: !props.children,
-						}}>{props.children}</span>
+						<Show when={props.children}>
+							<span class='mr-2'>{props.children}</span>
+						</Show>
 						<span
-							class='inline-block align-middle'
+							class='inline-block self-center'
 							classList={{
 								'i-bi-chevron-up': isOpen(),
 								'i-bi-chevron-down': !isOpen(),
@@ -42,7 +42,7 @@ export default function Dropdown(props: ParentProps<Props>) {
 			</div>
 			<div
 				ref={setFloating}
-				class='bg-stone-100 p-3 rounded shadow flex-col'
+				class='bg-stone-100 p-3 rounded shadow flex-col min-w-32'
 				classList={{ hidden: !isOpen(), flex: isOpen() }}
 				style={{
 					position: position.strategy,

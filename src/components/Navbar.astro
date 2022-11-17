@@ -45,7 +45,7 @@ const next = keyBy([...(pages?.keys() ?? [])], (page) =>
 	<Show when={Object.keys(next).length > 0}>
 		<div>/</div>
 		<div class="text-stone-400">
-			<Dropdown links={next} collapseSingle={false} client:load />
+			<Dropdown links={next} collapseSingle={false} client:load>index</Dropdown>
 		</div>
 	</Show>
 </div>
