@@ -1,4 +1,4 @@
-import init, { main } from 'snake';
+import init, { main } from '@appellation/snake';
 import { createEffect } from 'solid-js';
 
 export default function Snake() {
