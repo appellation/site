@@ -31,11 +31,11 @@
     "vite-plugin-wasm": "^3.1.0"
   },
   "dependencies": {
+    "@appellation/snake": "workspace:^",
     "@astrojs/solid-js": "^1.1.0",
     "@floating-ui/dom": "^1.0.1",
     "discord-api-types": "^0.37.8",
     "luxon": "^3.0.4",
-    "snake": "workspace:^",
     "solid-js": "^1.4.3"
   }
 }

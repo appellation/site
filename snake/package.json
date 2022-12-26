@@ -1,7 +1,6 @@
 {
-  "name": "snake",
+  "name": "@appellation/snake",
   "version": "0.0.1",
-  "private": true,
   "files": [
     "pkg/snake_bg.wasm",
     "pkg/snake.js",
@@ -9,11 +8,5 @@
   ],
   "module": "pkg/snake.js",
   "types": "pkg/snake.d.ts",
-  "sideEffects": false,
-  "scripts": {
-    "preinstall": "wasm-pack build --target web"
-  },
-  "devDependencies": {
-    "wasm-pack": "^0.10.3"
-  }
+  "sideEffects": false
 }
