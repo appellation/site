@@ -1,62 +1,67 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@astrojs/prefetch': ^0.0.7
-  '@astrojs/solid-js': ^1.1.0
-  '@babel/core': '7'
-  '@floating-ui/dom': ^1.0.1
-  '@iconify-json/bi': ^1.1.8
-  '@iconify-json/fa-brands': ^1.1.2
-  '@iconify-json/fa-solid': ^1.1.2
-  '@types/lodash-es': ^4.17.6
-  '@types/luxon': ^3.0.1
-  '@types/node': ^18.7.23
-  '@unocss/preset-icons': ^0.45.18
-  astro: ^1.1.1
-  classnames: ^2.3.1
-  cssnano: ^5.1.13
-  discord-api-types: ^0.37.8
-  lodash-es: ^4.17.21
-  luxon: ^3.0.4
-  postcss: ^8.4.16
-  postcss-font-magician: ^3.0.0
-  snake: link:snake\pkg
-  solid-js: ^1.4.3
-  unocss: ^0.45.18
-  vite: ^3.1.0
-  vite-plugin-top-level-await: ^1.2.2
-  vite-plugin-wasm: ^3.1.0
-  wasm-pack: ^0.10.3
+importers:
 
-dependencies:
-  '@astrojs/solid-js': 1.1.0_grpjmxwk3vrl3yov3475jfuady
-  '@floating-ui/dom': 1.0.1
-  discord-api-types: 0.37.8
-  luxon: 3.0.4
-  snake: link:snake/pkg
-  solid-js: 1.5.4
+  .:
+    specifiers:
+      '@astrojs/prefetch': ^0.0.7
+      '@astrojs/solid-js': ^1.1.0
+      '@babel/core': '7'
+      '@floating-ui/dom': ^1.0.1
+      '@iconify-json/bi': ^1.1.8
+      '@iconify-json/fa-brands': ^1.1.2
+      '@iconify-json/fa-solid': ^1.1.2
+      '@types/lodash-es': ^4.17.6
+      '@types/luxon': ^3.0.1
+      '@types/node': ^18.7.23
+      '@unocss/preset-icons': ^0.45.18
+      astro: ^1.1.1
+      classnames: ^2.3.1
+      cssnano: ^5.1.13
+      discord-api-types: ^0.37.8
+      lodash-es: ^4.17.21
+      luxon: ^3.0.4
+      postcss: ^8.4.16
+      postcss-font-magician: ^3.0.0
+      snake: workspace:^
+      solid-js: ^1.4.3
+      unocss: ^0.45.18
+      vite: ^3.1.0
+      vite-plugin-top-level-await: ^1.2.2
+      vite-plugin-wasm: ^3.1.0
+    dependencies:
+      '@astrojs/solid-js': 1.1.0_grpjmxwk3vrl3yov3475jfuady
+      '@floating-ui/dom': 1.0.1
+      discord-api-types: 0.37.8
+      luxon: 3.0.4
+      snake: link:snake
+      solid-js: 1.5.4
+    devDependencies:
+      '@astrojs/prefetch': 0.0.7
+      '@babel/core': 7.18.13
+      '@iconify-json/bi': 1.1.8
+      '@iconify-json/fa-brands': 1.1.2
+      '@iconify-json/fa-solid': 1.1.2
+      '@types/lodash-es': 4.17.6
+      '@types/luxon': 3.0.1
+      '@types/node': 18.7.23
+      '@unocss/preset-icons': 0.45.18
+      astro: 1.1.1
+      classnames: 2.3.1
+      cssnano: 5.1.13_postcss@8.4.16
+      lodash-es: 4.17.21
+      postcss: 8.4.16
+      postcss-font-magician: 3.0.0_postcss@8.4.16
+      unocss: 0.45.18_vite@3.1.0
+      vite: 3.1.0
+      vite-plugin-top-level-await: 1.2.2_vite@3.1.0
+      vite-plugin-wasm: 3.1.0
 
-devDependencies:
-  '@astrojs/prefetch': 0.0.7
-  '@babel/core': 7.18.13
-  '@iconify-json/bi': 1.1.8
-  '@iconify-json/fa-brands': 1.1.2
-  '@iconify-json/fa-solid': 1.1.2
-  '@types/lodash-es': 4.17.6
-  '@types/luxon': 3.0.1
-  '@types/node': 18.7.23
-  '@unocss/preset-icons': 0.45.18
-  astro: 1.1.1
-  classnames: 2.3.1
-  cssnano: 5.1.13_postcss@8.4.16
-  lodash-es: 4.17.21
-  postcss: 8.4.16
-  postcss-font-magician: 3.0.0_postcss@8.4.16
-  unocss: 0.45.18_vite@3.1.0
-  vite: 3.1.0
-  vite-plugin-top-level-await: 1.2.2_vite@3.1.0
-  vite-plugin-wasm: 3.1.0
-  wasm-pack: 0.10.3
+  snake:
+    specifiers:
+      wasm-pack: ^0.10.3
+    devDependencies:
+      wasm-pack: 0.10.3
 
 packages:
 
