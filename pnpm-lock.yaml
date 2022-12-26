@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@appellation/snake': workspace:^
+      '@appellation/snake': ^0.0.1
       '@astrojs/prefetch': ^0.0.7
       '@astrojs/solid-js': ^1.1.0
       '@babel/core': '7'
@@ -30,7 +30,7 @@ importers:
       vite-plugin-top-level-await: ^1.2.2
       vite-plugin-wasm: ^3.1.0
     dependencies:
-      '@appellation/snake': link:snake
+      '@appellation/snake': 0.0.1
       '@astrojs/solid-js': 1.1.0_grpjmxwk3vrl3yov3475jfuady
       '@floating-ui/dom': 1.0.1
       discord-api-types: 0.37.8
@@ -79,6 +79,10 @@ packages:
   /@antfu/utils/0.5.2:
     resolution: {integrity: sha512-CQkeV+oJxUazwjlHD0/3ZD08QWKuGQkhnrKo3e6ly5pd48VUpXbb77q0xMU4+vc2CkJnDS02Eq/M9ugyX20XZA==}
     dev: true
+
+  /@appellation/snake/0.0.1:
+    resolution: {integrity: sha512-1tcd1CV+Uh7U+k14zTN5fVcMYE9VEqAH2dXpw2w3PVgGDN15ESEb7kwAcDwNoNJyauDqPpu3PIdEsO1Vv/Z9Lg==, tarball: download/@appellation/snake/0.0.1/f1938d5d3ef1057cd33c993ece7500f2b84cef5b}
+    dev: false
 
   /@astrojs/compiler/0.23.4:
     resolution: {integrity: sha512-vNZIa5Tf5nOqBEGJvM6xyYBnGcz4MAp+bBPnyVI0UYRjsIWlP7RgMdCpRV0OOh5kgh00BoAypGv27kcoJCMVfA==}
