@@ -1,12 +1,13 @@
 {
   "name": "@appellation/snake",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "files": [
     "pkg/snake_bg.wasm",
     "pkg/snake.js",
     "pkg/snake.d.ts"
   ],
-  "module": "pkg/snake.js",
+  "main": "pkg/snake.js",
   "types": "pkg/snake.d.ts",
+  "type": "module",
   "sideEffects": false
 }
