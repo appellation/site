@@ -24,8 +24,8 @@ jobs:
           use-tool-cache: true
       - name: Build snake
         run: wasm-pack build --scope appellation --target web --release ./snake
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+      - name: Install Vercel CLI & pnpm
+        run: npm install --global vercel pnpm
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
