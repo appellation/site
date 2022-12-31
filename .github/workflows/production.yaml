@@ -1,0 +1,34 @@
+name: Vercel Production Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+      - name: Install wasm-pack
+        uses: actions-rs/install@v0.1
+        with:
+          crate: wasm-pack
+          version: latest
+          use-tool-cache: true
+      - name: Build snake
+        run: wasm-pack build --scope appellation --target web --release ./snake
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

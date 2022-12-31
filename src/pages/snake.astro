@@ -1,0 +1,10 @@
+---
+import Snake from "../components/Snake";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Snake">
+	<div class="flex w-full h-full place-content-center">
+		<Snake client:idle />
+	</div>
+</Layout>
