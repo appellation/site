@@ -6,7 +6,7 @@ const SNAKE_HEAD_COLOR: Color = Color::DARK_GRAY;
 const SNAKE_SEGMENT_COLOR: Color = Color::GRAY;
 pub struct GrowthEvent;
 
-#[derive(Component, PartialEq, Eq)]
+#[derive(Component, PartialEq, Eq, Clone, Copy)]
 pub enum Direction {
 	Up,
 	Down,

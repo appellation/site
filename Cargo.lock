@@ -2643,7 +2643,6 @@ dependencies = [
  "console_error_panic_hook",
  "rand",
  "wasm-bindgen",
- "web-sys",
 ]
 
 [[package]]
