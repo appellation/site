@@ -8,17 +8,17 @@ static IS_DARK_MODE: AtomicBool = AtomicBool::new(false);
 pub struct Config;
 
 impl Config {
-	pub fn set_is_dark_mode(&mut self, is_light_mode: bool) {
+	pub fn set_is_dark_mode(is_light_mode: bool) {
 		IS_DARK_MODE.store(is_light_mode, Ordering::Relaxed);
 	}
 
-	pub fn get_is_dark_mode(&self) -> bool {
+	pub fn get_is_dark_mode() -> bool {
 		IS_DARK_MODE.load(Ordering::Relaxed)
 	}
 }
 
-pub fn update_config(config: Res<Config>, mut commands: Commands) {
-	commands.insert_resource(ClearColor(if config.get_is_dark_mode() {
+pub fn update_config(mut commands: Commands) {
+	commands.insert_resource(ClearColor(if Config::get_is_dark_mode() {
 		Color::BLACK
 	} else {
 		Color::WHITE

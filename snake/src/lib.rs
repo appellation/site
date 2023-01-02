@@ -67,5 +67,5 @@ pub fn main(selector: String) {
 
 #[wasm_bindgen]
 pub fn set_is_dark_mode(is_dark_mode: bool) {
-	Config.set_is_dark_mode(is_dark_mode)
+	Config::set_is_dark_mode(is_dark_mode)
 }
