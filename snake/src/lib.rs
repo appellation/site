@@ -1,11 +1,8 @@
-use bevy::{
-	log::{Level, LogPlugin},
-	prelude::*,
-	DefaultPlugins,
-};
+use bevy::prelude::*;
 use config::{update_config, Config};
 use game::{keyboard_input, setup_game, touch_input, GameOverEvent};
 use grid::{position_translation, size_scaling, Position, Size};
+use plugins::app_plugins;
 use snake::{GrowthEvent, Segments, Tail};
 use wasm_bindgen::prelude::wasm_bindgen;
 
@@ -13,6 +10,7 @@ mod config;
 mod food;
 mod game;
 mod grid;
+mod plugins;
 mod snake;
 
 fn setup(mut commands: Commands) {
@@ -24,26 +22,7 @@ pub fn main(selector: String) {
 	console_error_panic_hook::set_once();
 
 	App::new()
-		.add_plugins(
-			DefaultPlugins
-				.build()
-				.set(WindowPlugin {
-					window: WindowDescriptor {
-						canvas: Some(selector),
-						fit_canvas_to_parent: true,
-						..Default::default()
-					},
-					..Default::default()
-				})
-				.set(LogPlugin {
-					level: if cfg!(debug_assertions) {
-						Level::DEBUG
-					} else {
-						Level::ERROR
-					},
-					..Default::default()
-				}),
-		)
+		.add_plugins(app_plugins(selector))
 		.insert_resource(ClearColor(Color::WHITE))
 		.insert_resource(Segments::default())
 		.insert_resource(Tail::default())
