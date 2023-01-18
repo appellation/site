@@ -1,4 +1,4 @@
-import { Index, JSX, Show } from 'solid-js';
+import { For, JSX, Show } from 'solid-js';
 
 import useLanyard from '../lanyard/useLanyard';
 import Game from './Game';
@@ -15,16 +15,16 @@ export default function Profile(): JSX.Element {
 				<Show when={presence()!.listening_to_spotify}>
 					<Spotify spotify={presence()!.spotify!} />
 				</Show>
-				<Index each={presence()!.activities}>
+				<For each={presence()!.activities}>
 					{(item) => {
-						switch (item().type) {
+						switch (item.type) {
 							case 0:
-								return <Game activity={item()} />
+								return <Game activity={item} />
 							default:
 								return <></>;
 						}
 					}}
-				</Index>
+				</For>
 			</div>
 		</Show>
 	);
