@@ -34,10 +34,7 @@ const nameGradientClasses = classNames([
 			Hi, I'm <span class={nameGradientClasses}>Will</span>!
 		</h1>
 		<h2 class="font-light text-2xl">Software Engineer @ Discord</h2>
-		<div class="mt-6">
-			<Profile client:idle />
-		</div>
-		<nav class="flex gap-4 mt-12">
+		<nav class="flex gap-4 mt-6">
 			<IconButton
 				href="mailto:me@wnelson.dev"
 				iconClass="i-fa-solid-at hover:bg-violet-700"
@@ -69,5 +66,8 @@ const nameGradientClasses = classNames([
 				label="Keybase"
 			/>
 		</nav>
+		<div class="mt-12">
+			<Profile client:idle />
+		</div>
 	</main>
 </Layout>
