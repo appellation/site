@@ -11,19 +11,21 @@ export default function Profile(): JSX.Element {
 
 	return (
 		<Show when={presence()}>
-			<Show when={presence()!.listening_to_spotify}>
-				<Spotify spotify={presence()!.spotify!} />
-			</Show>
-			<Index each={presence()!.activities}>
-				{(item) => {
-					switch (item().type) {
-						case 0:
-							return <Game activity={item()} />
-						default:
-							return <></>;
-					}
-				}}
-			</Index>
+			<div class='flex flex-col gap-2'>
+				<Show when={presence()!.listening_to_spotify}>
+					<Spotify spotify={presence()!.spotify!} />
+				</Show>
+				<Index each={presence()!.activities}>
+					{(item) => {
+						switch (item().type) {
+							case 0:
+								return <Game activity={item()} />
+							default:
+								return <></>;
+						}
+					}}
+				</Index>
+			</div>
 		</Show>
 	);
 }
