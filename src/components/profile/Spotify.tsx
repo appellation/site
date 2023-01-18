@@ -10,7 +10,7 @@ export default function Spotify(props: Props) {
 	const getProgress = () => {
 		const now = Date.now();
 		const duration = props.spotify.timestamps.end - props.spotify.timestamps.start;
-		return (now - props.spotify.timestamps.start) / duration;
+		return Math.min((now - props.spotify.timestamps.start) / duration, 1);
 	};
 
 	const [progress, setProgress] = createSignal(getProgress());
