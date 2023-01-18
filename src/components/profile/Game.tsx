@@ -1,3 +1,4 @@
+import { Motion, Presence } from '@motionone/solid';
 import type { GatewayActivity } from 'discord-api-types/v10';
 import { Show } from 'solid-js';
 
@@ -22,12 +23,34 @@ export default function Game(props: Props) {
 			</Show>
 			<div class='flex flex-col'>
 				<span class='font-bold'>{props.activity.name}</span>
-				<Show when={props.activity.details}>
-					<span>{props.activity.details}</span>
-				</Show>
-				<Show when={props.activity.state}>
-					<span>{props.activity.state}</span>
-				</Show>
+				<Presence>
+					<Show when={props.activity.details} keyed>
+						<div class='relative'>
+							<Motion.span
+								initial={{ x: 25, opacity: 0 }}
+								animate={{ x: 0, opacity: 1, transition: { delay: 0.05 } }}
+								exit={{ x: -25, opacity: 0 }}
+								transition={{ duration: 0.15 }}
+								class='absolute'
+							>
+								{props.activity.details}
+							</Motion.span>
+						</div>
+					</Show>
+					<Show when={props.activity.state}>
+						<div class='relative'>
+							<Motion.span
+								initial={{ x: 20, opacity: 0 }}
+								animate={{ x: 0, opacity: 1, transition: { delay: 0.05 } }}
+								exit={{ x: -20, opacity: 0 }}
+								transition={{ duration: 0.3 }}
+								class='absolute'
+							>
+								{props.activity.state}
+							</Motion.span>
+						</div>
+					</Show>
+				</Presence>
 			</div>
 		</div>
 	);

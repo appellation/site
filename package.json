@@ -34,6 +34,7 @@
     "@appellation/snake": "workspace:^0.1.0",
     "@astrojs/solid-js": "^1.2.3",
     "@floating-ui/dom": "^1.1.0",
+    "@motionone/solid": "^10.15.5",
     "discord-api-types": "^0.37.26",
     "luxon": "^3.2.1",
     "solid-js": "^1.6.8"

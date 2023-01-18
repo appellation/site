@@ -1,3 +1,4 @@
+import { Motion } from '@motionone/solid';
 import { createSignal, onCleanup } from 'solid-js';
 
 import type { Spotify } from '../lanyard/useLanyard';
@@ -19,7 +20,15 @@ export default function Spotify(props: Props) {
 	onCleanup(() => clearInterval(interval));
 
 	return (
-		<a class='flex bg-[#1DB954] text-white p-2 rounded-lg' href={`https://open.spotify.com/track/${props.spotify.track_id}`} target="_blank">
+		<Motion.a
+			initial={{ x: 50, opacity: 0 }}
+			animate={{ x: 0, opacity: 1, transition: { delay: 0.05 } }}
+			exit={{ x: -50, opacity: 0 }}
+			transition={{ duration: 0.3 }}
+			class='flex bg-[#1DB954] text-white p-2 rounded-lg'
+			href={`https://open.spotify.com/track/${props.spotify.track_id}`}
+			target="_blank"
+		>
 			<img class='w-18 h-18 rounded mr-2' src={props.spotify.album_art_url} />
 			<div class='flex flex-col w-full truncate'>
 				<span class='font-bold'>{props.spotify.song}</span>
@@ -32,6 +41,6 @@ export default function Spotify(props: Props) {
 				</div>
 			</div>
 			<img class='w-6 h-6 ml-2' src={'/Spotify_Icon_RGB_White.png'} />
-		</a>
+		</Motion.a>
 	);
 }
