@@ -1,5 +1,6 @@
 import type { GatewayActivity } from 'discord-api-types/v10';
-import { Accessor, createEffect, createSignal, onCleanup } from 'solid-js';
+import { createEffect, onCleanup } from 'solid-js';
+import { createStore, reconcile } from 'solid-js/store';
 
 export interface Timestamps {
 	start: number;
@@ -61,8 +62,8 @@ type PresenceUpdatePacket = EventPacket<'PRESENCE_UPDATE', Presence>;
 
 type IncomingPacket = HelloPacket | InitStatePacket | PresenceUpdatePacket;
 
-export default function useLanyard(userId: string): Accessor<Presence | undefined> {
-	const [data, setData] = createSignal<Presence>();
+export default function useLanyard(userId: string): Partial<Presence> {
+	const [data, setData] = createStore<Partial<Presence>>({});
 
 	createEffect(() => {
 		const socket = new WebSocket('wss://api.lanyard.rest/socket');
@@ -78,10 +79,10 @@ export default function useLanyard(userId: string): Accessor<Presence | undefine
 				case OpCode.Event: {
 					switch (message.t) {
 						case 'INIT_STATE':
-							setData(Object.values(message.d)[0]);
+							setData(reconcile(Object.values(message.d)[0]));
 							break;
 						case 'PRESENCE_UPDATE':
-							setData(message.d);
+							setData(reconcile(message.d));
 							break;
 					}
 					break;

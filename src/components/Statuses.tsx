@@ -1,5 +1,4 @@
-import { isEqual } from 'lodash-es';
-import { createEffect, createMemo, Index, JSX, Show } from 'solid-js';
+import { createMemo, Index, JSX, Show } from 'solid-js';
 
 import useLanyard from './lanyard/useLanyard';
 import Pill from './status/Pill';
@@ -13,15 +12,12 @@ function makeAssetUrl(appId: string, assetId: string): string {
 
 export default function Statuses(): JSX.Element {
 	const presence = useLanyard(USER_ID);
-	const spotify = createMemo(() => presence()?.spotify, undefined, { equals: isEqual });
-	const activities = createMemo(() => presence()?.activities?.filter(a => a.type === 0) ?? [], undefined, { equals: isEqual });
-
-	createEffect(() => console.log(activities()));
+	const activities = createMemo(() => presence.activities?.filter(a => a.type === 0) ?? []);
 
 	return (
-		<Show when={presence()}>
+		<Show when={presence}>
 			<div class='flex gap-2'>
-				<Show when={spotify()} keyed>
+				<Show when={presence.spotify} keyed>
 					{spotify => <SpotifyPill info={spotify} />}
 				</Show>
 				<Index each={activities()}>
