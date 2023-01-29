@@ -14,7 +14,7 @@ export default function Statuses(): JSX.Element {
 
 	return (
 		<Show when={presence}>
-			<div class='flex gap-2'>
+			<div class='flex gap-2 flex-wrap'>
 				<Show when={presence.discord_status && presence.discord_user}>
 					<StatusPill
 						customStatus={customStatus()}

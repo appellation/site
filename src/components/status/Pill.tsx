@@ -3,18 +3,17 @@ import { JSX, mergeProps, ParentProps, splitProps } from 'solid-js';
 import { Show } from 'solid-js/web';
 
 export interface StatusPillProps extends JSX.HTMLAttributes<HTMLButtonElement> {
-	text: string;
 	progress?: number;
 }
 
 export default function Pill(props: ParentProps<StatusPillProps>) {
-	const [content, container] = splitProps(props, ['text', 'progress'])
+	const [content, container] = splitProps(props, ['progress'])
 	const containerProps = {
 		class: classnames(
 			'flex',
 			'gap-2',
 			'py-2',
-			'px-3',
+			'px-4',
 			'rounded-full',
 			'items-center',
 			'text-stone-600',
@@ -32,7 +31,6 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 
 	return <button {...mergeProps(containerProps, container)}>
 		{props.children}
-		<div class='w-full truncate'>{content.text}</div>
 		<Show when={content.progress}>
 			<div class='absolute inset-0 rounded-full overflow-hidden'>
 				<div class='absolute top-0 bottom-0 left-0 bg-stone-500/25' style={{ width: `${content.progress! * 100}%` }} />

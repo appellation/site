@@ -18,10 +18,11 @@ export default function ActivityPill(props: ActivityPillProps) {
 	const [cardVisible, setCardVisible] = createSignal(false);
 
 	return <div class='relative'>
-		<Pill text={props.activity.name} ref={setPill}>
+		<Pill ref={setPill}>
 			<Show when={props.activity.application_id && props.activity.assets?.small_image}>
 				<img class='h-6 w-6 rounded-full' src={makeAssetUrl(props.activity.application_id!, props.activity.assets!.small_image!)} />
 			</Show>
+			<p class='w-full truncate'>{props.activity.name}</p>
 		</Pill>
 		<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
 			<FloatingCard ref={pill}>

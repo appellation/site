@@ -18,10 +18,7 @@ export default function StatusPill(props: StatusPillProps) {
 	console.log(props.status);
 
 	return <div class='relative'>
-		<Pill
-			text={props.status ?? ''}
-			ref={setPill}
-		>
+		<Pill ref={setPill}>
 			<Switch>
 				<Match when={props.status === 'online'}>
 					<div class='i-mdi-circle text-2xl text-green-500' />
@@ -36,6 +33,7 @@ export default function StatusPill(props: StatusPillProps) {
 					<div class='i-mdi-record-circle text-2xl' />
 				</Match>
 			</Switch>
+			<p class='w-full truncate'>{props.status}</p>
 		</Pill>
 		<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
 			<FloatingCard ref={pill}>
