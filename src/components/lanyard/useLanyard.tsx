@@ -79,10 +79,10 @@ export default function useLanyard(userId: string): Partial<Presence> {
 				case OpCode.Event: {
 					switch (message.t) {
 						case 'INIT_STATE':
-							setData(reconcile(Object.values(message.d)[0]));
+							setData(Object.values(message.d)[0]);
 							break;
 						case 'PRESENCE_UPDATE':
-							setData(reconcile(message.d));
+							setData(reconcile(message.d, { merge: true }));
 							break;
 					}
 					break;
