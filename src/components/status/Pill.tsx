@@ -1,14 +1,14 @@
 import classnames from 'classnames';
-import type { ParentProps } from 'solid-js';
-import { Dynamic, Show } from 'solid-js/web';
+import { JSX, mergeProps, ParentProps, splitProps } from 'solid-js';
+import { Show } from 'solid-js/web';
 
-export interface StatusPillProps {
+export interface StatusPillProps extends JSX.HTMLAttributes<HTMLButtonElement> {
 	text: string;
-	link?: string;
 	progress?: number;
 }
 
 export default function Pill(props: ParentProps<StatusPillProps>) {
+	const [content, container] = splitProps(props, ['text', 'progress'])
 	const containerProps = {
 		class: classnames(
 			'flex',
@@ -26,21 +26,17 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 			'max-w-xs',
 			'relative',
 			'transition-all',
-			{ 'cursor-default': !props.link },
+			'cursor-pointer',
 		),
-		href: props.link,
-		target: props.link && '_blank',
 	};
 
-	let container: HTMLDivElement | undefined;
-
-	return <Dynamic component={props.link ? 'a' : 'div'} {...containerProps} ref={container}>
+	return <button {...mergeProps(containerProps, container)}>
 		{props.children}
-		<div class='w-full truncate'>{props.text}</div>
-		<Show when={props.progress}>
+		<div class='w-full truncate'>{content.text}</div>
+		<Show when={content.progress}>
 			<div class='absolute inset-0 rounded-full overflow-hidden'>
-				<div class='absolute top-0 bottom-0 left-0 bg-stone-500/25' style={{ width: `${props.progress! * 100}%` }} />
+				<div class='absolute top-0 bottom-0 left-0 bg-stone-500/25' style={{ width: `${content.progress! * 100}%` }} />
 			</div>
 		</Show>
-	</Dynamic>;
+	</button>;
 }

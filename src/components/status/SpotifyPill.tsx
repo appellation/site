@@ -1,4 +1,7 @@
-import { createSignal, onCleanup } from 'solid-js';
+import { createSignal, lazy, onCleanup, Show, Suspense } from 'solid-js';
+import Dismiss from 'solid-dismiss';
+
+import FloatingCard from '../FloatingCard';
 import type { Spotify } from '../lanyard/useLanyard';
 import Pill from './Pill';
 
@@ -6,23 +9,37 @@ export interface SpotifyPillProps {
 	info: Spotify,
 }
 
+const SpotifyEmbed = lazy(() => import('../SpotifyEmbed'));
+
 export default function SpotifyPill(props: SpotifyPillProps) {
-	const getProgress = () => {
-		const now = Date.now();
-		const duration = props.info.timestamps.end - props.info.timestamps.start;
-		return Math.min((now - props.info.timestamps.start) / duration, 1);
-	};
+	const duration = props.info.timestamps.end - props.info.timestamps.start;
 
-	const [progress, setProgress] = createSignal(getProgress());
+	const calcSeconds = () => Date.now() - props.info.timestamps.start;
 
-	const interval = setInterval(() => setProgress(getProgress()), 1000);
+	const [seconds, setSeconds] = createSignal(calcSeconds());
+	const progress = () => Math.min(seconds() / duration, 1);
+
+	const interval = setInterval(() => setSeconds(calcSeconds()), 1000);
 	onCleanup(() => clearInterval(interval));
 
-	return <Pill
-		text={`${props.info.song} - ${props.info.artist}`}
-		link={`https://open.spotify.com/track/${props.info.track_id}`}
-		progress={progress()}
-	>
-		<div class='text-xl i-fa-brands-spotify text-[#1DB954]' />
-	</Pill>;
+	const [pill, setPill] = createSignal<HTMLDivElement>();
+
+	const [cardVisible, setCardVisible] = createSignal(false);
+
+	return <div class='relative'>
+		<Pill
+			text={`${props.info.song} - ${props.info.artist}`}
+			progress={progress()}
+			ref={setPill}
+		>
+			<div class='text-xl i-fa-brands-spotify text-[#1DB954]' />
+		</Pill>
+		<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
+			<FloatingCard ref={pill}>
+				<Suspense>
+					<SpotifyEmbed trackId={props.info.track_id} seconds={seconds} />
+				</Suspense>
+			</FloatingCard>
+		</Dismiss>
+	</div>;
 }

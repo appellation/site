@@ -1,24 +1,27 @@
 import { autoUpdate, flip, offset, ReferenceElement } from '@floating-ui/dom';
-import { createSignal, ParentProps } from 'solid-js';
-import { useFloating, UseFloatingOptions } from './util/floating-ui';
+import classNames from 'classnames';
+import { createSignal, JSX, ParentProps, splitProps } from 'solid-js';
+import { useFloating } from './util/floating-ui';
 
-export interface Props<R extends ReferenceElement> {
+export interface Props<R extends ReferenceElement> extends JSX.HTMLAttributes<HTMLDivElement> {
 	ref(): R | null | undefined;
-	options?: UseFloatingOptions<R, HTMLElement>;
 }
 
 export default function FloatingCard<R extends ReferenceElement>(props: ParentProps<Props<R>>) {
+	const [content, container] = splitProps(props, ['children']);
+
 	const [floating, setFloating] = createSignal<HTMLElement>();
 	const position = useFloating(props.ref, floating, {
 		whileElementsMounted: autoUpdate,
-		middleware: [flip({ fallbackPlacements: ['bottom', 'top'] }), offset(10)],
-		placement: 'right',
+		middleware: [flip(), offset(10)],
+		placement: 'bottom',
 	});
 
 	return (
 		<div
+			{...container}
 			ref={setFloating}
-			class='z-10'
+			class={classNames('z-10', container.class)}
 			style={{
 				position: position.strategy,
 				left: `${position.x ?? 0}px`,
@@ -26,7 +29,7 @@ export default function FloatingCard<R extends ReferenceElement>(props: ParentPr
 			}}
 		>
 			<div class='bg-white dark:bg-black p-3 rounded shadow flex flex-col w-96 gap-3'>
-				{props.children}
+				{content.children}
 			</div>
 		</div>
 	)

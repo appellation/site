@@ -37,6 +37,7 @@
     "@motionone/solid": "^10.15.5",
     "discord-api-types": "^0.37.26",
     "luxon": "^3.2.1",
+    "solid-dismiss": "^1.6.2",
     "solid-js": "^1.6.8"
   }
 }

@@ -25,6 +25,7 @@ importers:
       luxon: ^3.2.1
       postcss: ^8.4.21
       postcss-font-magician: ^3.0.0
+      solid-dismiss: ^1.6.2
       solid-js: ^1.6.8
       unocss: ^0.45.30
       vite: ^3.2.5
@@ -37,6 +38,7 @@ importers:
       '@motionone/solid': 10.15.5_solid-js@1.6.8
       discord-api-types: 0.37.26
       luxon: 3.2.1
+      solid-dismiss: 1.6.2_solid-js@1.6.8
       solid-js: 1.6.8
     devDependencies:
       '@astrojs/prefetch': 0.0.7
@@ -4106,6 +4108,14 @@ packages:
     resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
     engines: {node: '>=12'}
     dev: true
+
+  /solid-dismiss/1.6.2_solid-js@1.6.8:
+    resolution: {integrity: sha512-scPQ0BbTF6ggYrTlMhyBt1prt3nezPtIUHPQ57uX1gZAEHADebaMV0YpoRleFwg00IXz845ZBEoJRGixFMAerA==}
+    peerDependencies:
+      solid-js: '1'
+    dependencies:
+      solid-js: 1.6.8
+    dev: false
 
   /solid-js/1.6.8:
     resolution: {integrity: sha512-+X5rf4bL3Il/LI2pn6O2d63D/KyG8Shxj3DM6violSPOhRgm5ln37Pq6uVDAvJcmsObOBeGOjXAwZvqwyZjisg==}
