@@ -1,4 +1,4 @@
-import { createSignal, lazy, onCleanup, Show, Suspense } from 'solid-js';
+import { createSignal, lazy, onCleanup, Suspense } from 'solid-js';
 import Dismiss from 'solid-dismiss';
 
 import FloatingCard from '../FloatingCard';
@@ -37,7 +37,7 @@ export default function SpotifyPill(props: SpotifyPillProps) {
 		<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
 			<FloatingCard ref={pill}>
 				<Suspense>
-					<SpotifyEmbed trackId={props.info.track_id} seconds={seconds} />
+					<SpotifyEmbed trackId={props.info.track_id} />
 				</Suspense>
 			</FloatingCard>
 		</Dismiss>

@@ -1,6 +1,5 @@
 export interface SpotifyEmbedProps {
 	trackId: string;
-	seconds(): number;
 }
 
 export default function SpotifyEmbed(props: SpotifyEmbedProps) {
