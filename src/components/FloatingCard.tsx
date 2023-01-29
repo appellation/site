@@ -28,7 +28,7 @@ export default function FloatingCard<R extends ReferenceElement>(props: ParentPr
 				top: `${position.y ?? 0}px`,
 			}}
 		>
-			<div class='bg-white dark:bg-black p-3 rounded shadow flex flex-col w-96 gap-3'>
+			<div class='bg-white dark:bg-black p-3 rounded shadow flex flex-co min-w-0 w-max max-w-96 gap-3'>
 				{content.children}
 			</div>
 		</div>

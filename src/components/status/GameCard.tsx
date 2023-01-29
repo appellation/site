@@ -11,7 +11,7 @@ export interface Props {
 
 export default function GameCard(props: Props) {
 	return (
-		<div class='flex items-start bg-white dark:bg-black rounded-lg p-2'>
+		<div class='flex items-start bg-white dark:bg-black rounded-lg'>
 			<Show when={props.activity.application_id && props.activity.assets?.large_image}>
 				<div class='mr-2 relative'>
 					<img class='rounded h-18 w-18' src={makeAssetUrl(props.activity.application_id!, props.activity.assets!.large_image!)} />

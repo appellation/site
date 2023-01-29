@@ -1,0 +1,51 @@
+import type { GatewayActivity } from 'discord-api-types/v10';
+import Dismiss from 'solid-dismiss';
+import { createSignal, Match, Switch } from 'solid-js';
+import FloatingCard from '../FloatingCard';
+import type { DiscordUser } from '../lanyard/useLanyard';
+import Pill from './Pill';
+
+export interface StatusPillProps {
+	customStatus?: GatewayActivity;
+	status: string;
+	user: DiscordUser;
+}
+
+export default function StatusPill(props: StatusPillProps) {
+	const [pill, setPill] = createSignal<HTMLDivElement>();
+	const [cardVisible, setCardVisible] = createSignal(false);
+
+	console.log(props.status);
+
+	return <div class='relative'>
+		<Pill
+			text={props.status ?? ''}
+			ref={setPill}
+		>
+			<Switch>
+				<Match when={props.status === 'online'}>
+					<div class='i-mdi-circle text-2xl text-green-500' />
+				</Match>
+				<Match when={props.status === 'idle'}>
+					<div class='i-mdi-moon-waxing-crescent text-2xl text-yellow-500' />
+				</Match>
+				<Match when={props.status === 'dnd'}>
+					<div class='i-mdi-minus-circle text-2xl text-red-500' />
+				</Match>
+				<Match when={props.status === 'offline'}>
+					<div class='i-mdi-record-circle text-2xl' />
+				</Match>
+			</Switch>
+		</Pill>
+		<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
+			<FloatingCard ref={pill}>
+				<div>
+					<img class='rounded-full w-6 h-6 inline-block mr-2' src={`https://cdn.discordapp.com/avatars/${props.user.id}/${props.user.avatar}.png?size=32`} />
+					<div class='inline-block'>
+						<span>{props.user.username}</span>#<span>{props.user.discriminator}</span>
+					</div>
+				</div>
+			</FloatingCard>
+		</Dismiss>
+	</div>;
+}
