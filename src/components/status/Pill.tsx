@@ -39,7 +39,7 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 		<div class='w-full truncate'>{props.text}</div>
 		<Show when={props.progress}>
 			<div class='absolute inset-0 rounded-full overflow-hidden'>
-				<div class='absolute top-0 bottom-0 left-0 bg-stone-500/25 transition-transform' style={{ width: `${props.progress! * 100}%` }} />
+				<div class='absolute top-0 bottom-0 left-0 bg-stone-500/25' style={{ width: `${props.progress! * 100}%` }} />
 			</div>
 		</Show>
 	</Dynamic>;

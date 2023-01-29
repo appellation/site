@@ -15,7 +15,7 @@ export default function SpotifyPill(props: SpotifyPillProps) {
 
 	const [progress, setProgress] = createSignal(getProgress());
 
-	const interval = setInterval(() => setProgress(getProgress()),);
+	const interval = setInterval(() => setProgress(getProgress()), 1000);
 	onCleanup(() => clearInterval(interval));
 
 	return <Pill
