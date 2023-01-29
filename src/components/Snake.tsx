@@ -24,8 +24,8 @@ export default function Snake() {
 	}
 
 	return (
-		<div class="max-w-xl max-h-xl h-full w-full aspect-square">
-			<canvas id="snake" class='outline-none' />
+		<div class="aspect-square min-w-0 min-h-0 max-w-full max-h-full">
+			<canvas id="snake" class="outline-none" />
 		</div>
 	);
 }
