@@ -66,7 +66,7 @@ export default function useLanyard(userId: string): Accessor<Presence | undefine
 
 	createEffect(() => {
 		const socket = new WebSocket('wss://api.lanyard.rest/socket');
-		let heartbeatInterval: number | null = null;
+		let heartbeatInterval: NodeJS.Timer | number | null = null;
 
 		socket.addEventListener('message', event => {
 			const message: IncomingPacket = JSON.parse(event.data);

@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import Layout from "../layouts/Layout.astro";
 import IconButton from "../components/IconButton.astro";
-import Profile from "../components/profile/Profile";
+import Statuses from "../components/Statuses";
 
 const mainClasses = classNames([
 	"flex",
@@ -67,7 +67,7 @@ const nameGradientClasses = classNames([
 			/>
 		</nav>
 		<div class="mt-12">
-			<Profile client:idle />
+			<Statuses client:idle />
 		</div>
 	</main>
 </Layout>

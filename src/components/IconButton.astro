@@ -10,4 +10,6 @@ export interface Props {
 const { iconClass, href, label } = Astro.props;
 ---
 
-<a href={href} aria-label={label}><div class={classNames("text-2xl", iconClass)}></div></a>
+<a href={href} aria-label={label}>
+	<div class={classNames("text-2xl", "transition-colors", iconClass)}></div>
+</a>
