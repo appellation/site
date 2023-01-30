@@ -33,7 +33,7 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 		{props.children}
 		<Show when={content.progress}>
 			<div class='absolute inset-0 rounded-full overflow-hidden'>
-				<div class='absolute top-0 bottom-0 left-0 bg-stone-500/25' style={{ width: `${content.progress! * 100}%` }} />
+				<div class='absolute top-0 bottom-0 left-0 bg-stone-400/25' style={{ width: `${content.progress! * 100}%` }} />
 			</div>
 		</Show>
 	</button>;
