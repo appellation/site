@@ -65,7 +65,8 @@ type IncomingPacket = HelloPacket | InitStatePacket | PresenceUpdatePacket;
 export default function useLanyard(userId: string): Partial<Presence> {
 	const [data, setData] = createStore<Partial<Presence>>({});
 
-	createEffect(() => {
+	function connect() {
+		const cleanup = new AbortController();
 		const socket = new WebSocket('wss://api.lanyard.rest/socket');
 		let heartbeatInterval: NodeJS.Timer | number | null = null;
 
@@ -88,7 +89,7 @@ export default function useLanyard(userId: string): Partial<Presence> {
 					break;
 				}
 			}
-		});
+		}, { signal: cleanup.signal });
 
 		socket.addEventListener('open', () => {
 			const packet: InitializePacket = {
@@ -99,13 +100,21 @@ export default function useLanyard(userId: string): Partial<Presence> {
 			};
 
 			socket.send(JSON.stringify(packet));
-		});
+		}, { signal: cleanup.signal });
+
+		socket.addEventListener('close', () => {
+			cleanup.abort();
+			connect();
+		}, { signal: cleanup.signal });
 
 		onCleanup(() => {
 			socket.close();
+			cleanup.abort();
 			if (heartbeatInterval) clearInterval(heartbeatInterval);
 		});
-	});
+	}
+
+	createEffect(connect);
 
 	return data;
 }
