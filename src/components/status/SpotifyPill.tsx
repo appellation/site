@@ -12,12 +12,12 @@ export interface SpotifyPillProps {
 const SpotifyEmbed = lazy(() => import('../SpotifyEmbed'));
 
 export default function SpotifyPill(props: SpotifyPillProps) {
-	const duration = props.info.timestamps.end - props.info.timestamps.start;
+	const duration = () => props.info.timestamps.end - props.info.timestamps.start;
 
 	const calcSeconds = () => Date.now() - props.info.timestamps.start;
 
 	const [seconds, setSeconds] = createSignal(calcSeconds());
-	const progress = () => Math.min(seconds() / duration, 1);
+	const progress = () => Math.min(seconds() / duration(), 1);
 
 	const interval = setInterval(() => setSeconds(calcSeconds()), 1000);
 	onCleanup(() => clearInterval(interval));
