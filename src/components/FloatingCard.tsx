@@ -1,4 +1,4 @@
-import { autoUpdate, flip, offset, ReferenceElement } from '@floating-ui/dom';
+import { autoUpdate, flip, offset, ReferenceElement, shift } from '@floating-ui/dom';
 import classNames from 'classnames';
 import { createSignal, JSX, ParentProps, splitProps } from 'solid-js';
 import { useFloating } from './util/floating-ui';
@@ -13,7 +13,7 @@ export default function FloatingCard<R extends ReferenceElement>(props: ParentPr
 	const [floating, setFloating] = createSignal<HTMLElement>();
 	const position = useFloating(props.ref, floating, {
 		whileElementsMounted: autoUpdate,
-		middleware: [flip(), offset(10)],
+		middleware: [flip(), shift(), offset(10)],
 		placement: 'bottom',
 	});
 
