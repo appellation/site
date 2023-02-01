@@ -10,12 +10,9 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 	const [content, container] = splitProps(props, ['progress'])
 	const containerProps = {
 		class: classnames(
-			'flex',
-			'gap-2',
 			'py-2',
 			'px-4',
 			'rounded-full',
-			'items-center',
 			'text-stone-600',
 			'dark:text-stone-400',
 			'bg-stone-300/50',
@@ -30,7 +27,9 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 	};
 
 	return <button {...mergeProps(containerProps, container)}>
-		{props.children}
+		<div class='flex gap-2 items-center z-10 relative'>
+			{props.children}
+		</div>
 		<Show when={content.progress}>
 			<div class='absolute inset-0 rounded-full overflow-hidden'>
 				<div class='absolute top-0 bottom-0 left-0 bg-stone-400/25' style={{ width: `${content.progress! * 100}%` }} />
