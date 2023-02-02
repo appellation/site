@@ -1,4 +1,4 @@
-import { createSignal, lazy, onCleanup, Suspense } from 'solid-js';
+import { createEffect, createSignal, lazy, onCleanup, Suspense } from 'solid-js';
 import Dismiss from 'solid-dismiss';
 
 import FloatingCard from '../FloatingCard';
@@ -13,7 +13,6 @@ const SpotifyEmbed = lazy(() => import('../SpotifyEmbed'));
 
 export default function SpotifyPill(props: SpotifyPillProps) {
 	const duration = () => props.info.timestamps.end - props.info.timestamps.start;
-
 	const calcSeconds = () => Date.now() - props.info.timestamps.start;
 
 	const [seconds, setSeconds] = createSignal(calcSeconds());
@@ -22,8 +21,9 @@ export default function SpotifyPill(props: SpotifyPillProps) {
 	const interval = setInterval(() => setSeconds(calcSeconds()), 1000);
 	onCleanup(() => clearInterval(interval));
 
-	const [pill, setPill] = createSignal<HTMLDivElement>();
+	createEffect(() => setSeconds(calcSeconds()));
 
+	const [pill, setPill] = createSignal<HTMLDivElement>();
 	const [cardVisible, setCardVisible] = createSignal(false);
 
 	return <div class='relative'>
