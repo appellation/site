@@ -21,7 +21,7 @@ export default function FloatingCard<R extends ReferenceElement>(props: ParentPr
 		<div
 			{...container}
 			ref={setFloating}
-			class={classNames('z-10', container.class)}
+			class={classNames('z-20', container.class)}
 			style={{
 				position: position.strategy,
 				left: `${position.x ?? 0}px`,
