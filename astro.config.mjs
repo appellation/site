@@ -4,8 +4,6 @@ import solidJs from "@astrojs/solid-js";
 import { defineConfig } from 'astro/config';
 import { presetUno } from 'unocss';
 import Unocss from 'unocss/astro';
-import wasm from 'vite-plugin-wasm';
-import topLevelAwait from 'vite-plugin-top-level-await';
 
 // https://astro.build/config
 export default defineConfig({
@@ -44,10 +42,4 @@ export default defineConfig({
     prefetch(),
   ],
   site: 'https://wnelson.dev',
-  vite: {
-    plugins: [
-      wasm(),
-      topLevelAwait(),
-    ],
-  },
 });
