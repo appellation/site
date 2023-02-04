@@ -1,6 +1,25 @@
 ---
-import Snake from "./Snake";
+import { keyBy } from "lodash-es";
+import { join } from "path";
+import { getAllPages } from "../path";
+import Dropdown from "./Dropdown";
+
+const segments = Astro.url.pathname.split("/").filter((p) => p);
+
+let pages = getAllPages().get(".")?.get("pages");
+for (const segment of segments) {
+	pages = pages?.get(segment);
+}
+
+const next = keyBy([...(pages?.keys() ?? [])], (page) =>
+	join(Astro.url.pathname, page)
+);
 ---
 
-<p>There's nothing here, so have a snake game instead.</p>
-<Snake client:idle />
+<p class="inline-block text-center">
+	<span>Try&nbsp;</span>
+	<div class="text-stone-500 inline-block">
+		<Dropdown links={next} collapseSingle={false} client:load>these</Dropdown>
+	</div>
+	<span> instead.</span>
+</p>

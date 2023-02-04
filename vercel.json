@@ -7,8 +7,5 @@
 			"destination": "https://discord.gg/xdcf6ZSmyt",
 			"permanent": false
 		}
-	],
-	"git": {
-		"deploymentEnabled": false
-	}
+	]
 }

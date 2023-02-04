@@ -4,7 +4,6 @@ importers:
 
   .:
     specifiers:
-      '@appellation/snake': workspace:^0.1.0
       '@astrojs/prefetch': ^0.0.7
       '@astrojs/solid-js': ^1.2.3
       '@babel/core': ^7.20.12
@@ -33,7 +32,6 @@ importers:
       vite-plugin-top-level-await: ^1.2.2
       vite-plugin-wasm: ^3.1.1
     dependencies:
-      '@appellation/snake': link:snake/pkg
       '@astrojs/solid-js': 1.2.3_nksi6a3wmg77jjc3htcdjr6e44
       '@floating-ui/dom': 1.1.0
       '@motionone/solid': 10.15.5_solid-js@1.6.8
