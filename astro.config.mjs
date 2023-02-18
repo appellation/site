@@ -15,6 +15,7 @@ export default defineConfig({
       shortcuts: {
         'list-arrow': classNames(
           'relative',
+          'inline',
           'before:transition-left',
           'before:pointer-events-none',
           'before:absolute',
