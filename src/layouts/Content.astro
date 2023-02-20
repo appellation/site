@@ -27,7 +27,9 @@ const { title } = Astro.props;
 	>
 		<div class="container mx-auto w-full">
 			<Navbar />
-			<article class="prose max-w-prose mx-auto w-full">
+			<article
+				class="prose prose-stone dark:prose-invert max-w-prose mx-auto w-full"
+			>
 				<h1>{title}</h1>
 				<slot />
 			</article>
