@@ -1,0 +1,15 @@
+---
+import Navbar from "../../components/Navbar.astro";
+import Preview from "../../components/Preview.astro";
+import PreviewGrid from "../../components/PreviewGrid.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Blog">
+	<div class="container mx-auto w-full">
+		<Navbar />
+		<PreviewGrid>
+			<Preview path="/blog/2022/02/hello-world" title="Hello World" />
+		</PreviewGrid>
+	</div>
+</Layout>

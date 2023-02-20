@@ -1,58 +1,11 @@
 ---
-import { keyBy } from "lodash-es";
-import { join } from "node:path";
+import Link from "./Link";
 
-import { intersperse } from "../util";
-import { getAllPages } from "../path";
-import Dropdown from "./Dropdown";
-
-const segments = Astro.url.pathname.split("/").filter((p) => p);
-
-let pages = getAllPages().get(".")?.get("pages");
-let prefix = "/";
-
-const menus = segments.map((s) => {
-	const keys = pages ? [...pages.keys()] : [];
-	const links = keyBy(keys, (link) => prefix + link);
-
-	prefix += `${s}/`;
-	pages = pages?.get(s);
-
-	return [s, links] as const;
-});
-
-const next = keyBy([...(pages?.keys() ?? [])], (page) =>
-	join(Astro.url.pathname, page)
-);
-
-const renderNext = Object.keys(next).length > 0;
+const segment = Astro.url.pathname.split("/").filter((p) => p)[0];
 ---
 
 <div class="mt-6 mb-12 text-lg text-stone-600 flex items-center gap-4">
 	<a class="i-bi-folder-fill inline-block" href="/"></a>
 	<div>/</div>
-	{
-		intersperse(
-			menus.map(([s, links]) => {
-				return (
-					<Dropdown client:load links={links}>
-						{decodeURIComponent(s)}
-					</Dropdown>
-				);
-			}),
-			<div>/</div>
-		)
-	}
-	{
-		renderNext && (
-			<>
-				<div>/</div>
-				<div class="text-stone-400">
-					<Dropdown links={next} collapseSingle={false} client:load>
-						index
-					</Dropdown>
-				</div>
-			</>
-		)
-	}
+	<Link href={`/${segment}`}>{segment}</Link>
 </div>

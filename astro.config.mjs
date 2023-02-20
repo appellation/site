@@ -3,7 +3,7 @@ import presetIcons from '@unocss/preset-icons';
 import solidJs from "@astrojs/solid-js";
 import { defineConfig } from 'astro/config';
 import classNames from 'classnames';
-import { presetUno } from 'unocss';
+import { presetTypography, presetUno } from 'unocss';
 import Unocss from 'unocss/astro';
 
 // https://astro.build/config
@@ -11,11 +11,12 @@ export default defineConfig({
   integrations: [
     solidJs(),
     Unocss({
-      presets: [presetIcons(), presetUno({ dark: 'media' })],
+      presets: [presetIcons(), presetUno({ dark: 'media' }), presetTypography()],
       shortcuts: {
         'list-arrow': classNames(
           'relative',
-          'inline',
+          'w-fit',
+          'text-stone-700',
           'before:transition-left',
           'before:pointer-events-none',
           'before:absolute',
