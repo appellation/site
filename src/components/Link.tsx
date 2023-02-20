@@ -9,7 +9,7 @@ export default function Link(props: ParentProps<LinkProps>) {
 		<a
 			href={props.href}
 			rel='prefetch'
-			class='transition-colors hover:bg-stone-300 rounded px-1 cursor-pointer'
+			class='transition-colors hover:bg-stone-300 dark:hover:bg-stone-700 rounded px-1 cursor-pointer'
 		>
 			{props.children}
 		</a>

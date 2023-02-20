@@ -17,6 +17,7 @@ export default defineConfig({
           'relative',
           'w-fit',
           'text-stone-700',
+          'dark:text-stone-300',
           'before:transition-left',
           'before:pointer-events-none',
           'before:absolute',
