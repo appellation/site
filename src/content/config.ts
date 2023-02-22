@@ -4,7 +4,7 @@ export const collections = {
 	'blog': defineCollection({
 		schema: z.object({
 			title: z.string(),
-			publishDate: z.string().transform(str => new Date(str)),
+			publishDate: z.string().transform(str => new Date(str)).or(z.date()),
 		}),
 	}),
 }
