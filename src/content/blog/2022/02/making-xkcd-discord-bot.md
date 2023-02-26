@@ -18,7 +18,7 @@ directly into Discord so you never have to suffer through this pain again.
 If you couldn't care less about actually making your own XKCD Discord bot and
 are just here for the one I've already made, go ahead and just [add my bot to
 your
-server](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&scope=bot).
+server](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&scope=applications.commands).
 I hope you enjoy exploiting software engineers.
 
 Also, why are you even here? On a blog post about making an XKCD Discord bot??
@@ -284,4 +284,4 @@ If you don't want to go through the trouble of setting up all of the
 infrastructure to support this (there are at least 2 services, preferably _3_
 😨), I've already done all of the hard work here and I'm hosting my own XKCD bot
 that is public. Feel free to [add it to your
-servers](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&scope=bot)!
+servers](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&scope=applications.commands)!
