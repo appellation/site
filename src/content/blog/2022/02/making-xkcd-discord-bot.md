@@ -100,7 +100,10 @@ myself, I elected to use [Meilisearch](https://www.meilisearch.com/). They even
 have a Rust SDK.
 
 After loading the comics using our previous strategy, it's a simple matter of
-adding them to a Meilisearch index.
+adding them to a Meilisearch index.[^1]
+
+[^1]: Meilisearch indexing:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/lib.rs#L78-L81
 
 ```rust
 use anyhow::Result;
@@ -127,7 +130,10 @@ fairly simple solution.
 There's a cool Rust crate called [`clokwerk`](https://docs.rs/clokwerk/) which
 allows us to schedule this ingestion process on a regular interval. This example
 shows a cadence of every day at 1am, but it's super configurable and easy to
-change.
+change.[^2]
+
+[^2]: Clokwerk:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/main.rs#L18-L34
 
 ```rust
 use clokwerk::{AsyncScheduler, Job, TimeUnits};
@@ -158,7 +164,12 @@ our search index. Forever.
 Unfortunately, if we search with an empty query, we get a random assortment of
 comics rather than the freshest 👌. In order to make Meilisearch fall back to
 ordering by comic number, it's a simple matter of updating the Meilisearch
-ranking rules.
+ranking rules.[^3] [^4]
+
+[^3]: Defining ranking rules:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/lib.rs#L9-L17
+[^4]: Setting ranking rules:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/lib.rs#L83-L84
 
 ```rust
 const RANGKING_RULES: [&'static str; 7] = [
@@ -187,7 +198,10 @@ their previous comics. Reindexing all of them every day is several thousand
 documents that we don't need to process.
 
 Fortunately, Meilisearch to the rescue! Since we've ordered our comics, we can
-just pull the first one and use it to determine how up-to-date we are.
+just pull the first one and use it to determine how up-to-date we are.[^5]
+
+[^5]: Getting the most recently indexed comic:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/lib.rs#L69-L76
 
 ```rust
 let start_num = client
@@ -223,7 +237,10 @@ curl -X POST \
 ```
 
 Let's add our bot to a Discord server (with the `applications.commands` scope)
-and set it up to receive interactions.
+and set it up to receive interactions[^6].
+
+[^6]: Interaction handler:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/bot/src/main.rs#L64-L90
 
 > I'll leave this as an exercise for the reader, since this process is already
 > [well-documented](https://discord.com/developers/docs/interactions/receiving-and-responding#receiving-an-interaction).
@@ -234,7 +251,10 @@ Our bot needs to be able to handle 2 different interaction types:
 
 ### Handling Autocomplete Search Queries
 
-Loading search results from Meilisearch is incredibly easy.
+Loading search results from Meilisearch is incredibly easy.[^7]
+
+[^7]: Searching for comics:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/bot/src/main.rs#L98-L104
 
 ```rust
 let results = client
@@ -249,12 +269,15 @@ let results = client
 Unfortunately, Discord does not offer any way to display search results other
 than text. While it would be nice to show the actual image, we're limited to
 just the information we've indexed in Meilisearch. I elected to return the comic
-number and title.
+number and title.[^8]
+
+[^8]: Responding with comic search results:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/bot/src/main.rs#L113-L117
 
 ```rust
-CommandOptionChoiceData {
+CommandOptionChoice {
 	name: format!("{}: {}", result.num, result.title),
-	value: result.num.to_string(),
+	value: CommandOptionChoiceValue::String(result.num.to_string()),
 	name_localizations: None,
 }
 ```
@@ -266,9 +289,12 @@ While we can go through the effort of building our own custom embed, XKCD URLs
 embedded in Discord already look excellent and contain all of the information we
 could want to display.
 
-By specifying the comic number as the `value` in the `CommandOptionChoiceData`
-when responding to the search queries, we can simply interpolate it into a
-normal XKCD URL and respond with that.
+By specifying the comic number as the `value` in the `CommandOptionChoice` when
+responding to the search queries, we can simply interpolate it into a normal
+XKCD URL and respond with that.[^9]
+
+[^9]: Responding with selected comic:
+    https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/bot/src/main.rs#L127
 
 ```rust
 format!("https://xkcd.com/{}/", value);

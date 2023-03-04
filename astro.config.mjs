@@ -3,6 +3,7 @@ import presetIcons from '@unocss/preset-icons';
 import solidJs from "@astrojs/solid-js";
 import { defineConfig } from 'astro/config';
 import classNames from 'classnames';
+import rehypeAddClasses from 'rehype-add-classes';
 import { presetTypography, presetUno } from 'unocss';
 import Unocss from 'unocss/astro';
 
@@ -63,4 +64,11 @@ export default defineConfig({
     prefetch(),
   ],
   site: 'https://wnelson.dev',
+  markdown: {
+    rehypePlugins: [
+      [rehypeAddClasses, {
+        'section.footnotes': 'text-sm border-t border-stone-400'
+      }]
+    ]
+  }
 });
