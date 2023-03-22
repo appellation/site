@@ -66,7 +66,7 @@ export default function useLanyard(userId: string): Partial<Presence> {
 	const [data, setData] = createStore<Partial<Presence>>({});
 
 	let cleanup = new AbortController();
-	let socket: WebSocket;
+	let socket: WebSocket | undefined;
 	let heartbeatInterval: NodeJS.Timer | number | null = null;
 
 	function connect() {
@@ -78,7 +78,7 @@ export default function useLanyard(userId: string): Partial<Presence> {
 			switch (message.op) {
 				case OpCode.Hello:
 					if (heartbeatInterval) clearInterval(heartbeatInterval);
-					heartbeatInterval = setInterval(() => socket.send("{\"op\":3}"), message.d.heartbeat_interval);
+					heartbeatInterval = setInterval(() => socket?.send("{\"op\":3}"), message.d.heartbeat_interval);
 					break;
 				case OpCode.Event: {
 					switch (message.t) {
@@ -102,7 +102,7 @@ export default function useLanyard(userId: string): Partial<Presence> {
 				},
 			};
 
-			socket.send(JSON.stringify(packet));
+			socket?.send(JSON.stringify(packet));
 		}, { signal: cleanup.signal });
 
 		socket.addEventListener('close', () => {
@@ -112,7 +112,7 @@ export default function useLanyard(userId: string): Partial<Presence> {
 	}
 
 	onCleanup(() => {
-		socket.close();
+		socket?.close();
 		cleanup.abort();
 		if (heartbeatInterval) clearInterval(heartbeatInterval);
 	});
