@@ -22,9 +22,10 @@ server](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&s
 I hope you enjoy exploiting software engineers.
 
 Also, why are you even here? On a blog post about making an XKCD Discord bot??
+
 </details>
 
-## Phase 1: Ingesting XCKD
+## Phase 1: Ingesting XKCD
 
 Comics are usually designed for humans to consume, not computers, and so
 oftentimes reading them with machines requires web scraping and other horrors.
@@ -246,6 +247,7 @@ and set it up to receive interactions[^6].
 > [well-documented](https://discord.com/developers/docs/interactions/receiving-and-responding#receiving-an-interaction).
 
 Our bot needs to be able to handle 2 different interaction types:
+
 1. Autocomplete search queries
 2. The slash command interaction
 
