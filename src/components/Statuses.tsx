@@ -4,8 +4,13 @@ import useLanyard from './lanyard/useLanyard';
 import ActivityPill from './status/ActivityPill';
 import SpotifyPill from './status/SpotifyPill';
 import StatusPill from './status/StatusPill';
+import Pill from './status/Pill';
 
 const USER_ID = '618570414855028767';
+
+function Fallback() {
+	return <Pill><div class="i-mdi-loading text-2xl animate-spin" /> loading</Pill>;
+}
 
 export default function Statuses(): JSX.Element {
 	const presence = useLanyard(USER_ID);
@@ -13,7 +18,7 @@ export default function Statuses(): JSX.Element {
 	const activities = createMemo(() => presence.activities?.filter(a => a.type === 0) ?? []);
 
 	return (
-		<Show when={presence}>
+		<Show when={Object.keys(presence).length > 0} fallback={Fallback}>
 			<div class='flex gap-2 flex-wrap'>
 				<Show when={presence.discord_status && presence.discord_user}>
 					<StatusPill

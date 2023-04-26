@@ -15,8 +15,6 @@ export default function StatusPill(props: StatusPillProps) {
 	const [pill, setPill] = createSignal<HTMLDivElement>();
 	const [cardVisible, setCardVisible] = createSignal(false);
 
-	console.log(props.status);
-
 	return <div class='relative'>
 		<Pill ref={setPill}>
 			<Switch>
