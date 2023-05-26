@@ -38,7 +38,7 @@ export default function StatusPill(props: StatusPillProps) {
 				<div>
 					<img class='rounded-full w-6 h-6 inline-block mr-2' src={`https://cdn.discordapp.com/avatars/${props.user.id}/${props.user.avatar}.png?size=32`} />
 					<div class='inline-block'>
-						<span>{props.user.username}</span>#<span>{props.user.discriminator}</span>
+						<span>{props.user.username}</span>
 					</div>
 				</div>
 			</FloatingCard>
