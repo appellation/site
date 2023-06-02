@@ -40,17 +40,17 @@ includes the alt text, which is like half of the comic anyway.
 
 ```json
 {
-  "month": "2",
-  "num": 2742,
-  "link": "",
-  "year": "2023",
-  "news": "",
-  "safe_title": "Island Storage",
-  "transcript": "",
-  "alt": "I always hate dragging around the larger archipelagos, but I appreciate how the Scandanavian peninsula flexes outward to create a snug pocket for the British Isles.",
-  "img": "https://imgs.xkcd.com/comics/island_storage.png",
-  "title": "Island Storage",
-  "day": "24"
+	"month": "2",
+	"num": 2742,
+	"link": "",
+	"year": "2023",
+	"news": "",
+	"safe_title": "Island Storage",
+	"transcript": "",
+	"alt": "I always hate dragging around the larger archipelagos, but I appreciate how the Scandanavian peninsula flexes outward to create a snug pocket for the British Isles.",
+	"img": "https://imgs.xkcd.com/comics/island_storage.png",
+	"title": "Island Storage",
+	"day": "24"
 }
 ```
 
@@ -66,17 +66,17 @@ Look at that: we did it! The `n-1` comic is ours!
 
 ```json
 {
-  "month": "2",
-  "num": 2741,
-  "link": "",
-  "year": "2023",
-  "news": "",
-  "safe_title": "Wish Interpretation",
-  "transcript": "",
-  "alt": "\"I wish for everything in the world. All the people, money, trees, etc.\" \"Are you SURE you--\" \"And I want you to put it in my house.\"",
-  "img": "https://imgs.xkcd.com/comics/wish_interpretation.png",
-  "title": "Wish Interpretation",
-  "day": "22"
+	"month": "2",
+	"num": 2741,
+	"link": "",
+	"year": "2023",
+	"news": "",
+	"safe_title": "Wish Interpretation",
+	"transcript": "",
+	"alt": "\"I wish for everything in the world. All the people, money, trees, etc.\" \"Are you SURE you--\" \"And I want you to put it in my house.\"",
+	"img": "https://imgs.xkcd.com/comics/wish_interpretation.png",
+	"title": "Wish Interpretation",
+	"day": "22"
 }
 ```
 
@@ -103,7 +103,8 @@ have a Rust SDK.
 After loading the comics using our previous strategy, it's a simple matter of
 adding them to a Meilisearch index.[^1]
 
-[^1]: Meilisearch indexing:
+[^1]:
+    Meilisearch indexing:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/lib.rs#L78-L81
 
 ```rust
@@ -133,7 +134,8 @@ allows us to schedule this ingestion process on a regular interval. This example
 shows a cadence of every day at 1am, but it's super configurable and easy to
 change.[^2]
 
-[^2]: Clokwerk:
+[^2]:
+    Clokwerk:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/main.rs#L18-L34
 
 ```rust
@@ -167,9 +169,12 @@ comics rather than the freshest 👌. In order to make Meilisearch fall back to
 ordering by comic number, it's a simple matter of updating the Meilisearch
 ranking rules.[^3] [^4]
 
-[^3]: Defining ranking rules:
+[^3]:
+    Defining ranking rules:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/lib.rs#L9-L17
-[^4]: Setting ranking rules:
+
+[^4]:
+    Setting ranking rules:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/lib.rs#L83-L84
 
 ```rust
@@ -201,7 +206,8 @@ documents that we don't need to process.
 Fortunately, Meilisearch to the rescue! Since we've ordered our comics, we can
 just pull the first one and use it to determine how up-to-date we are.[^5]
 
-[^5]: Getting the most recently indexed comic:
+[^5]:
+    Getting the most recently indexed comic:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/indexer/src/lib.rs#L69-L76
 
 ```rust
@@ -240,7 +246,8 @@ curl -X POST \
 Let's add our bot to a Discord server (with the `applications.commands` scope)
 and set it up to receive interactions[^6].
 
-[^6]: Interaction handler:
+[^6]:
+    Interaction handler:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/bot/src/main.rs#L64-L90
 
 > I'll leave this as an exercise for the reader, since this process is already
@@ -255,7 +262,8 @@ Our bot needs to be able to handle 2 different interaction types:
 
 Loading search results from Meilisearch is incredibly easy.[^7]
 
-[^7]: Searching for comics:
+[^7]:
+    Searching for comics:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/bot/src/main.rs#L98-L104
 
 ```rust
@@ -273,7 +281,8 @@ than text. While it would be nice to show the actual image, we're limited to
 just the information we've indexed in Meilisearch. I elected to return the comic
 number and title.[^8]
 
-[^8]: Responding with comic search results:
+[^8]:
+    Responding with comic search results:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/bot/src/main.rs#L113-L117
 
 ```rust
@@ -295,7 +304,8 @@ By specifying the comic number as the `value` in the `CommandOptionChoice` when
 responding to the search queries, we can simply interpolate it into a normal
 XKCD URL and respond with that.[^9]
 
-[^9]: Responding with selected comic:
+[^9]:
+    Responding with selected comic:
     https://github.com/appellation/xkcd-bot/blob/176bad13a5635cb6167ff0fbc641ab725a05e5b9/bot/src/main.rs#L127
 
 ```rust

@@ -1,10 +1,10 @@
 module.exports = {
 	plugins: {
-		'postcss-font-magician': {
-			display: 'swap',
+		"postcss-font-magician": {
+			display: "swap",
 		},
-		'cssnano': {
-			preset: 'default',
+		cssnano: {
+			preset: "default",
 		},
-	}
+	},
 };

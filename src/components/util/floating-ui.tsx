@@ -22,30 +22,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import {
-	createEffect,
-	createMemo,
-	createSignal,
-	onCleanup,
-} from 'solid-js';
+import { createEffect, createMemo, createSignal, onCleanup } from "solid-js";
 import {
 	computePosition,
 	ComputePositionConfig,
 	ComputePositionReturn,
 	ReferenceElement,
-} from '@floating-ui/dom';
+} from "@floating-ui/dom";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ignore<T>(_value: T): void {
 	// no-op
 }
 
-export interface UseFloatingOptions<R extends ReferenceElement, F extends HTMLElement>
-	extends Partial<ComputePositionConfig> {
-	whileElementsMounted?: (reference: R, floating: F, update: () => void) => (void | (() => void));
+export interface UseFloatingOptions<
+	R extends ReferenceElement,
+	F extends HTMLElement
+> extends Partial<ComputePositionConfig> {
+	whileElementsMounted?: (
+		reference: R,
+		floating: F,
+		update: () => void
+	) => void | (() => void);
 }
 
-interface UseFloatingState extends Omit<ComputePositionReturn, 'x' | 'y'> {
+interface UseFloatingState extends Omit<ComputePositionReturn, "x" | "y"> {
 	x?: number | null;
 	y?: number | null;
 }
@@ -57,10 +58,10 @@ export interface UseFloatingResult extends UseFloatingState {
 export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 	reference: () => R | undefined | null,
 	floating: () => F | undefined | null,
-	options?: UseFloatingOptions<R, F>,
+	options?: UseFloatingOptions<R, F>
 ): UseFloatingResult {
-	const placement = () => options?.placement ?? 'bottom';
-	const strategy = () => options?.strategy ?? 'absolute';
+	const placement = () => options?.placement ?? "bottom";
+	const strategy = () => options?.strategy ?? "absolute";
 
 	const [data, setData] = createSignal<UseFloatingState>({
 		x: null,
@@ -91,22 +92,21 @@ export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 
 		if (currentReference && currentFloating) {
 			const capturedVersion = version();
-			computePosition(
-				currentReference,
-				currentFloating,
-				{
-					middleware: options?.middleware,
-					placement: placement(),
-					strategy: strategy(),
+			computePosition(currentReference, currentFloating, {
+				middleware: options?.middleware,
+				placement: placement(),
+				strategy: strategy(),
+			}).then(
+				(currentData) => {
+					// Check if it's still valid
+					if (capturedVersion === version()) {
+						setData(currentData);
+					}
 				},
-			).then((currentData) => {
-				// Check if it's still valid
-				if (capturedVersion === version()) {
-					setData(currentData);
+				(err) => {
+					setError(err);
 				}
-			}, (err) => {
-				setError(err);
-			});
+			);
 		}
 	}
 
@@ -124,7 +124,7 @@ export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 				const cleanup = options.whileElementsMounted(
 					currentReference,
 					currentFloating,
-					update,
+					update
 				);
 
 				if (cleanup) {

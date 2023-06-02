@@ -1,6 +1,6 @@
-import type { GatewayActivity } from 'discord-api-types/v10';
-import { createEffect, onCleanup } from 'solid-js';
-import { createStore, reconcile } from 'solid-js/store';
+import type { GatewayActivity } from "discord-api-types/v10";
+import { createEffect, onCleanup } from "solid-js";
+import { createStore, reconcile } from "solid-js/store";
 
 export interface Timestamps {
 	start: number;
@@ -43,22 +43,26 @@ enum OpCode {
 }
 
 interface BasePacket<O extends OpCode, D = unknown> {
-	op: O,
-	d: D,
+	op: O;
+	d: D;
 }
 
 interface Packet<O extends OpCode, D = unknown> extends BasePacket<O, D> {
 	seq: number;
 }
 
-interface EventPacket<T extends string | undefined = string, D = unknown> extends Packet<OpCode.Event, D> {
+interface EventPacket<T extends string | undefined = string, D = unknown>
+	extends Packet<OpCode.Event, D> {
 	t: T;
 }
 
-type InitializePacket = BasePacket<OpCode.Initialize, { subscribe_to_ids: string[] }>;
+type InitializePacket = BasePacket<
+	OpCode.Initialize,
+	{ subscribe_to_ids: string[] }
+>;
 type HelloPacket = Packet<OpCode.Hello, { heartbeat_interval: number }>;
-type InitStatePacket = EventPacket<'INIT_STATE', Record<string, Presence>>;
-type PresenceUpdatePacket = EventPacket<'PRESENCE_UPDATE', Presence>;
+type InitStatePacket = EventPacket<"INIT_STATE", Record<string, Presence>>;
+type PresenceUpdatePacket = EventPacket<"PRESENCE_UPDATE", Presence>;
 
 type IncomingPacket = HelloPacket | InitStatePacket | PresenceUpdatePacket;
 
@@ -71,44 +75,59 @@ export default function useLanyard(userId: string): Partial<Presence> {
 
 	function connect() {
 		cleanup = new AbortController();
-		socket = new WebSocket('wss://api.lanyard.rest/socket');
+		socket = new WebSocket("wss://api.lanyard.rest/socket");
 
-		socket.addEventListener('message', event => {
-			const message: IncomingPacket = JSON.parse(event.data);
-			switch (message.op) {
-				case OpCode.Hello:
-					if (heartbeatInterval) clearInterval(heartbeatInterval);
-					heartbeatInterval = setInterval(() => socket?.send("{\"op\":3}"), message.d.heartbeat_interval);
-					break;
-				case OpCode.Event: {
-					switch (message.t) {
-						case 'INIT_STATE':
-							setData(Object.values(message.d)[0]);
-							break;
-						case 'PRESENCE_UPDATE':
-							setData(reconcile(message.d, { merge: true }));
-							break;
+		socket.addEventListener(
+			"message",
+			(event) => {
+				const message: IncomingPacket = JSON.parse(event.data);
+				switch (message.op) {
+					case OpCode.Hello:
+						if (heartbeatInterval) clearInterval(heartbeatInterval);
+						heartbeatInterval = setInterval(
+							() => socket?.send('{"op":3}'),
+							message.d.heartbeat_interval
+						);
+						break;
+					case OpCode.Event: {
+						switch (message.t) {
+							case "INIT_STATE":
+								setData(Object.values(message.d)[0]);
+								break;
+							case "PRESENCE_UPDATE":
+								setData(reconcile(message.d, { merge: true }));
+								break;
+						}
+						break;
 					}
-					break;
 				}
-			}
-		}, { signal: cleanup.signal });
+			},
+			{ signal: cleanup.signal }
+		);
 
-		socket.addEventListener('open', () => {
-			const packet: InitializePacket = {
-				op: 2,
-				d: {
-					subscribe_to_ids: [userId],
-				},
-			};
+		socket.addEventListener(
+			"open",
+			() => {
+				const packet: InitializePacket = {
+					op: 2,
+					d: {
+						subscribe_to_ids: [userId],
+					},
+				};
 
-			socket?.send(JSON.stringify(packet));
-		}, { signal: cleanup.signal });
+				socket?.send(JSON.stringify(packet));
+			},
+			{ signal: cleanup.signal }
+		);
 
-		socket.addEventListener('close', () => {
-			cleanup.abort();
-			connect();
-		}, { signal: cleanup.signal });
+		socket.addEventListener(
+			"close",
+			() => {
+				cleanup.abort();
+				connect();
+			},
+			{ signal: cleanup.signal }
+		);
 	}
 
 	onCleanup(() => {
