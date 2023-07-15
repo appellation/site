@@ -26,7 +26,7 @@ export default function Statuses(): JSX.Element {
 	);
 
 	return (
-		<Show when={Object.keys(presence).length > 0} fallback={Fallback}>
+		<Show when={Object.keys(presence).length > 0} fallback={<Fallback />}>
 			<div class="flex gap-2 flex-wrap">
 				<Show when={presence.discord_status && presence.discord_user}>
 					<StatusPill
