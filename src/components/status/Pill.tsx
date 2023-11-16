@@ -28,14 +28,16 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 
 	return (
 		<button {...mergeProps(containerProps, container)}>
-			<div class="flex gap-2 items-center z-10 relative">{props.children}</div>
+			<span class="flex gap-2 items-center z-10 relative">
+				{props.children}
+			</span>
 			<Show when={content.progress}>
-				<div class="absolute inset-0 rounded-full overflow-hidden">
-					<div
+				<span class="absolute inset-0 rounded-full overflow-hidden">
+					<span
 						class="absolute top-0 bottom-0 left-0 bg-stone-400/25"
 						style={{ width: `${content.progress! * 100}%` }}
 					/>
-				</div>
+				</span>
 			</Show>
 		</button>
 	);

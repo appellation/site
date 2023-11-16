@@ -20,16 +20,16 @@ export default function StatusPill(props: StatusPillProps) {
 			<Pill ref={setPill}>
 				<Switch>
 					<Match when={props.status === "online"}>
-						<div class="i-mdi-circle text-2xl text-green-500" />
+						<span class="i-mdi-circle text-2xl text-green-500" />
 					</Match>
 					<Match when={props.status === "idle"}>
-						<div class="i-mdi-moon-waxing-crescent text-2xl text-yellow-500" />
+						<span class="i-mdi-moon-waxing-crescent text-2xl text-yellow-500" />
 					</Match>
 					<Match when={props.status === "dnd"}>
-						<div class="i-mdi-minus-circle text-2xl text-red-500" />
+						<span class="i-mdi-minus-circle text-2xl text-red-500" />
 					</Match>
 					<Match when={props.status === "offline"}>
-						<div class="i-mdi-record-circle text-2xl" />
+						<span class="i-mdi-record-circle text-2xl" />
 					</Match>
 				</Switch>
 				<p class="w-full truncate">{props.status}</p>

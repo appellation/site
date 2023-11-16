@@ -36,11 +36,11 @@ export default function SpotifyPill(props: SpotifyPillProps) {
 	return (
 		<div class="relative">
 			<Pill progress={progress()} ref={setPill}>
-				<div class="text-2xl i-fa-brands-spotify text-[#1DB954]" />
-				<div class="w-full truncate">
+				<span class="text-2xl i-fa-brands-spotify text-[#1DB954]" />
+				<span class="w-full truncate">
 					<span>{props.info.song}</span>
 					<span class="font-light text-sm"> &mdash; {props.info.artist}</span>
-				</div>
+				</span>
 			</Pill>
 			<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
 				<FloatingCard ref={pill}>
