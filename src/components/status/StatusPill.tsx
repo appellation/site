@@ -5,11 +5,11 @@ import FloatingCard from "../FloatingCard";
 import type { DiscordUser } from "../lanyard/useLanyard";
 import Pill from "./Pill";
 
-export interface StatusPillProps {
-	customStatus?: GatewayActivity;
-	status: string;
-	user: DiscordUser;
-}
+export type StatusPillProps = {
+	readonly customStatus?: GatewayActivity;
+	readonly status: string;
+	readonly user: DiscordUser;
+};
 
 export default function StatusPill(props: StatusPillProps) {
 	const [pill, setPill] = createSignal<HTMLDivElement>();

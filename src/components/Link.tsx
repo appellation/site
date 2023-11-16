@@ -1,8 +1,8 @@
 import type { ParentProps } from "solid-js";
 
-export interface LinkProps {
+export type LinkProps = {
 	href: string;
-}
+};
 
 export default function Link(props: ParentProps<LinkProps>) {
 	return (

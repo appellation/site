@@ -5,23 +5,24 @@ import {
 	mergeProps,
 	type ParentProps,
 	Show,
+	For,
 } from "solid-js";
 import FloatingCard from "./FloatingCard";
 
-export interface Props {
-	links: Record<string, string>;
+export type Props = {
 	collapseSingle?: boolean;
-}
+	links: Record<string, string>;
+};
 
-export default function Dropdown(props: ParentProps<Props>) {
-	props = mergeProps({ collapseSingle: true }, props);
+export default function Dropdown(parentProps: ParentProps<Props>) {
+	const props = mergeProps({ collapseSingle: true }, parentProps);
 
 	const [isOpen, setOpen] = createSignal(false);
 	const [ref, setRef] = createSignal<HTMLElement>();
 	const firstLink = createMemo(() => Object.keys(props.links)[0]);
 	const firstName = createMemo(() => Object.values(props.links)[0]);
 	const hasManyLinks = createMemo(
-		() => !Boolean(props.collapseSingle) || Object.keys(props.links).length > 1
+		() => !props.collapseSingle || Object.keys(props.links).length > 1
 	);
 
 	return (
@@ -51,15 +52,17 @@ export default function Dropdown(props: ParentProps<Props>) {
 			<Dismiss menuButton={ref} open={isOpen} setOpen={setOpen}>
 				<FloatingCard ref={ref}>
 					<ul class="min-w-24">
-						{Object.entries(props.links).map(([url, name]) => (
-							<a
-								class="block transition-colors hover:bg-stone-200 rounded px-1"
-								href={url}
-								rel="prefetch"
-							>
-								{name}
-							</a>
-						))}
+						<For each={Object.entries(props.links)}>
+							{([url, name]) => (
+								<a
+									class="block transition-colors hover:bg-stone-200 rounded px-1"
+									href={url}
+									rel="prefetch"
+								>
+									{name}
+								</a>
+							)}
+						</For>
 					</ul>
 				</FloatingCard>
 			</Dismiss>

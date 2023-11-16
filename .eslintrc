@@ -1,0 +1,21 @@
+{
+	"root": true,
+	"plugins": ["solid"],
+	"extends": [
+		"neon/common",
+		"neon/browser",
+		"neon/typescript",
+		"neon/astro",
+		"neon/prettier",
+		"plugin:solid/typescript"
+	],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"ignorePatterns": ["**/dist/*"]
+}

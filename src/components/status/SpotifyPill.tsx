@@ -1,3 +1,4 @@
+import Dismiss from "solid-dismiss";
 import {
 	createEffect,
 	createSignal,
@@ -5,17 +6,15 @@ import {
 	onCleanup,
 	Suspense,
 } from "solid-js";
-import Dismiss from "solid-dismiss";
-
 import FloatingCard from "../FloatingCard";
 import type { Spotify } from "../lanyard/useLanyard";
 import Pill from "./Pill";
 
-export interface SpotifyPillProps {
-	info: Spotify;
-}
+export type SpotifyPillProps = {
+	readonly info: Spotify;
+};
 
-const SpotifyEmbed = lazy(() => import("../SpotifyEmbed"));
+const SpotifyEmbed = lazy(async () => import("../SpotifyEmbed"));
 
 export default function SpotifyPill(props: SpotifyPillProps) {
 	const duration = () =>
@@ -25,7 +24,7 @@ export default function SpotifyPill(props: SpotifyPillProps) {
 	const [seconds, setSeconds] = createSignal(calcSeconds());
 	const progress = () => Math.min(seconds() / duration(), 1);
 
-	const interval = setInterval(() => setSeconds(calcSeconds()), 1000);
+	const interval = setInterval(() => setSeconds(calcSeconds()), 1_000);
 	onCleanup(() => clearInterval(interval));
 
 	createEffect(() => setSeconds(calcSeconds()));

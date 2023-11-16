@@ -1,10 +1,9 @@
 import { createMemo, Index, type JSX, Show } from "solid-js";
-
 import useLanyard from "./lanyard/useLanyard";
 import ActivityPill from "./status/ActivityPill";
+import Pill from "./status/Pill";
 import SpotifyPill from "./status/SpotifyPill";
 import StatusPill from "./status/StatusPill";
-import Pill from "./status/Pill";
 
 const USER_ID = "618570414855028767";
 

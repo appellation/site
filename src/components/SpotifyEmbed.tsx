@@ -1,6 +1,6 @@
-export interface SpotifyEmbedProps {
-	trackId: string;
-}
+export type SpotifyEmbedProps = {
+	readonly trackId: string;
+};
 
 export default function SpotifyEmbed(props: SpotifyEmbedProps) {
 	return (

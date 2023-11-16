@@ -9,10 +9,10 @@ import classNames from "classnames";
 import { createSignal, type JSX, type ParentProps, splitProps } from "solid-js";
 import { useFloating } from "./util/floating-ui";
 
-export interface Props<R extends ReferenceElement>
-	extends JSX.HTMLAttributes<HTMLDivElement> {
-	ref(): R | null | undefined;
-}
+export type Props<R extends ReferenceElement> =
+	JSX.HTMLAttributes<HTMLDivElement> & {
+		ref(): R | null | undefined;
+	};
 
 export default function FloatingCard<R extends ReferenceElement>(
 	props: ParentProps<Props<R>>

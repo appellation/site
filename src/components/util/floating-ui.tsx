@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-invalid-void-type: "warn", promise/prefer-await-to-then: "warn" */
 /*
 MIT License
 
@@ -22,42 +23,41 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import { createEffect, createMemo, createSignal, onCleanup } from "solid-js";
 import {
 	computePosition,
 	type ComputePositionConfig,
 	type ComputePositionReturn,
 	type ReferenceElement,
 } from "@floating-ui/dom";
+import { createEffect, createMemo, createSignal, onCleanup } from "solid-js";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ignore<T>(_value: T): void {
 	// no-op
 }
 
-export interface UseFloatingOptions<
+export type UseFloatingOptions<
 	R extends ReferenceElement,
 	F extends HTMLElement
-> extends Partial<ComputePositionConfig> {
-	whileElementsMounted?: (
+> = Partial<ComputePositionConfig> & {
+	whileElementsMounted?(
 		reference: R,
 		floating: F,
 		update: () => void
-	) => void | (() => void);
-}
+	): (() => void) | void;
+};
 
-interface UseFloatingState extends Omit<ComputePositionReturn, "x" | "y"> {
+type UseFloatingState = Omit<ComputePositionReturn, "x" | "y"> & {
 	x?: number | null;
 	y?: number | null;
-}
+};
 
-export interface UseFloatingResult extends UseFloatingState {
+export type UseFloatingResult = UseFloatingState & {
 	update(): void;
-}
+};
 
 export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
-	reference: () => R | undefined | null,
-	floating: () => F | undefined | null,
+	reference: () => R | null | undefined,
+	floating: () => F | null | undefined,
 	options?: UseFloatingOptions<R, F>
 ): UseFloatingResult {
 	const placement = () => options?.placement ?? "bottom";
@@ -103,8 +103,8 @@ export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 						setData(currentData);
 					}
 				},
-				(err) => {
-					setError(err);
+				(error_) => {
+					setError(error_);
 				}
 			);
 		}

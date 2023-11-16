@@ -5,9 +5,9 @@ function makeAssetUrl(appId: string, assetId: string): string {
 	return `https://cdn.discordapp.com/app-assets/${appId}/${assetId}.png`;
 }
 
-export interface Props {
-	activity: GatewayActivity;
-}
+export type Props = {
+	readonly activity: GatewayActivity;
+};
 
 export default function GameCard(props: Props) {
 	return (

@@ -8,7 +8,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"lint": "tsc --project . --noEmit && prettier -w ."
+		"lint": "tsc --project . --noEmit && eslint --fix . && prettier -w ."
 	},
 	"devDependencies": {
 		"@astrojs/prefetch": "^0.1.2",
@@ -25,6 +25,9 @@
 		"astro": "^3.4.3",
 		"classnames": "^2.3.2",
 		"cssnano": "^5.1.15",
+		"eslint": "^8.53.0",
+		"eslint-config-neon": "^0.1.57",
+		"eslint-plugin-solid": "^0.13.0",
 		"lodash-es": "^4.17.21",
 		"postcss": "^8.4.26",
 		"postcss-font-magician": "^3.0.0",

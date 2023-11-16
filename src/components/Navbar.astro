@@ -1,7 +1,7 @@
 ---
 import Link from "./Link";
 
-const segment = Astro.url.pathname.split("/").filter((p) => p)[0];
+const segment = Astro.url.pathname.split("/").find(Boolean);
 ---
 
 <div

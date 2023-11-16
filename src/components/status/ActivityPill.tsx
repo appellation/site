@@ -9,9 +9,9 @@ function makeAssetUrl(appId: string, assetId: string): string {
 	return `https://cdn.discordapp.com/app-assets/${appId}/${assetId}.png`;
 }
 
-export interface ActivityPillProps {
-	activity: GatewayActivity;
-}
+export type ActivityPillProps = {
+	readonly activity: GatewayActivity;
+};
 
 export default function ActivityPill(props: ActivityPillProps) {
 	const [pill, setPill] = createSignal<HTMLDivElement>();

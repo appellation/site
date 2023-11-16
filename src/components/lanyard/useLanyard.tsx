@@ -1,39 +1,40 @@
+/* eslint sonarjs/no-nested-switch: "warn" */
 import type { GatewayActivity } from "discord-api-types/v10";
 import { createEffect, onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 
-export interface Timestamps {
-	start: number;
+export type Timestamps = {
 	end: number;
-}
+	start: number;
+};
 
-export interface Presence {
-	active_on_discord_mobile: boolean;
+export type Presence = {
 	active_on_discord_desktop: boolean;
-	listening_to_spotify: boolean;
-	kv: Record<string, string>;
-	spotify?: Spotify;
-	discord_user: DiscordUser;
-	discord_status: string;
+	active_on_discord_mobile: boolean;
 	activities: GatewayActivity[];
-}
+	discord_status: string;
+	discord_user: DiscordUser;
+	kv: Record<string, string>;
+	listening_to_spotify: boolean;
+	spotify?: Spotify;
+};
 
-export interface Spotify {
-	track_id: string;
-	timestamps: Timestamps;
-	song: string;
-	artist: string;
-	album_art_url: string;
+export type Spotify = {
 	album: string;
-}
+	album_art_url: string;
+	artist: string;
+	song: string;
+	timestamps: Timestamps;
+	track_id: string;
+};
 
-export interface DiscordUser {
-	username: string;
-	public_flags: number;
-	id: string;
-	discriminator: string;
+export type DiscordUser = {
 	avatar: string;
-}
+	discriminator: string;
+	id: string;
+	public_flags: number;
+	username: string;
+};
 
 enum OpCode {
 	Event,
@@ -42,19 +43,21 @@ enum OpCode {
 	Heartbeat,
 }
 
-interface BasePacket<O extends OpCode, D = unknown> {
-	op: O;
+type BasePacket<O extends OpCode, D = unknown> = {
 	d: D;
-}
+	op: O;
+};
 
-interface Packet<O extends OpCode, D = unknown> extends BasePacket<O, D> {
+type Packet<O extends OpCode, D = unknown> = BasePacket<O, D> & {
 	seq: number;
-}
+};
 
-interface EventPacket<T extends string | undefined = string, D = unknown>
-	extends Packet<OpCode.Event, D> {
+type EventPacket<T extends string | undefined = string, D = unknown> = Packet<
+	OpCode.Event,
+	D
+> & {
 	t: T;
-}
+};
 
 type InitializePacket = BasePacket<
 	OpCode.Initialize,
@@ -98,6 +101,7 @@ export default function useLanyard(userId: string): Partial<Presence> {
 								setData(reconcile(message.d, { merge: true }));
 								break;
 						}
+
 						break;
 					}
 				}
@@ -110,6 +114,7 @@ export default function useLanyard(userId: string): Partial<Presence> {
 			() => {
 				const packet: InitializePacket = {
 					op: 2,
+					// eslint-disable-next-line id-length
 					d: {
 						subscribe_to_ids: [userId],
 					},

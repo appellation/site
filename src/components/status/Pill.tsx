@@ -1,10 +1,15 @@
 import classnames from "classnames";
-import { type JSX, mergeProps, type ParentProps, splitProps } from "solid-js";
-import { Show } from "solid-js/web";
+import {
+	type JSX,
+	mergeProps,
+	type ParentProps,
+	splitProps,
+	Show,
+} from "solid-js";
 
-export interface StatusPillProps extends JSX.HTMLAttributes<HTMLButtonElement> {
+export type StatusPillProps = JSX.HTMLAttributes<HTMLButtonElement> & {
 	progress?: number;
-}
+};
 
 export default function Pill(props: ParentProps<StatusPillProps>) {
 	const [content, container] = splitProps(props, ["progress"]);
