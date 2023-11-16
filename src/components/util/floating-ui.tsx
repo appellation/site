@@ -25,9 +25,9 @@ SOFTWARE.
 import { createEffect, createMemo, createSignal, onCleanup } from "solid-js";
 import {
 	computePosition,
-	ComputePositionConfig,
-	ComputePositionReturn,
-	ReferenceElement,
+	type ComputePositionConfig,
+	type ComputePositionReturn,
+	type ReferenceElement,
 } from "@floating-ui/dom";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

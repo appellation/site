@@ -2,11 +2,11 @@ import {
 	autoUpdate,
 	flip,
 	offset,
-	ReferenceElement,
+	type ReferenceElement,
 	shift,
 } from "@floating-ui/dom";
 import classNames from "classnames";
-import { createSignal, JSX, ParentProps, splitProps } from "solid-js";
+import { createSignal, type JSX, type ParentProps, splitProps } from "solid-js";
 import { useFloating } from "./util/floating-ui";
 
 export interface Props<R extends ReferenceElement>

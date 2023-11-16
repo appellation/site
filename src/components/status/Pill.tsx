@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { JSX, mergeProps, ParentProps, splitProps } from "solid-js";
+import { type JSX, mergeProps, type ParentProps, splitProps } from "solid-js";
 import { Show } from "solid-js/web";
 
 export interface StatusPillProps extends JSX.HTMLAttributes<HTMLButtonElement> {

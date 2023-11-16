@@ -3,7 +3,7 @@ import {
 	createMemo,
 	createSignal,
 	mergeProps,
-	ParentProps,
+	type ParentProps,
 	Show,
 } from "solid-js";
 import FloatingCard from "./FloatingCard";

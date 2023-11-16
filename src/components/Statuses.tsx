@@ -1,4 +1,4 @@
-import { createMemo, Index, JSX, Show } from "solid-js";
+import { createMemo, Index, type JSX, Show } from "solid-js";
 
 import useLanyard from "./lanyard/useLanyard";
 import ActivityPill from "./status/ActivityPill";
