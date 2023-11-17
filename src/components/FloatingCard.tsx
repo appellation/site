@@ -20,6 +20,7 @@ export default function FloatingCard<R extends ReferenceElement>(
 	const [content, container] = splitProps(props, ["children"]);
 
 	const [floating, setFloating] = createSignal<HTMLElement>();
+	// eslint-disable-next-line solid/reactivity
 	const position = useFloating(props.ref, floating, {
 		whileElementsMounted: autoUpdate,
 		middleware: [flip(), shift(), offset(10)],

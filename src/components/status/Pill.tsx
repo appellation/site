@@ -1,11 +1,5 @@
 import classnames from "classnames";
-import {
-	type JSX,
-	mergeProps,
-	type ParentProps,
-	splitProps,
-	Show,
-} from "solid-js";
+import { type JSX, type ParentProps, splitProps, Show } from "solid-js";
 
 export type StatusPillProps = JSX.HTMLAttributes<HTMLButtonElement> & {
 	progress?: number;
@@ -13,8 +7,9 @@ export type StatusPillProps = JSX.HTMLAttributes<HTMLButtonElement> & {
 
 export default function Pill(props: ParentProps<StatusPillProps>) {
 	const [content, container] = splitProps(props, ["progress"]);
-	const containerProps = {
-		class: classnames(
+	const clazz = () =>
+		classnames(
+			props.class,
 			"py-2",
 			"px-4",
 			"rounded-full",
@@ -28,11 +23,10 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 			"relative",
 			"transition-all",
 			"cursor-pointer"
-		),
-	};
+		);
 
 	return (
-		<button {...mergeProps(containerProps, container)}>
+		<button {...container} class={clazz()}>
 			<span class="flex gap-2 items-center z-10 relative">
 				{props.children}
 			</span>

@@ -21,6 +21,7 @@ export default function SpotifyPill(props: SpotifyPillProps) {
 		props.info.timestamps.end - props.info.timestamps.start;
 	const calcSeconds = () => Date.now() - props.info.timestamps.start;
 
+	// eslint-disable-next-line solid/reactivity
 	const [seconds, setSeconds] = createSignal(calcSeconds());
 	const progress = () => Math.min(seconds() / duration(), 1);
 

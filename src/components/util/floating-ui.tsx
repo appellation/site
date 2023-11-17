@@ -1,4 +1,3 @@
-/* eslint @typescript-eslint/no-invalid-void-type: "warn", promise/prefer-await-to-then: "warn" */
 /*
 MIT License
 
@@ -43,7 +42,7 @@ export type UseFloatingOptions<
 		reference: R,
 		floating: F,
 		update: () => void
-	): (() => void) | void;
+	): (() => void) | undefined;
 };
 
 type UseFloatingState = Omit<ComputePositionReturn, "x" | "y"> & {
@@ -86,27 +85,30 @@ export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 		return {};
 	});
 
-	function update() {
+	async function update() {
 		const currentReference = reference();
 		const currentFloating = floating();
 
 		if (currentReference && currentFloating) {
 			const capturedVersion = version();
-			computePosition(currentReference, currentFloating, {
-				middleware: options?.middleware,
-				placement: placement(),
-				strategy: strategy(),
-			}).then(
-				(currentData) => {
-					// Check if it's still valid
-					if (capturedVersion === version()) {
-						setData(currentData);
+			try {
+				const currentData = await computePosition(
+					currentReference,
+					currentFloating,
+					{
+						middleware: options?.middleware,
+						placement: placement(),
+						strategy: strategy(),
 					}
-				},
-				(error_) => {
-					setError(error_);
+				);
+
+				// Check if it's still valid
+				if (capturedVersion === version()) {
+					setData(currentData);
 				}
-			);
+			} catch (error) {
+				setError(error as any);
+			}
 		}
 	}
 
@@ -131,7 +133,7 @@ export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 					onCleanup(cleanup);
 				}
 			} else {
-				update();
+				void update();
 			}
 		}
 	});

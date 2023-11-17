@@ -1,4 +1,3 @@
-/* eslint sonarjs/no-nested-switch: "warn" */
 import type { GatewayActivity } from "discord-api-types/v10";
 import { createEffect, onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
@@ -76,6 +75,17 @@ export default function useLanyard(userId: string): Partial<Presence> {
 	let socket: WebSocket | undefined;
 	let heartbeatInterval: NodeJS.Timer | number | null = null;
 
+	function handleEvent(message: InitStatePacket | PresenceUpdatePacket) {
+		switch (message.t) {
+			case "INIT_STATE":
+				setData(Object.values(message.d)[0]);
+				break;
+			case "PRESENCE_UPDATE":
+				setData(reconcile(message.d, { merge: true }));
+				break;
+		}
+	}
+
 	function connect() {
 		cleanup = new AbortController();
 		socket = new WebSocket("wss://api.lanyard.rest/socket");
@@ -93,14 +103,7 @@ export default function useLanyard(userId: string): Partial<Presence> {
 						);
 						break;
 					case OpCode.Event: {
-						switch (message.t) {
-							case "INIT_STATE":
-								setData(Object.values(message.d)[0]);
-								break;
-							case "PRESENCE_UPDATE":
-								setData(reconcile(message.d, { merge: true }));
-								break;
-						}
+						handleEvent(message);
 
 						break;
 					}
