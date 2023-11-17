@@ -1,10 +1,10 @@
 ---
-import { keyBy } from "lodash-es";
 import { join } from "path";
+import { keyBy } from "lodash-es";
 import { getAllPages } from "../path";
 import Dropdown from "./Dropdown";
 
-const segments = Astro.url.pathname.split("/").filter((p) => p);
+const segments = Astro.url.pathname.split("/").filter(Boolean);
 
 let pages = getAllPages().get(".")?.get("pages");
 for (const segment of segments) {
@@ -12,7 +12,7 @@ for (const segment of segments) {
 }
 
 const next = keyBy([...(pages?.keys() ?? [])], (page) =>
-	join(Astro.url.pathname, page)
+	join(Astro.url.pathname, page),
 );
 ---
 
