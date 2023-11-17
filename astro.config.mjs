@@ -60,9 +60,9 @@ export default defineConfig({
 	},
 	vite: {
 		ssr: {
-			noExternal: ['solid-dismiss']
-		}
+			noExternal: ["solid-dismiss"],
+		},
 	},
-	output: 'hybrid',
+	output: "hybrid",
 	adapter: vercel(),
 });

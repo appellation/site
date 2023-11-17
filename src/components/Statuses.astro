@@ -1,12 +1,12 @@
 ---
+import type { Presence } from "./lanyard/useLanyard";
 import StatusRow from "./status/StatusRow";
-import type { Presence } from './lanyard/useLanyard';
-import { USER_ID } from './util/constants';
+import { USER_ID } from "./util/constants";
 
 type RestResponse = {
 	success: boolean;
-	data: Presence,
-}
+	data: Presence;
+};
 
 const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
 if (!res.ok) {
@@ -15,7 +15,7 @@ if (!res.ok) {
 
 const body: RestResponse = await res.json();
 if (!body.success) {
-	throw new Error('Lanyard broke');
+	throw new Error("Lanyard broke");
 }
 
 const initialPresence = body.data;

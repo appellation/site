@@ -22,7 +22,7 @@ export default function GameCard(props: Props) {
 						class="rounded h-18 w-18"
 						src={makeAssetUrl(
 							props.activity.application_id!,
-							props.activity.assets!.large_image!
+							props.activity.assets!.large_image!,
 						)}
 					/>
 					<Show when={props.activity.assets?.small_image}>
@@ -30,7 +30,7 @@ export default function GameCard(props: Props) {
 							class="absolute bottom-[-0.25rem] right-[-0.25rem] h-6 w-6 rounded-full border-3 border-white dark:border-black"
 							src={makeAssetUrl(
 								props.activity.application_id!,
-								props.activity.assets!.small_image!
+								props.activity.assets!.small_image!,
 							)}
 						/>
 					</Show>

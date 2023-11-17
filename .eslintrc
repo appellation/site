@@ -9,13 +9,17 @@
 		"neon/prettier",
 		"plugin:solid/typescript"
 	],
-	"settings": {
-		"react": {
-			"version": "detect"
-		}
-	},
 	"parserOptions": {
 		"project": "./tsconfig.json"
 	},
-	"ignorePatterns": ["**/dist/*"]
+	"ignorePatterns": ["**/dist/*"],
+	"overrides": [
+		{
+			"files": ["*.astro"],
+			"parser": "astro-eslint-parser",
+			"parserOptions": {
+				"parser": "@typescript-eslint/parser"
+			}
+		}
+	]
 }

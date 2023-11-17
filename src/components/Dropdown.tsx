@@ -22,7 +22,7 @@ export default function Dropdown(parentProps: ParentProps<Props>) {
 	const firstLink = createMemo(() => Object.keys(props.links)[0]);
 	const firstName = createMemo(() => Object.values(props.links)[0]);
 	const hasManyLinks = createMemo(
-		() => !props.collapseSingle || Object.keys(props.links).length > 1
+		() => !props.collapseSingle || Object.keys(props.links).length > 1,
 	);
 
 	return (

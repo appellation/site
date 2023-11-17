@@ -22,7 +22,7 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 			"max-w-xs",
 			"relative",
 			"transition-all",
-			"cursor-pointer"
+			"cursor-pointer",
 		);
 
 	return (

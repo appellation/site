@@ -100,7 +100,7 @@ export default function useLanyard(userId: string, initialPresence: Presence) {
 						if (heartbeatInterval) clearInterval(heartbeatInterval);
 						heartbeatInterval = setInterval(
 							() => socket?.send('{"op":3}'),
-							message.d.heartbeat_interval
+							message.d.heartbeat_interval,
 						);
 						break;
 					case OpCode.Event: {
@@ -110,7 +110,7 @@ export default function useLanyard(userId: string, initialPresence: Presence) {
 					}
 				}
 			},
-			{ signal: cleanup.signal }
+			{ signal: cleanup.signal },
 		);
 
 		socket.addEventListener(
@@ -126,7 +126,7 @@ export default function useLanyard(userId: string, initialPresence: Presence) {
 
 				socket?.send(JSON.stringify(packet));
 			},
-			{ signal: cleanup.signal }
+			{ signal: cleanup.signal },
 		);
 
 		socket.addEventListener(
@@ -135,7 +135,7 @@ export default function useLanyard(userId: string, initialPresence: Presence) {
 				cleanup.abort();
 				connect();
 			},
-			{ signal: cleanup.signal }
+			{ signal: cleanup.signal },
 		);
 	}
 

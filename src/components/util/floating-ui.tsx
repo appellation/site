@@ -36,12 +36,12 @@ function ignore<T>(_value: T): void {
 
 export type UseFloatingOptions<
 	R extends ReferenceElement,
-	F extends HTMLElement
+	F extends HTMLElement,
 > = Partial<ComputePositionConfig> & {
 	whileElementsMounted?(
 		reference: R,
 		floating: F,
-		update: () => void
+		update: () => void,
 	): (() => void) | undefined;
 };
 
@@ -57,7 +57,7 @@ export type UseFloatingResult = UseFloatingState & {
 export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 	reference: () => R | null | undefined,
 	floating: () => F | null | undefined,
-	options?: UseFloatingOptions<R, F>
+	options?: UseFloatingOptions<R, F>,
 ): UseFloatingResult {
 	const placement = () => options?.placement ?? "bottom";
 	const strategy = () => options?.strategy ?? "absolute";
@@ -99,7 +99,7 @@ export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 						middleware: options?.middleware,
 						placement: placement(),
 						strategy: strategy(),
-					}
+					},
 				);
 
 				// Check if it's still valid
@@ -126,7 +126,7 @@ export function useFloating<R extends ReferenceElement, F extends HTMLElement>(
 				const cleanup = options.whileElementsMounted(
 					currentReference,
 					currentFloating,
-					update
+					update,
 				);
 
 				if (cleanup) {

@@ -29,7 +29,7 @@ export default function ActivityPill(props: ActivityPillProps) {
 						class="h-6 w-6 rounded-full"
 						src={makeAssetUrl(
 							props.activity.application_id!,
-							props.activity.assets!.small_image!
+							props.activity.assets!.small_image!,
 						)}
 					/>
 				</Show>

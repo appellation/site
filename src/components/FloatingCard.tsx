@@ -15,7 +15,7 @@ export type Props<R extends ReferenceElement> =
 	};
 
 export default function FloatingCard<R extends ReferenceElement>(
-	props: ParentProps<Props<R>>
+	props: ParentProps<Props<R>>,
 ) {
 	const [content, container] = splitProps(props, ["children"]);
 
