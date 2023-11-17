@@ -1,8 +1,7 @@
 import prefetch from "@astrojs/prefetch";
-import presetIcons from "@unocss/preset-icons";
 import solidJs from "@astrojs/solid-js";
+import presetIcons from "@unocss/preset-icons";
 import { defineConfig } from "astro/config";
-import classNames from "classnames";
 import rehypeAddClasses from "rehype-add-classes";
 import { presetTypography, presetUno } from "unocss";
 import Unocss from "unocss/astro";
@@ -17,26 +16,6 @@ export default defineConfig({
 				presetUno({ dark: "media" }),
 				presetTypography(),
 			],
-			shortcuts: {
-				"list-arrow": classNames(
-					"relative",
-					"w-fit",
-					"text-stone-700",
-					"dark:text-stone-300",
-					"before:transition-left",
-					"before:pointer-events-none",
-					"before:absolute",
-					"before:my-auto",
-					"before:inset-y-0",
-					"before:-left-8",
-					"hover:before:-left-6",
-					"before:i-fa-solid-arrow-right",
-					"before:block",
-					"before:content-empty",
-					"before:w-4",
-					"before:h-4"
-				),
-			},
 			theme: {
 				fontFamily: {
 					serif: ['"Roboto Slab"', "serif"],

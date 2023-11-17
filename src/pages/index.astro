@@ -25,6 +25,25 @@ const nameGradientClasses = classNames([
 	"text-transparent",
 	"animate-bg-pulse",
 ]);
+
+const listArrowClasses = classNames(
+	"relative",
+	"w-fit",
+	"text-stone-700",
+	"dark:text-stone-300",
+	"before:transition-left",
+	"before:pointer-events-none",
+	"before:absolute",
+	"before:my-auto",
+	"before:inset-y-0",
+	"before:-left-8",
+	"hover:before:-left-6",
+	"before:i-fa-solid-arrow-right",
+	"before:block",
+	"before:content-empty",
+	"before:w-4",
+	"before:h-4"
+);
 ---
 
 <Layout title="Will Nelson">
@@ -70,7 +89,7 @@ const nameGradientClasses = classNames([
 		</div>
 		<nav class="mt-12 text-xl">
 			<ul class="flex flex-col gap-1" role="list">
-				<li class="list-arrow">
+				<li class={listArrowClasses}>
 					<a href="/blog">blog</a>
 				</li>
 			</ul>
