@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { For } from "solid-js";
 import Navbar from "../../components/Navbar.astro";
 import Preview from "../../components/Preview.astro";
 import Layout from "../../layouts/Layout.astro";
@@ -11,16 +12,13 @@ const posts = await getCollection("blog");
   <div class="container mx-auto w-full px-4">
     <Navbar />
     <div class="flex flex-col gap-2">
-      {
-        posts
+      <For each={posts
           .sort(
             (a, b) =>
               b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
-          )
-          .map((entry) => (
+          )}>{(entry) => (
             <Preview path={`/blog/${entry.slug}`} title={entry.data.title} />
-          ))
-      }
+          )}</For>
     </div>
   </div>
 </Layout>

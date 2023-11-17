@@ -1,8 +1,10 @@
 ---
 import classNames from "classnames";
 import IconButton from "../components/IconButton.astro";
-import Statuses from "../components/Statuses";
+import Statuses from "../components/Statuses.astro";
 import Layout from "../layouts/Layout.astro";
+
+export const prerender = false;
 
 const mainClasses = classNames([
 	"flex",
@@ -85,7 +87,7 @@ const listArrowClasses = classNames(
 			/>
 		</nav>
 		<div class="mt-12">
-			<Statuses client:load />
+			<Statuses />
 		</div>
 		<nav class="mt-12 text-xl">
 			<ul class="flex flex-col gap-1" role="list">

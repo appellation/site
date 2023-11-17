@@ -1,5 +1,6 @@
 import prefetch from "@astrojs/prefetch";
 import solidJs from "@astrojs/solid-js";
+import vercel from "@astrojs/vercel/serverless";
 import presetIcons from "@unocss/preset-icons";
 import { defineConfig } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
@@ -61,5 +62,7 @@ export default defineConfig({
 		ssr: {
 			noExternal: ['solid-dismiss']
 		}
-	}
+	},
+	output: 'hybrid',
+	adapter: vercel(),
 });

@@ -1,6 +1,7 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import { createEffect, onCleanup } from "solid-js";
+import { onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
+import { isServer } from "solid-js/web";
 
 export type Timestamps = {
 	end: number;
@@ -68,8 +69,8 @@ type PresenceUpdatePacket = EventPacket<"PRESENCE_UPDATE", Presence>;
 
 type IncomingPacket = HelloPacket | InitStatePacket | PresenceUpdatePacket;
 
-export default function useLanyard(userId: string): Partial<Presence> {
-	const [data, setData] = createStore<Partial<Presence>>({});
+export default function useLanyard(userId: string, initialPresence: Presence) {
+	const [data, setData] = createStore(initialPresence);
 
 	let cleanup = new AbortController();
 	let socket: WebSocket | undefined;
@@ -144,7 +145,9 @@ export default function useLanyard(userId: string): Partial<Presence> {
 		if (heartbeatInterval) clearInterval(heartbeatInterval);
 	});
 
-	createEffect(connect);
+	if (!isServer) {
+		connect();
+	}
 
 	return data;
 }

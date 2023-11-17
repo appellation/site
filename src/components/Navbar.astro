@@ -7,7 +7,7 @@ const segment = Astro.url.pathname.split("/").find(Boolean);
 <div
 	class="mt-6 mb-12 text-lg text-stone-600 dark:text-stone-400 flex items-center gap-4"
 >
-	<a class="i-bi-folder-fill inline-block" href="/"></a>
+	<a class="i-bi-folder-fill inline-block" href="/" />
 	<div>/</div>
 	<Link href={`/${segment}`}>{segment}</Link>
 </div>
