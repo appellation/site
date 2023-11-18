@@ -2,7 +2,12 @@ import solidJs from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel/serverless";
 import { defineConfig } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
-import { presetTypography, presetUno, presetWebFonts, presetIcons } from "unocss";
+import {
+	presetTypography,
+	presetUno,
+	presetWebFonts,
+	presetIcons,
+} from "unocss";
 import Unocss from "unocss/astro";
 
 // https://astro.build/config
