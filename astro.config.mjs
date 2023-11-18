@@ -1,4 +1,3 @@
-import prefetch from "@astrojs/prefetch";
 import solidJs from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel/serverless";
 import presetIcons from "@unocss/preset-icons";
@@ -45,7 +44,6 @@ export default defineConfig({
 				},
 			},
 		}),
-		prefetch(),
 	],
 	site: "https://wnelson.dev",
 	markdown: {
@@ -65,4 +63,7 @@ export default defineConfig({
 	},
 	output: "hybrid",
 	adapter: vercel(),
+	prefetch: {
+		prefetchAll: true,
+	},
 });
