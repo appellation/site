@@ -17,13 +17,10 @@ export type Props<R extends ReferenceElement> =
 export default function FloatingCard<R extends ReferenceElement>(
 	props: ParentProps<Props<R>>,
 ) {
-	const [{ children, menuButton }, container] = splitProps(props, [
-		"children",
-		"menuButton",
-	]);
+	const [inner, container] = splitProps(props, ["children", "menuButton"]);
 
 	const [floating, setFloating] = createSignal<HTMLDivElement>();
-	const position = useFloating(menuButton, floating, {
+	const position = useFloating(inner.menuButton, floating, {
 		whileElementsMounted: autoUpdate,
 		middleware: [flip(), shift(), offset(10)],
 		placement: "bottom",
@@ -41,7 +38,7 @@ export default function FloatingCard<R extends ReferenceElement>(
 			}}
 		>
 			<div class="bg-white dark:bg-black p-3 rounded shadow flex flex-co min-w-0 w-max max-w-96 gap-3">
-				{children}
+				{inner.children}
 			</div>
 		</div>
 	);
