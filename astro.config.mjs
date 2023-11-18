@@ -16,6 +16,7 @@ export default defineConfig({
 				presetUno({ dark: "media" }),
 				presetTypography(),
 			],
+			injectReset: true,
 			theme: {
 				fontFamily: {
 					serif: ['"Roboto Slab"', "serif"],
