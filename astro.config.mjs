@@ -25,16 +25,12 @@ export default defineConfig({
 						serif: {
 							name: "Roboto Slab",
 							weights: ["300", "400", "500", "700", "900"],
-							italic: true,
 						},
 					},
 				}),
 			],
 			injectReset: true,
 			theme: {
-				fontFamily: {
-					serif: ['"Roboto Slab"', "serif"],
-				},
 				animation: {
 					durations: {
 						"bg-pulse": "4s",
