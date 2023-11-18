@@ -4,8 +4,5 @@ module.exports = {
 		"postcss-font-magician": {
 			display: "swap",
 		},
-		cssnano: {
-			preset: "default",
-		},
 	},
 };
