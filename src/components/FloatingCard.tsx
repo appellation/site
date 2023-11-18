@@ -11,17 +11,19 @@ import { useFloating } from "./util/floating-ui";
 
 export type Props<R extends ReferenceElement> =
 	JSX.HTMLAttributes<HTMLDivElement> & {
-		ref(): R | null | undefined;
+		menuButton(): R | null | undefined;
 	};
 
 export default function FloatingCard<R extends ReferenceElement>(
 	props: ParentProps<Props<R>>,
 ) {
-	const [content, container] = splitProps(props, ["children"]);
+	const [{ children, menuButton }, container] = splitProps(props, [
+		"children",
+		"menuButton",
+	]);
 
-	const [floating, setFloating] = createSignal<HTMLElement>();
-	// eslint-disable-next-line solid/reactivity
-	const position = useFloating(props.ref, floating, {
+	const [floating, setFloating] = createSignal<HTMLDivElement>();
+	const position = useFloating(menuButton, floating, {
 		whileElementsMounted: autoUpdate,
 		middleware: [flip(), shift(), offset(10)],
 		placement: "bottom",
@@ -39,7 +41,7 @@ export default function FloatingCard<R extends ReferenceElement>(
 			}}
 		>
 			<div class="bg-white dark:bg-black p-3 rounded shadow flex flex-co min-w-0 w-max max-w-96 gap-3">
-				{content.children}
+				{children}
 			</div>
 		</div>
 	);

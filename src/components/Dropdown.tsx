@@ -50,7 +50,7 @@ export default function Dropdown(parentProps: ParentProps<Props>) {
 				</Show>
 			</div>
 			<Dismiss menuButton={ref} open={isOpen} setOpen={setOpen}>
-				<FloatingCard ref={ref}>
+				<FloatingCard menuButton={ref}>
 					<ul class="min-w-24">
 						<For each={Object.entries(props.links)}>
 							{([url, name]) => (

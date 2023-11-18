@@ -6,7 +6,10 @@ export type StatusPillProps = JSX.HTMLAttributes<HTMLButtonElement> & {
 };
 
 export default function Pill(props: ParentProps<StatusPillProps>) {
-	const [content, container] = splitProps(props, ["progress"]);
+	const [{ progress, children }, container] = splitProps(props, [
+		"progress",
+		"children",
+	]);
 	const clazz = () =>
 		classnames(
 			props.class,
@@ -27,14 +30,12 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 
 	return (
 		<button {...container} class={clazz()}>
-			<span class="flex gap-2 items-center z-10 relative">
-				{props.children}
-			</span>
-			<Show when={content.progress}>
+			<span class="flex gap-2 items-center z-10 relative">{children}</span>
+			<Show when={progress}>
 				<span class="absolute inset-0 rounded-full overflow-hidden">
 					<span
 						class="absolute top-0 bottom-0 left-0 bg-stone-400/25"
-						style={{ width: `${content.progress! * 100}%` }}
+						style={{ width: `${progress! * 100}%` }}
 					/>
 				</span>
 			</Show>

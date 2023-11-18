@@ -1,20 +1,12 @@
-import Dismiss from "solid-dismiss";
-import {
-	createEffect,
-	createSignal,
-	lazy,
-	onCleanup,
-	Suspense,
-} from "solid-js";
-import FloatingCard from "../FloatingCard";
+import { createEffect, createSignal, onCleanup } from "solid-js";
+import DismissibleCard from "../DismissibleCard";
+import SpotifyEmbed from "../SpotifyEmbed";
 import type { Spotify } from "../lanyard/useLanyard";
 import Pill from "./Pill";
 
 export type SpotifyPillProps = {
 	readonly info: Spotify;
 };
-
-const SpotifyEmbed = lazy(async () => import("../SpotifyEmbed"));
 
 export default function SpotifyPill(props: SpotifyPillProps) {
 	const duration = () =>
@@ -31,7 +23,6 @@ export default function SpotifyPill(props: SpotifyPillProps) {
 	createEffect(() => setSeconds(calcSeconds()));
 
 	const [pill, setPill] = createSignal<HTMLDivElement>();
-	const [cardVisible, setCardVisible] = createSignal(false);
 
 	return (
 		<div class="relative">
@@ -42,13 +33,9 @@ export default function SpotifyPill(props: SpotifyPillProps) {
 					<span class="font-light text-sm"> &mdash; {props.info.artist}</span>
 				</span>
 			</Pill>
-			<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
-				<FloatingCard ref={pill}>
-					<Suspense>
-						<SpotifyEmbed trackId={props.info.track_id} />
-					</Suspense>
-				</FloatingCard>
-			</Dismiss>
+			<DismissibleCard ref={pill}>
+				<SpotifyEmbed trackId={props.info.track_id} />
+			</DismissibleCard>
 		</div>
 	);
 }

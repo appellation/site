@@ -1,7 +1,6 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import Dismiss from "solid-dismiss";
 import { createSignal, Match, Switch } from "solid-js";
-import FloatingCard from "../FloatingCard";
+import DismissibleCard from "../DismissibleCard";
 import type { DiscordUser } from "../lanyard/useLanyard";
 import Pill from "./Pill";
 
@@ -13,7 +12,6 @@ export type StatusPillProps = {
 
 export default function StatusPill(props: StatusPillProps) {
 	const [pill, setPill] = createSignal<HTMLDivElement>();
-	const [cardVisible, setCardVisible] = createSignal(false);
 
 	return (
 		<div class="relative">
@@ -34,19 +32,17 @@ export default function StatusPill(props: StatusPillProps) {
 				</Switch>
 				<p class="w-full truncate">{props.status}</p>
 			</Pill>
-			<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
-				<FloatingCard ref={pill}>
-					<div>
-						<img
-							class="rounded-full w-6 h-6 inline-block mr-2"
-							src={`https://cdn.discordapp.com/avatars/${props.user.id}/${props.user.avatar}.png?size=32`}
-						/>
-						<div class="inline-block">
-							<span>{props.user.username}</span>
-						</div>
+			<DismissibleCard ref={pill}>
+				<div>
+					<img
+						class="rounded-full w-6 h-6 inline-block mr-2"
+						src={`https://cdn.discordapp.com/avatars/${props.user.id}/${props.user.avatar}.png?size=32`}
+					/>
+					<div class="inline-block">
+						<span>{props.user.username}</span>
 					</div>
-				</FloatingCard>
-			</Dismiss>
+				</div>
+			</DismissibleCard>
 		</div>
 	);
 }

@@ -1,7 +1,6 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import Dismiss from "solid-dismiss";
 import { createSignal, Show } from "solid-js";
-import FloatingCard from "../FloatingCard";
+import DismissibleCard from "../DismissibleCard";
 import GameCard from "./GameCard";
 import Pill from "./Pill";
 
@@ -15,7 +14,6 @@ export type ActivityPillProps = {
 
 export default function ActivityPill(props: ActivityPillProps) {
 	const [pill, setPill] = createSignal<HTMLDivElement>();
-	const [cardVisible, setCardVisible] = createSignal(false);
 
 	return (
 		<div class="relative">
@@ -35,11 +33,9 @@ export default function ActivityPill(props: ActivityPillProps) {
 				</Show>
 				<p class="w-full truncate">{props.activity.name}</p>
 			</Pill>
-			<Dismiss menuButton={pill} open={cardVisible} setOpen={setCardVisible}>
-				<FloatingCard ref={pill}>
-					<GameCard activity={props.activity} />
-				</FloatingCard>
-			</Dismiss>
+			<DismissibleCard ref={pill}>
+				<GameCard activity={props.activity} />
+			</DismissibleCard>
 		</div>
 	);
 }
