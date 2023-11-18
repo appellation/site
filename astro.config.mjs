@@ -1,9 +1,8 @@
 import solidJs from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel/serverless";
-import presetIcons from "@unocss/preset-icons";
 import { defineConfig } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
-import { presetTypography, presetUno } from "unocss";
+import { presetTypography, presetUno, presetWebFonts, presetIcons } from "unocss";
 import Unocss from "unocss/astro";
 
 // https://astro.build/config
@@ -15,6 +14,16 @@ export default defineConfig({
 				presetIcons(),
 				presetUno({ dark: "media" }),
 				presetTypography(),
+				presetWebFonts({
+					provider: "bunny",
+					fonts: {
+						serif: {
+							name: "Roboto Slab",
+							weights: ["300", "400", "500", "700", "900"],
+							italic: true,
+						},
+					},
+				}),
 			],
 			injectReset: true,
 			theme: {
