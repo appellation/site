@@ -1,12 +1,12 @@
 ---
-import classNames from "classnames";
+import clsx from 'clsx';
 import IconButton from "../components/IconButton.astro";
 import Statuses from "../components/Statuses.astro";
 import Layout from "../layouts/Layout.astro";
 
 export const prerender = false;
 
-const mainClasses = classNames([
+const mainClasses = clsx([
 	"flex",
 	"flex-col",
 	"justify-center",
@@ -16,7 +16,7 @@ const mainClasses = classNames([
 	"max-w-2xl",
 ]);
 
-const nameGradientClasses = classNames([
+const nameGradientClasses = clsx([
 	"font-black",
 	"bg-gradient-to-b",
 	"from-violet-600",
@@ -28,7 +28,7 @@ const nameGradientClasses = classNames([
 	"animate-bg-pulse",
 ]);
 
-const listArrowClasses = classNames(
+const listArrowClasses = clsx(
 	"relative",
 	"w-fit",
 	"text-stone-700",

@@ -25,6 +25,9 @@ importers:
       '@motionone/solid':
         specifier: ^10.16.2
         version: 10.16.2(solid-js@1.8.5)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
       discord-api-types:
         specifier: ^0.37.48
         version: 0.37.48
@@ -74,9 +77,6 @@ importers:
       astro:
         specifier: ^3.4.3
         version: 3.4.3(@types/node@18.16.19)(typescript@5.2.2)
-      classnames:
-        specifier: ^2.3.2
-        version: 2.3.2
       cssnano:
         specifier: ^5.1.15
         version: 5.1.15(postcss@8.4.26)
@@ -2695,10 +2695,6 @@ packages:
   /ci-info@3.8.0:
     resolution: {integrity: sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==}
     engines: {node: '>=8'}
-
-  /classnames@2.3.2:
-    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
-    dev: true
 
   /clean-regexp@1.0.0:
     resolution: {integrity: sha512-GfisEZEJvzKrmGWkvfhgzcz/BllN1USeqD2V6tg14OAOgaCD2Z/PUEuxnAZ/nPvmaHRG7a8y77p1T/IRQ4D1Hw==}

@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import { type JSX, type ParentProps, splitProps, Show } from "solid-js";
 
 export type StatusPillProps = JSX.HTMLAttributes<HTMLButtonElement> & {
@@ -11,7 +11,7 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 		"children",
 	]);
 	const clazz = () =>
-		classnames(
+		clsx(
 			props.class,
 			"py-2",
 			"px-4",

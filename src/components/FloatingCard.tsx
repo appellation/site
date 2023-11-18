@@ -5,7 +5,7 @@ import {
 	type ReferenceElement,
 	shift,
 } from "@floating-ui/dom";
-import classNames from "classnames";
+import clsx from "clsx";
 import { createSignal, type JSX, type ParentProps, splitProps } from "solid-js";
 import { useFloating } from "./util/floating-ui";
 
@@ -33,7 +33,7 @@ export default function FloatingCard<R extends ReferenceElement>(
 		<div
 			{...container}
 			ref={setFloating}
-			class={classNames("z-20", container.class)}
+			class={clsx("z-20", container.class)}
 			style={{
 				position: position.strategy,
 				left: `${position.x ?? 0}px`,
