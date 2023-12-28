@@ -18,6 +18,7 @@
 		"@iconify-json/fa-brands": "^1.1.8",
 		"@iconify-json/fa-solid": "^1.1.8",
 		"@iconify-json/mdi": "^1.1.63",
+		"@iconify-json/simple-icons": "^1.1.86",
 		"@motionone/solid": "^10.16.4",
 		"@unocss/reset": "^0.57.7",
 		"astro": "^3.6.4",
