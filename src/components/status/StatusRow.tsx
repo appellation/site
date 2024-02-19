@@ -4,6 +4,7 @@ import { USER_ID } from "../util/constants";
 import ActivityPill from "./ActivityPill";
 import SpotifyPill from "./SpotifyPill";
 import StatusPill from "./StatusPill";
+import CurrentTime from "./CurrentTime";
 
 export default function StatusRow(props: {
 	initialPresence: Presence;
@@ -15,6 +16,7 @@ export default function StatusRow(props: {
 
 	return (
 		<div class="flex gap-2 flex-wrap">
+			<CurrentTime />
 			<StatusPill
 				customStatus={customStatus()}
 				status={presence.discord_status}
