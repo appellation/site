@@ -35,11 +35,6 @@
 		"typescript": "^5.3.3",
 		"unocss": "^0.57.7"
 	},
-	"pnpm": {
-		"patchedDependencies": {
-			"solid-dismiss@1.7.121": "patches/solid-dismiss@1.7.121.patch"
-		}
-	},
 	"devDependencies": {
 		"@types/luxon": "^3.4.2"
 	}

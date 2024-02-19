@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  solid-dismiss@1.7.121:
-    hash: fgwswfh5ogurz2f6r3qaqfdyz4
-    path: patches/solid-dismiss@1.7.121.patch
-
 importers:
 
   .:
