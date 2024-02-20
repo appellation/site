@@ -28,7 +28,7 @@ export default function Pill(props: ParentProps<StatusPillProps>) {
 
 	return (
 		<button {...container} class={clazz()}>
-			<span class="flex gap-2 items-center z-10 relative">
+			<span class="flex gap-2 items-center z-10 relative font-medium">
 				{inner.children}
 			</span>
 			<Show when={inner.progress}>
