@@ -43,7 +43,7 @@ export default function CurrentTime() {
 		<div class="relative">
 			<Pill ref={setPill}>
 				<span class="i-mdi-clock-outline" />
-				<span class="font-medium text-stone-600">{currentTime()}</span>
+				<span>{currentTime()}</span>
 			</Pill>
 			<DismissibleCard ref={pill}>
 				<span>{currentDateTime()}</span>
