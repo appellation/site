@@ -3,11 +3,6 @@
 	"trailingSlash": false,
 	"redirects": [
 		{
-			"source": "/discord",
-			"destination": "https://discord.gg/xdcf6ZSmyt",
-			"permanent": false
-		},
-		{
 			"source": "/blog/2022/:path(.*)",
 			"destination": "/blog/2023/:path*",
 			"permanent": true
