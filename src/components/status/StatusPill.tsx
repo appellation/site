@@ -36,7 +36,7 @@ export default function StatusPill(props: StatusPillProps) {
 				<div>
 					<img
 						class="rounded-full w-6 h-6 inline-block mr-2"
-						src={`https://cdn.discordapp.com/avatars/${props.user.id}/${props.user.avatar}.png?size=32`}
+						src={`https://api.lanyard.rest/${props.user.id}.png`}
 					/>
 					<div class="inline-block">
 						<span>{props.user.username}</span>
