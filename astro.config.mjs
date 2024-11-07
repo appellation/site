@@ -1,5 +1,4 @@
 import solidJs from "@astrojs/solid-js";
-import vercel from "@astrojs/vercel/serverless";
 import { defineConfig } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
 import {
@@ -9,6 +8,8 @@ import {
 	presetIcons,
 } from "unocss";
 import Unocss from "unocss/astro";
+
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
@@ -73,7 +74,7 @@ export default defineConfig({
 		},
 	},
 	output: "hybrid",
-	adapter: vercel(),
+	adapter: cloudflare(),
 	prefetch: {
 		prefetchAll: true,
 	},
