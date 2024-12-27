@@ -8,6 +8,7 @@ export interface Props {
 }
 
 const { title, subtitle, publishDate } = Astro.props;
+const pageTitle = title + (subtitle ? ` - ${subtitle}` : "");
 ---
 
 <!doctype html>
@@ -19,7 +20,7 @@ const { title, subtitle, publishDate } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<link rel="manifest" href="/manifest.json" />
 
-		<meta name="og:title" content={title} />
+		<meta name="og:title" content={pageTitle} />
 		<meta name="og:url" content={Astro.url} />
 		<meta name="og:type" content="article" />
 		<meta
@@ -28,10 +29,7 @@ const { title, subtitle, publishDate } = Astro.props;
 		/>
 		<meta name="og:article:author" content={Astro.site} />
 
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:site" content="@appellation_" />
-
-		<title>{title} | Will Nelson</title>
+		<title>{pageTitle} | Will Nelson</title>
 	</head>
 	<body
 		class="flex h-screen bg-stone-200 dark:bg-stone-800 dark:text-white font-serif"

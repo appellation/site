@@ -15,6 +15,7 @@ const posts = await getCollection("blog");
 			{
 				posts
 					.filter(isPublished)
+					.sort((a, b) => b.data.publishDate - a.data.publishDate)
 					.map((entry) => (
 						<Preview path={`/blog/${entry.id}`} title={entry.data.title} />
 					))

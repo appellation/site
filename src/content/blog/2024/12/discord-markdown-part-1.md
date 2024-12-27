@@ -1,6 +1,6 @@
 ---
-title: Discord Markdown, Part 1
-subtitle: Why It Sucks
+title: Discord Markdown
+subtitle: "Part 1: Why It Sucks"
 publishDate: 2024-12-27
 ---
 
