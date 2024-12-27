@@ -2,7 +2,6 @@
 title: Discord Markdown, Part 1
 subtitle: Why It Sucks
 publishDate: 2024-12-27
-draft: true
 ---
 
 Discord uses a form of Markdown as a markup language for formatting and styling
