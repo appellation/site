@@ -24,7 +24,7 @@ strictly compliant.
 
 This lack of specification is by design since the original creator of Markdown,
 John Gruber, claimed he couldn't possibly cover everyone's use-case with a
-strong specification.[^1] Indeed, Gruber had some beef with the original
+single specification.[^1] Indeed, Gruber had some beef with the original
 implementation of CommonMark for naming the project "Standard Markdown" and he
 required them to omit "Markdown" from their project name entirely.[^2] We'll
 never know for certain if Gruber was right since we're now plagued with a
@@ -39,11 +39,11 @@ supported by the fact that none of those standards have obviously won the war.
 
 ## How Discord Uses Markdown
 
-To make things even more exciting, Discord does not use any Markdown standard.
-Unfortunately, this is for extremely good reason:
+To make things even more exciting, Discord does not use any pre-existing
+Markdown standard. Unfortunately, this is for extremely good reason:
 
-1. All Markdown standards assume a trusted environment: i.e. if you're rendering
-   Markdown, you probably wrote it.
+1. Most Markdown standards assume a trusted environment: i.e. if you're
+   rendering Markdown, you probably wrote it.
 2. Discord has a _ton_ of customizations to the Markdown syntax to support
    things like mentions and custom emojis.
 
@@ -57,9 +57,9 @@ may not trust, can send you some code that is then rendered on your screen. The
 opportunities for malicious exploits abound, and not all of them incredibly
 obvious. Most Markdown specifications allow you to just embed HTML directly in
 your markup, which is obviously not great for obvious reasons. However, there
-are some extreme subtleties: for example, one of our most notorious Markdown
-bugs from the past few years was an exploit that bypassed automod by using the
-Roman numeral numbering of list items to write bad words.
+are some more extreme subtleties: for example, one of our most notorious
+Markdown bugs from the past few years was an exploit that bypassed automod by
+using the Roman numeral numbering of list items to write bad words.
 
 As a result, some sections of Discord's Markdown parser are more comment than
 code and have a ton of nuanced behavior that existing standards don't consider
@@ -92,7 +92,8 @@ other rules and, in many places, Discord is required to implement some very
 insane parsing behavior in order to maintain safety and consistency.
 
 This leads to some fairly insane regular expressions and results in a ton of
-custom logic to shoehorn context-sensitive behavior into a contextless parser.
+custom logic to shoehorn context-sensitive behavior into an otherwise
+contextless parser.
 
 ## How Discord Markdown Evolved
 
@@ -128,6 +129,12 @@ performant way, and this is readily apparent when trying to render lists.
 This means that Discord's message rendering, one of the most visible surfaces of
 the app, is entirely native and unfortunately reliant on a _ton_ of app state
 that is, you guessed it, totally irrelevant to the syntax itself.
+
+Thus, a good chunk of Discord's impure and stateful Markdown parsing is actually
+in service of getting data across the JavaScript-native bridge for the native
+chat layer to render. This is what powers things like rendering formatted
+timestamps instead of the Unix timestamp or the user/nickname instead of the
+user ID.
 
 ## What This Means For Discord
 
