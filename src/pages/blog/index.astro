@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Navbar from "../../components/Navbar.astro";
 import Preview from "../../components/Preview.astro";
+import { isPublished } from "../../components/util/content";
 import Layout from "../../layouts/Layout.astro";
 
 const posts = await getCollection("blog");
@@ -12,9 +13,11 @@ const posts = await getCollection("blog");
 		<Navbar />
 		<div class="flex flex-col gap-2">
 			{
-				posts.map((entry) => (
-					<Preview path={`/blog/${entry.slug}`} title={entry.data.title} />
-				))
+				posts
+					.filter(isPublished)
+					.map((entry) => (
+						<Preview path={`/blog/${entry.slug}`} title={entry.data.title} />
+					))
 			}
 		</div>
 	</div>

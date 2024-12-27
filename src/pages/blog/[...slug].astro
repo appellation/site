@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPathsResult } from "astro";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { isPublished } from "../../components/util/content";
 import ContentLayout from "../../layouts/Content.astro";
 
 interface Props {
@@ -9,12 +10,10 @@ interface Props {
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 	const entries = await getCollection("blog");
-	return entries
-		.filter((ent) => ent.data.draft !== true || import.meta.env.DEV)
-		.map((ent) => ({
-			params: { slug: ent.slug },
-			props: { entry: ent },
-		}));
+	return entries.filter(isPublished).map((ent) => ({
+		params: { slug: ent.slug },
+		props: { entry: ent },
+	}));
 }
 
 const { entry } = Astro.props;
