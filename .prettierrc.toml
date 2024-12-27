@@ -1,5 +1,6 @@
 useTabs = true
 plugins = ['prettier-plugin-astro']
+proseWrap = "always"
 
 [[overrides]]
 files = '*.astro'

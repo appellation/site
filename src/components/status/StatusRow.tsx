@@ -2,9 +2,9 @@ import { Index, type JSX, Show } from "solid-js";
 import useLanyard, { type Presence } from "../lanyard/useLanyard";
 import { USER_ID } from "../util/constants";
 import ActivityPill from "./ActivityPill";
+import CurrentTime from "./CurrentTime";
 import SpotifyPill from "./SpotifyPill";
 import StatusPill from "./StatusPill";
-import CurrentTime from "./CurrentTime";
 
 export default function StatusRow(props: {
 	initialPresence: Presence;

@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { createSignal, getOwner, onCleanup, runWithOwner } from "solid-js";
-import Pill from "./Pill";
 import DismissibleCard from "../DismissibleCard";
+import Pill from "./Pill";
 
 export default function CurrentTime() {
 	const getLocalTime = () => DateTime.local({ zone: "America/Los_Angeles" });

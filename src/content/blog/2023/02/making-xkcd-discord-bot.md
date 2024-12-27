@@ -16,9 +16,8 @@ directly into Discord so you never have to suffer through this pain again.
 <details><summary>TL;DC</summary>
 
 If you couldn't care less about actually making your own XKCD Discord bot and
-are just here for the one I've already made, go ahead and just [add my bot to
-your
-server](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&scope=applications.commands).
+are just here for the one I've already made, go ahead and just
+[add my bot to your server](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&scope=applications.commands).
 I hope you enjoy exploiting software engineers.
 
 Also, why are you even here? On a blog post about making an XKCD Discord bot??
@@ -231,11 +230,12 @@ Now we can actually build our Discord integration. Fortunately, all the hard
 work has already been done for us...by us (perhaps we should rethink this
 strategy).
 
-First, we should [make a Discord
-bot](https://discord.com/developers/applications) if we haven't already. Once we
-have a bot, we need to register a slash command that we can use to fetch XKCD
-comics. I used my [interactions website](https://interactions.wnelson.dev) to do
-this conveniently with a UI, but you can also just cURL it.
+First, we should
+[make a Discord bot](https://discord.com/developers/applications) if we haven't
+already. Once we have a bot, we need to register a slash command that we can use
+to fetch XKCD comics. I used my
+[interactions website](https://interactions.wnelson.dev) to do this conveniently
+with a UI, but you can also just cURL it.
 
 ```bash
 curl -X POST \
@@ -321,5 +321,5 @@ Now we can ingest the excreted XKCD at our leisure.
 If you don't want to go through the trouble of setting up all of the
 infrastructure to support this (there are at least 2 services, preferably _3_
 😨), I've already done all of the hard work here and I'm hosting my own XKCD bot
-that is public. Feel free to [add it to your
-servers](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&scope=applications.commands)!
+that is public. Feel free to
+[add it to your servers](https://discord.com/api/oauth2/authorize?client_id=1064660696668844072&scope=applications.commands)!

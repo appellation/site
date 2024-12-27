@@ -8,6 +8,7 @@ export const collections = {
 				.string()
 				.transform((str) => new Date(str))
 				.or(z.date()),
+			draft: z.boolean().optional(),
 		}),
 	}),
 };

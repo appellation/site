@@ -1,3 +1,4 @@
+import cloudflare from "@astrojs/cloudflare";
 import solidJs from "@astrojs/solid-js";
 import { defineConfig } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
@@ -8,8 +9,6 @@ import {
 	presetIcons,
 } from "unocss";
 import Unocss from "unocss/astro";
-
-import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
@@ -73,7 +72,6 @@ export default defineConfig({
 			noExternal: ["solid-dismiss"],
 		},
 	},
-	output: "hybrid",
 	adapter: cloudflare(),
 	prefetch: {
 		prefetchAll: true,
