@@ -3,6 +3,7 @@ import type { GetStaticPathsResult } from "astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { isPublished } from "../../components/util/content";
 import ContentLayout from "../../layouts/Content.astro";
+import { render } from "astro:content";
 
 interface Props {
 	entry: CollectionEntry<"blog">;
@@ -11,15 +12,19 @@ interface Props {
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 	const entries = await getCollection("blog");
 	return entries.filter(isPublished).map((ent) => ({
-		params: { slug: ent.slug },
+		params: { slug: ent.id },
 		props: { entry: ent },
 	}));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
-<ContentLayout title={entry.data.title} subtitle={entry.data.subtitle} publishDate={entry.data.publishDate}>
+<ContentLayout
+	title={entry.data.title}
+	subtitle={entry.data.subtitle}
+	publishDate={entry.data.publishDate}
+>
 	<Content />
 </ContentLayout>

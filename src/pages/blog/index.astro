@@ -16,7 +16,7 @@ const posts = await getCollection("blog");
 				posts
 					.filter(isPublished)
 					.map((entry) => (
-						<Preview path={`/blog/${entry.slug}`} title={entry.data.title} />
+						<Preview path={`/blog/${entry.id}`} title={entry.data.title} />
 					))
 			}
 		</div>

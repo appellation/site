@@ -1,6 +1,6 @@
 ---
 title: Making an XKCD Discord Bot
-publishDate: 2022-02-25
+publishDate: 2023-02-25
 ---
 
 Have you ever been peacefully conversing on Discord and needed to react with an

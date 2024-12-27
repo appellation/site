@@ -9,24 +9,31 @@ Discord uses a form of Markdown as a markup language for formatting and styling
 messages in fun and interesting ways. This is pretty cool since it lets people
 **bold** or _italic_ their messages (or even **_both_**), amongst other things.
 However, there is a dark side to Markdown, and it has led me down a years long
-rabbit hole (of course involving Rust).
+rabbit hole involving Rust, regular expressions, and some very cursed React.
 
 ## What Is Markdown
 
 One of the most fun aspects of Markdown is that it's not even a real standard.
-Some organizations, specifically CommonMark, have attempted to develop a strong
-specification to act as _the_ Markdown standard, but unfortunately tons of
-different Markdown styles are still extremely common. Github, for example,
-maintains its own "Github Flavored Markdown" (GFM) for use in READMEs and other
-places that is notably not compliant with CommonMark. In fact, there are
-relatively _few_ popular sites that use the CommonMark specification.
+Some organizations, specifically [CommonMark](https://commonmark.org/), have
+attempted to develop a strong specification to act as _the_ Markdown standard,
+but unfortunately tons of different Markdown styles are still extremely common.
+GitHub, for example, maintains its own
+["GitHub Flavored Markdown" (GFM)](https://github.github.com/gfm/) for use in
+READMEs and other places that is notably an extension of CommonMark rather than
+strictly compliant.
 
-This lack of specification is apparently by design, since the creators of
-Markdown claimed they couldn't possibly cover everyone's use-case with a strong
-specification. We'll never know for certain if they were right since we're now
-plagued with a million different competing standards, but their claim seems at
-least somewhat supported by the fact that none of those standards have become
-dominant.
+This lack of specification is by design since the original creator of Markdown,
+John Gruber, claimed he couldn't possibly cover everyone's use-case with a
+strong specification.[^1] Indeed, Gruber had some beef with the original
+implementation of CommonMark for naming the project "Standard Markdown" and he
+required them to omit "Markdown" from their project name entirely.[^2] We'll
+never know for certain if Gruber was right since we're now plagued with a
+million different competing standards, but his claim seems at least somewhat
+supported by the fact that none of those standards have obviously won the war.
+
+[^1]: https://x.com/gruber/status/507670720886091776
+
+[^2]: https://blog.codinghorror.com/standard-markdown-is-now-common-markdown/
 
 ![XKCD standards](https://imgs.xkcd.com/comics/standards.png)
 
@@ -61,42 +68,31 @@ at all.
 ### Customizing Markdown
 
 No existing Markdown specification has allowances for some of Discord's
-customizations. Mentions (rendered using `<@[id]>`) and emojis (using a similar
-`<:name:[id]>` syntax) are obvious and significant departures from every common
+customizations. Mentions (rendered using `<@id>`) and emojis (using a similar
+`<:name:id>` syntax) are obvious and significant departures from every common
 Markdown specification, but the list of customizations is much larger as Discord
 has continued to expand functionality built into messages and other surfaces.
 
 ## Why This Is Bad
 
-Discord uses `simple-markdown` under the hood, which provides a fairly sane
-default set of rules and allows for reasonable customization options.
-Unfortunately, `simple-markdown` uses regular expressions to define rules and,
+Discord uses [`simple-markdown`](https://www.npmjs.com/package/simple-markdown)
+under the hood, which provides a fairly sane default set of rules and allows for
+reasonable customization options. Unfortunately, `simple-markdown` uses regular
+expressions to define rules and,
 [as with HTML](https://stackoverflow.com/a/1732454), it is not possible to parse
 Markdown with regular expressions. Discord certainly tries (oh boy do we try),
-but our Markdown syntax is not a regular language and therefore cannot be parsed
-by a regular expression.
+but Markdown is not a regular language and therefore cannot be parsed by a
+regular expression.
 
-<details>
-<summary>It's very intriguing why `simple-markdown` chose to use regular expressions in the first place</summary>
+It's noteworthy that the _entire_ parser is not defined with regular expressions
+and thus avoids the inherent impossibility of the task: regular expressions are
+used to capture portions of the input which is then subsequently parsed by code.
+However, there is considerable nuance around how captured input interacts with
+other rules and, in many places, Discord is required to implement some very
+insane parsing behavior in order to maintain safety and consistency.
 
-_Every_ existing Markdown specification is context sensitive, since the parser
-must know which rule it is currently within in order to properly delimit child
-rules.
-
-For example, when parsing `_** foo _** bar _`, a parser would need to know that
-it has descended into an italic rule such that `** foo ` is italicized rather
-than entering an italic node for `** bar ` or a bold node for ` foo _`.
-
-My guess would be that regular expressions are extremely digestible to the
-average programmer, especially when compared to a full parser, and also afford
-better customization opportunities. Unfortunately, this decision has led to a
-flawed library.
-
-</details>
-
-This leads to some fairly insane regular expressions that attempt to define
-various Markdown rules and results in a ton of custom logic to shoehorn some
-context-sensitive behavior into a contextless parser.
+This leads to some fairly insane regular expressions and results in a ton of
+custom logic to shoehorn context-sensitive behavior into a contextless parser.
 
 ## How Discord Markdown Evolved
 
@@ -120,34 +116,30 @@ _pre-hydrates_ the AST with business logic about the timestamp itself.
 
 This is...well...not super great, especially if you're a language purist but
 even just from a code maintenance perspective. Unfortunately, as with most
-perceptively bad decisions in software, this one was _also_ made with good
-reason.
+perceptively bad decisions in software, this one was _also_ made with at least
+some good reason.
 
 ## We Need to Talk About Mobile
 
-If you're not aware, Discord uses React Native to run on mobile devices. This
-is, by and large, a reasonable decision that allows developers to iterate fairly
-quickly and more easily ship new features to both platforms rather than needing
-domain knowledge or waiting on someone who already has it.
-
+If you're not aware, Discord uses React Native to run on mobile devices.
 Unfortunately, React Native is still pretty bad at rendering some things in a
-performant way, and this is readily apparent when trying to render lists. Guess
-what a channel full of messages is: go on, I bet you can get it in one.
+performant way, and this is readily apparent when trying to render lists.
 
 This means that Discord's message rendering, one of the most visible surfaces of
-the app, is entirely native _and_ unfortunately reliant on a _ton_ of app state
+the app, is entirely native and unfortunately reliant on a _ton_ of app state
 that is, you guessed it, totally irrelevant to the syntax itself.
 
 ## What This Means For Discord
 
 Markdown is a fairly static product now, with comparatively few changes going
-in. The current feature set works, and there's little in the way of features
-that are missing. Unfortunately for us, the accrued and assumed technical debt
-(yes, I'm mostly talking about using regular expressions to parse a non-regular
-language) is still a dark ghost hauting (some of) us in our dreams.
+in. The current feature set largely works, and there's little in the way of
+features that are missing. Unfortunately for us, the accrued and assumed
+technical debt (yes, I'm mostly talking about using regular expressions to parse
+a non-regular language) is still a dark ghost hauting (some of) us in our
+dreams.
 
-> 37% of markdown bugs this year were P0 or P1 with nearly 1 bug per week in
-> total.
+> 37% of markdown bugs in 2024 were P0 or P1, with nearly 1 bug per week
+> overall.
 
 Of these, quite a number were significant security flaws that resulted in either
 client freezes or outright crashes: i.e. users could remotely DoS clients by

@@ -42,8 +42,14 @@ const { title, subtitle, publishDate } = Astro.props;
 				class="prose prose-stone dark:prose-invert max-w-prose mx-auto w-full pb-24"
 			>
 				<header>
-					<h1 class={subtitle ? 'mb-0' : ''}>{title}</h1>
-					{subtitle && <p class="mt-0 mb-4 italic color-stone-600 dark:color-stone-400 text-lg">{subtitle}</p>}
+					<h1 class={subtitle ? "mb-0" : ""}>{title}</h1>
+					{
+						subtitle && (
+							<p class="mt-0 mb-4 italic color-stone-600 dark:color-stone-400 text-lg">
+								{subtitle}
+							</p>
+						)
+					}
 				</header>
 				<slot />
 			</article>
