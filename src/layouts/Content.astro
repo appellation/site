@@ -3,10 +3,11 @@ import Navbar from "../components/Navbar.astro";
 
 export interface Props {
 	title: string;
+	subtitle?: string;
 	publishDate: Date;
 }
 
-const { title, publishDate } = Astro.props;
+const { title, subtitle, publishDate } = Astro.props;
 ---
 
 <!doctype html>
@@ -40,7 +41,10 @@ const { title, publishDate } = Astro.props;
 			<article
 				class="prose prose-stone dark:prose-invert max-w-prose mx-auto w-full pb-24"
 			>
-				<h1>{title}</h1>
+				<header>
+					<h1 class={subtitle ? 'mb-0' : ''}>{title}</h1>
+					{subtitle && <p class="mt-0 mb-4 italic color-stone-600 dark:color-stone-400 text-lg">{subtitle}</p>}
+				</header>
 				<slot />
 			</article>
 		</div>

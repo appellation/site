@@ -1,5 +1,6 @@
 ---
-title: "Discord Markdown: Why It Sucks"
+title: Discord Markdown, Part 1
+subtitle: Why It Sucks
 publishDate: 2024-12-27
 draft: true
 ---
