@@ -10,7 +10,7 @@ messages in fun and interesting ways. This is pretty cool since it lets people
 However, there is a dark side to Markdown, and it has led me down a years long
 rabbit hole involving Rust, regular expressions, and some very cursed React.
 
-## What Is Markdown
+## What Is Markdown?
 
 One of the most fun aspects of Markdown is that it's not even a real standard.
 Some organizations, specifically [CommonMark](https://commonmark.org/), have
@@ -88,11 +88,10 @@ and thus avoids the inherent impossibility of the task: regular expressions are
 used to capture portions of the input which is then subsequently parsed by code.
 However, there is considerable nuance around how captured input interacts with
 other rules and, in many places, Discord is required to implement some very
-insane parsing behavior in order to maintain safety and consistency.
+complex parsing behavior in order to maintain safety and consistency.
 
-This leads to some fairly insane regular expressions and results in a ton of
-custom logic to shoehorn context-sensitive behavior into an otherwise
-contextless parser.
+This leads to some fairly insane regular expressions and a ton of custom logic
+to shoehorn context-sensitive behavior into an otherwise contextless parser.
 
 ## How Discord Markdown Evolved
 
@@ -135,13 +134,22 @@ chat layer to render. This is what powers things like rendering formatted
 timestamps instead of the Unix timestamp or the user/nickname instead of the
 user ID.
 
+## Regular Expressions Are Slow
+
+Yes, it's true, and they're even slower running in React Native on a low-end
+Android device. Coupled with some unlucky or malicious messages, some devices
+could take **multiple seconds** to parse a single message. Discord has since
+addressed the most egregious performance issues by simply bypassing the regular
+expressions in the hot path, but this is fairly indicative of the issues with
+Discord's Markdown system if the best solution is to bypass it.
+
 ## What This Means For Discord
 
 Markdown is a fairly static product now, with comparatively few changes going
 in. The current feature set largely works, and there's little in the way of
 features that are missing. Unfortunately for us, the accrued and assumed
 technical debt (yes, I'm mostly talking about using regular expressions to parse
-a non-regular language) is still a dark ghost hauting (some of) us in our
+a non-regular language) is still a dark ghost haunting (some of) us in our
 dreams.
 
 > 37% of markdown bugs in 2024 were P0 or P1, with nearly 1 bug per week
