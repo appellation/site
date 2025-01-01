@@ -1,5 +1,6 @@
 ---
 import Navbar from "../components/Navbar.astro";
+import { postTitle } from "../components/util/content";
 
 export interface Props {
 	title: string;
@@ -8,7 +9,7 @@ export interface Props {
 }
 
 const { title, subtitle, publishDate } = Astro.props;
-const pageTitle = title + (subtitle ? ` - ${subtitle}` : "");
+const pageTitle = postTitle(Astro.props);
 ---
 
 <!doctype html>

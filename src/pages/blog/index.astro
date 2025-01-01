@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Navbar from "../../components/Navbar.astro";
 import Preview from "../../components/Preview.astro";
-import { isPublished } from "../../components/util/content";
+import { isPublished, postTitle } from "../../components/util/content";
 import Layout from "../../layouts/Layout.astro";
 
 const posts = await getCollection("blog");
@@ -17,7 +17,7 @@ const posts = await getCollection("blog");
 					.filter(isPublished)
 					.sort((a, b) => b.data.publishDate - a.data.publishDate)
 					.map((entry) => (
-						<Preview path={`/blog/${entry.id}`} title={entry.data.title} />
+						<Preview path={`/blog/${entry.id}`} title={postTitle(entry.data)} />
 					))
 			}
 		</div>
