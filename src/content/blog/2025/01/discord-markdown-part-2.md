@@ -60,7 +60,7 @@ React Native bridge.
 
 [^3]:
     As discussed in part 1, parsing in JavaScript allows us to hydrate the AST
-    with UI state. This is not _good_ but is is oh so convenient.
+    with UI state. This is not _good_ but it is oh so convenient.
 
 React Native actually just replaced the bridge with their
 ["New Architecture"](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here),
