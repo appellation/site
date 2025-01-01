@@ -2,7 +2,6 @@
 title: Discord Markdown
 subtitle: "Part 2: What We're Doing About It"
 publishDate: 2025-01-01
-draft: true
 ---
 
 > This is a continuation from [part 1](/blog/2024/12/discord-markdown-part-1).
