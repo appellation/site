@@ -163,4 +163,4 @@ The maintenance burden of this is not insignificant.
 
 ## Next
 
-soon: what we're doing about it
+[What we're doing about it](/blog/2025/01/discord-markdown-part-2)
