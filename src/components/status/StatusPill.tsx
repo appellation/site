@@ -1,18 +1,17 @@
 import type { GatewayActivity } from "discord-api-types/v10";
 import { useMemo, useRef } from "react";
-import type { DiscordUser } from "react-use-lanyard";
 import DismissibleCard from "../DismissibleCard";
 import Pill from "./Pill";
 import { DialogTrigger } from "react-aria-components";
+import type { Types } from "use-lanyard";
 
 export type StatusPillProps = {
 	readonly customStatus?: GatewayActivity;
 	readonly status?: string;
-	readonly user: DiscordUser;
+	readonly user: Types.DiscordUser;
 };
 
 export default function StatusPill({ status, user }: StatusPillProps) {
-	const pill = useRef<HTMLButtonElement>(null);
 	const statusClass = useMemo(() => {
 		switch (status) {
 			case "online":
@@ -32,7 +31,7 @@ export default function StatusPill({ status, user }: StatusPillProps) {
 				<span className={statusClass} />
 				<p className="w-full truncate">{status}</p>
 			</Pill>
-			<DismissibleCard ref={pill}>
+			<DismissibleCard>
 				<div>
 					<img
 						className="rounded-full w-6 h-6 inline-block mr-2"

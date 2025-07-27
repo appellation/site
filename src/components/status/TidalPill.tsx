@@ -15,6 +15,7 @@ export default function TidalPill(props: TidalPillProps) {
 	const progress = Math.min(seconds / duration, 1);
 
 	useEffect(() => {
+		setSeconds(calcSeconds());
 		const interval = setInterval(() => setSeconds(calcSeconds()), 1_000);
 		return () => clearInterval(interval);
 	});

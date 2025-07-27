@@ -40,11 +40,9 @@ export default function CurrentTime() {
 		};
 	}, []);
 
-	const pill = useRef<HTMLButtonElement>(null);
-
 	return (
 		<DialogTrigger>
-			<Pill ref={pill}>
+			<Pill>
 				<span className="i-mdi-clock-outline" />
 				<span
 					suppressHydrationWarning // time can be different based on the client's timezone
@@ -52,7 +50,7 @@ export default function CurrentTime() {
 					{currentTime}
 				</span>
 			</Pill>
-			<DismissibleCard ref={pill}>
+			<DismissibleCard>
 				<span>{currentDateTime}</span>
 			</DismissibleCard>
 		</DialogTrigger>

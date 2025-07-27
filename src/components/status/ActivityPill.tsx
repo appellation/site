@@ -14,11 +14,9 @@ export type ActivityPillProps = {
 };
 
 export default function ActivityPill(props: ActivityPillProps) {
-	const pill = useRef<HTMLButtonElement>(null);
-
 	return (
 		<DialogTrigger>
-			<Pill ref={pill}>
+			<Pill>
 				{props.activity.application_id && props.activity.assets?.small_image ? (
 					<img
 						className="h-6 w-6 rounded-full"
@@ -31,7 +29,7 @@ export default function ActivityPill(props: ActivityPillProps) {
 				<p className="w-full truncate">{props.activity.name}</p>
 			</Pill>
 
-			<DismissibleCard ref={pill}>
+			<DismissibleCard>
 				<GameCard activity={props.activity} />
 			</DismissibleCard>
 		</DialogTrigger>
