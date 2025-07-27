@@ -5,6 +5,7 @@ import ActivityPill from "./ActivityPill";
 import CurrentTime from "./CurrentTime";
 import SpotifyPill from "./SpotifyPill";
 import StatusPill from "./StatusPill";
+import TidalPill from './TidalPill';
 
 export default function StatusRow(props: {
 	initialPresence: Presence;
@@ -13,6 +14,7 @@ export default function StatusRow(props: {
 	const customStatus = () => presence.activities?.find((a) => a.type === 4);
 	const activities = () =>
 		presence.activities?.filter((a) => a.type === 0) ?? [];
+	const tidalActivity = () => presence.activities.find((activity) => activity.application_id === '1396900502729392188')
 
 	return (
 		<div class="flex gap-2 flex-wrap">
@@ -22,6 +24,9 @@ export default function StatusRow(props: {
 				status={presence.discord_status}
 				user={presence.discord_user}
 			/>
+			<Show when={tidalActivity()} keyed>
+				{(tidal) => <TidalPill activity={tidal} />}
+			</Show>
 			<Show when={presence.spotify} keyed>
 				{(spotify) => <SpotifyPill info={spotify} />}
 			</Show>

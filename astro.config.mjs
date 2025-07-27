@@ -16,7 +16,7 @@ export default defineConfig({
 		solidJs(),
 		Unocss({
 			presets: [
-				presetIcons(),
+				presetIcons({ warn: true }),
 				presetUno({ dark: "media" }),
 				presetTypography(),
 				presetWebFonts({
