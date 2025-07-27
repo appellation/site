@@ -71,4 +71,11 @@ export default defineConfig({
 	prefetch: {
 		prefetchAll: true,
 	},
+	vite: {
+		resolve: {
+			alias: import.meta.env.PROD && {
+				"react-dom/server": "react-dom/server.edge",
+			},
+		},
+	},
 });
