@@ -1,48 +1,48 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import { createSignal, Match, Switch } from "solid-js";
+import { useMemo, useRef } from "react";
+import type { DiscordUser } from "react-use-lanyard";
 import DismissibleCard from "../DismissibleCard";
-import type { DiscordUser } from "../lanyard/useLanyard";
 import Pill from "./Pill";
+import { DialogTrigger } from "react-aria-components";
 
 export type StatusPillProps = {
 	readonly customStatus?: GatewayActivity;
-	readonly status: string;
+	readonly status?: string;
 	readonly user: DiscordUser;
 };
 
-export default function StatusPill(props: StatusPillProps) {
-	const [pill, setPill] = createSignal<HTMLDivElement>();
+export default function StatusPill({ status, user }: StatusPillProps) {
+	const pill = useRef<HTMLButtonElement>(null);
+	const statusClass = useMemo(() => {
+		switch (status) {
+			case "online":
+				return "i-mdi-circle text-2xl text-green-500";
+			case "idle":
+				return "i-mdi-moon-waxing-crescent text-2xl text-yellow-500";
+			case "dnd":
+				return "i-mdi-minus-circle text-2xl text-red-500";
+			case "offline":
+				return "i-mdi-record-circle text-2xl";
+		}
+	}, [status]);
 
 	return (
-		<div class="relative">
-			<Pill ref={setPill}>
-				<Switch>
-					<Match when={props.status === "online"}>
-						<span class="i-mdi-circle text-2xl text-green-500" />
-					</Match>
-					<Match when={props.status === "idle"}>
-						<span class="i-mdi-moon-waxing-crescent text-2xl text-yellow-500" />
-					</Match>
-					<Match when={props.status === "dnd"}>
-						<span class="i-mdi-minus-circle text-2xl text-red-500" />
-					</Match>
-					<Match when={props.status === "offline"}>
-						<span class="i-mdi-record-circle text-2xl" />
-					</Match>
-				</Switch>
-				<p class="w-full truncate">{props.status}</p>
+		<DialogTrigger>
+			<Pill>
+				<span className={statusClass} />
+				<p className="w-full truncate">{status}</p>
 			</Pill>
 			<DismissibleCard ref={pill}>
 				<div>
 					<img
-						class="rounded-full w-6 h-6 inline-block mr-2"
-						src={`https://api.lanyard.rest/${props.user.id}.png`}
+						className="rounded-full w-6 h-6 inline-block mr-2"
+						src={`https://api.lanyard.rest/${user.id}.png`}
 					/>
-					<div class="inline-block">
-						<span>{props.user.username}</span>
+					<div className="inline-block">
+						<span>{user.username}</span>
 					</div>
 				</div>
 			</DismissibleCard>
-		</div>
+		</DialogTrigger>
 	);
 }

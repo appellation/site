@@ -1,11 +1,11 @@
 ---
-import type { Presence } from "./lanyard/useLanyard";
+import type { Types } from "use-lanyard";
 import StatusRow from "./status/StatusRow";
 import { USER_ID } from "./util/constants";
 
 type RestResponse = {
 	success: boolean;
-	data: Presence;
+	data: Types.Presence;
 };
 
 const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);

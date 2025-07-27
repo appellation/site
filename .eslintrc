@@ -1,16 +1,15 @@
 {
 	"root": true,
-	"plugins": ["solid"],
 	"extends": [
 		"neon/common",
 		"neon/browser",
 		"neon/typescript",
+		"neon/react",
 		"neon/astro",
 		"neon/prettier",
-		"plugin:solid/typescript"
 	],
 	"parserOptions": {
-		"project": "./tsconfig.json"
+		"project": "./tsconfig.json",
 	},
 	"ignorePatterns": ["**/dist/*"],
 	"overrides": [
@@ -18,11 +17,8 @@
 			"files": ["*.astro"],
 			"parser": "astro-eslint-parser",
 			"parserOptions": {
-				"parser": "@typescript-eslint/parser"
+				"parser": "@typescript-eslint/parser",
 			},
-			"rules": {
-				"solid/prefer-for": 0
-			}
-		}
-	]
+		},
+	],
 }

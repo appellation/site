@@ -1,25 +1,16 @@
-import Dismiss from "solid-dismiss";
-import {
-	lazy,
-	type Accessor,
-	type ParentProps,
-	Suspense,
-	createSignal,
-} from "solid-js";
+import { lazy, Suspense, type PropsWithChildren, type RefObject } from "react";
 
 const FloatingCard = lazy(async () => import("./FloatingCard"));
 
-export type DismissibleCardProps = { ref: Accessor<HTMLElement | undefined> };
-
-export default function DismissibleCard(
-	props: ParentProps<DismissibleCardProps>,
-) {
-	const [visible, setVisible] = createSignal(false);
+export default function DismissibleCard({
+	ref,
+	children,
+}: PropsWithChildren<{
+	readonly ref: RefObject<HTMLButtonElement | null>;
+}>) {
 	return (
-		<Dismiss menuButton={props.ref} open={visible} setOpen={setVisible}>
-			<Suspense>
-				<FloatingCard menuButton={props.ref}>{props.children}</FloatingCard>
-			</Suspense>
-		</Dismiss>
+		<Suspense>
+			<FloatingCard ref={ref}>{children}</FloatingCard>
+		</Suspense>
 	);
 }

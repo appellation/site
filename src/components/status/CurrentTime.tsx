@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
-import { createSignal, getOwner, onCleanup, runWithOwner } from "solid-js";
+import { useEffect, useRef, useState } from "react";
+import { DialogTrigger } from "react-aria-components";
 import DismissibleCard from "../DismissibleCard";
 import Pill from "./Pill";
 
@@ -10,8 +11,8 @@ export default function CurrentTime() {
 	const getFormattedDateTime = () =>
 		getLocalTime().toLocaleString(DateTime.DATETIME_FULL);
 
-	const [currentTime, setCurrentTime] = createSignal(getFormattedTime());
-	const [currentDateTime, setCurrentDateTime] = createSignal(
+	const [currentTime, setCurrentTime] = useState(getFormattedTime());
+	const [currentDateTime, setCurrentDateTime] = useState(
 		getFormattedDateTime(),
 	);
 
@@ -24,30 +25,36 @@ export default function CurrentTime() {
 	const nextMinute = now.endOf("minute");
 	const msToNextMinute = nextMinute.diff(now).milliseconds;
 
-	const owner = getOwner();
-	const timeout = setTimeout(() => {
-		updateTimes();
+	useEffect(() => {
+		let interval: NodeJS.Timeout | undefined;
 
-		const interval = setInterval(updateTimes, 60_000);
+		const timeout = setTimeout(() => {
+			updateTimes();
 
-		runWithOwner(owner, () => {
-			onCleanup(() => clearInterval(interval));
-		});
-	}, msToNextMinute);
+			interval = setInterval(updateTimes, 60_000);
+		}, msToNextMinute);
 
-	onCleanup(() => clearTimeout(timeout));
+		return () => {
+			if (interval) clearInterval(interval);
+			clearTimeout(timeout);
+		};
+	}, []);
 
-	const [pill, setPill] = createSignal<HTMLDivElement>();
+	const pill = useRef<HTMLButtonElement>(null);
 
 	return (
-		<div class="relative">
-			<Pill ref={setPill}>
-				<span class="i-mdi-clock-outline" />
-				<span>{currentTime()}</span>
+		<DialogTrigger>
+			<Pill ref={pill}>
+				<span className="i-mdi-clock-outline" />
+				<span
+					suppressHydrationWarning // time can be different based on the client's timezone
+				>
+					{currentTime}
+				</span>
 			</Pill>
 			<DismissibleCard ref={pill}>
-				<span>{currentDateTime()}</span>
+				<span>{currentDateTime}</span>
 			</DismissibleCard>
-		</div>
+		</DialogTrigger>
 	);
 }

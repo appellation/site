@@ -10,8 +10,8 @@ export function postTitle({
 	title,
 	subtitle,
 }: {
-	title: string;
 	subtitle?: string;
+	title: string;
 }) {
 	return title + (subtitle ? ` - ${subtitle}` : "");
 }

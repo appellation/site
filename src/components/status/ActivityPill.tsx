@@ -1,5 +1,6 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import { createSignal, Show } from "solid-js";
+import { useRef } from "react";
+import { DialogTrigger } from "react-aria-components";
 import DismissibleCard from "../DismissibleCard";
 import GameCard from "./GameCard";
 import Pill from "./Pill";
@@ -13,29 +14,26 @@ export type ActivityPillProps = {
 };
 
 export default function ActivityPill(props: ActivityPillProps) {
-	const [pill, setPill] = createSignal<HTMLDivElement>();
+	const pill = useRef<HTMLButtonElement>(null);
 
 	return (
-		<div class="relative">
-			<Pill ref={setPill}>
-				<Show
-					when={
-						props.activity.application_id && props.activity.assets?.small_image
-					}
-				>
+		<DialogTrigger>
+			<Pill ref={pill}>
+				{props.activity.application_id && props.activity.assets?.small_image ? (
 					<img
-						class="h-6 w-6 rounded-full"
+						className="h-6 w-6 rounded-full"
 						src={makeAssetUrl(
-							props.activity.application_id!,
-							props.activity.assets!.small_image!,
+							props.activity.application_id,
+							props.activity.assets.small_image,
 						)}
 					/>
-				</Show>
-				<p class="w-full truncate">{props.activity.name}</p>
+				) : null}
+				<p className="w-full truncate">{props.activity.name}</p>
 			</Pill>
+
 			<DismissibleCard ref={pill}>
 				<GameCard activity={props.activity} />
 			</DismissibleCard>
-		</div>
+		</DialogTrigger>
 	);
 }

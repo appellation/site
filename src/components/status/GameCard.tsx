@@ -1,5 +1,4 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import { Show } from "solid-js";
 
 function makeAssetUrl(appId: string, assetId: string): string {
 	return `https://cdn.discordapp.com/app-assets/${appId}/${assetId}.png`;
@@ -11,39 +10,31 @@ export type Props = {
 
 export default function GameCard(props: Props) {
 	return (
-		<div class="flex items-start bg-white dark:bg-black rounded-lg">
-			<Show
-				when={
-					props.activity.application_id && props.activity.assets?.large_image
-				}
-			>
-				<div class="mr-2 relative">
+		<div className="flex items-start bg-white dark:bg-black rounded-lg">
+			{props.activity.application_id && props.activity.assets?.large_image ? (
+				<div className="mr-2 relative">
 					<img
-						class="rounded h-18 w-18"
+						className="rounded h-18 w-18"
 						src={makeAssetUrl(
 							props.activity.application_id!,
 							props.activity.assets!.large_image!,
 						)}
 					/>
-					<Show when={props.activity.assets?.small_image}>
+					{props.activity.assets?.small_image ? (
 						<img
-							class="absolute bottom-[-0.25rem] right-[-0.25rem] h-6 w-6 rounded-full border-3 border-white dark:border-black"
+							className="absolute bottom-[-0.25rem] right-[-0.25rem] h-6 w-6 rounded-full border-3 border-white dark:border-black"
 							src={makeAssetUrl(
 								props.activity.application_id!,
 								props.activity.assets!.small_image!,
 							)}
 						/>
-					</Show>
+					) : null}
 				</div>
-			</Show>
-			<div class="flex flex-col">
-				<span class="font-bold">{props.activity.name}</span>
-				<Show when={props.activity.details} keyed>
-					<p>{props.activity.details}</p>
-				</Show>
-				<Show when={props.activity.state}>
-					<p>{props.activity.state}</p>
-				</Show>
+			) : null}
+			<div className="flex flex-col">
+				<span className="font-bold">{props.activity.name}</span>
+				{props.activity.details ? <p>{props.activity.details}</p> : null}
+				{props.activity.state ? <p>{props.activity.state}</p> : null}
 			</div>
 		</div>
 	);

@@ -1,17 +1,17 @@
-import type { ParentProps } from "solid-js";
+import type { PropsWithChildren } from "react";
 
-export type LinkProps = {
-	href: string;
-};
+export type LinkProps = PropsWithChildren<{
+	readonly href: string;
+}>;
 
-export default function Link(props: ParentProps<LinkProps>) {
+export default function Link({ href, children }: LinkProps) {
 	return (
 		<a
-			href={props.href}
+			href={href}
 			rel="prefetch"
-			class="transition-colors hover:bg-stone-300 dark:hover:bg-stone-700 rounded px-1 cursor-pointer"
+			className="transition-colors hover:bg-stone-300 dark:hover:bg-stone-700 rounded px-1 cursor-pointer"
 		>
-			{props.children}
+			{children}
 		</a>
 	);
 }

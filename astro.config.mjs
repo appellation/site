@@ -1,5 +1,5 @@
 import cloudflare from "@astrojs/cloudflare";
-import solidJs from "@astrojs/solid-js";
+import react from "@astrojs/react";
 import { defineConfig } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
 import {
@@ -13,7 +13,7 @@ import Unocss from "unocss/astro";
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
-		solidJs(),
+		react(),
 		Unocss({
 			presets: [
 				presetIcons({ warn: true }),
@@ -43,14 +43,14 @@ export default defineConfig({
 					},
 					keyframes: {
 						"bg-pulse": `{
-                0%,
-                100% {
-                  background-position-y: 0%;
-                }
-                50% {
-                  background-position-y: 80%;
-                }
-              }`,
+            0%,
+            100% {
+              background-position-y: 0%;
+            }
+            50% {
+              background-position-y: 80%;
+            }
+          }`,
 					},
 				},
 			},
@@ -66,11 +66,6 @@ export default defineConfig({
 				},
 			],
 		],
-	},
-	vite: {
-		ssr: {
-			noExternal: ["solid-dismiss"],
-		},
 	},
 	adapter: cloudflare(),
 	prefetch: {
