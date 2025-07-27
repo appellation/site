@@ -1,6 +1,6 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import { useMemo, useRef } from "react";
-import DismissibleCard from "../DismissibleCard";
+import { useMemo } from "react";
+import FloatingCard from "../FloatingCard";
 import Pill from "./Pill";
 import { DialogTrigger } from "react-aria-components";
 import type { Types } from "use-lanyard";
@@ -31,7 +31,7 @@ export default function StatusPill({ status, user }: StatusPillProps) {
 				<span className={statusClass} />
 				<p className="w-full truncate">{status}</p>
 			</Pill>
-			<DismissibleCard>
+			<FloatingCard>
 				<div>
 					<img
 						className="rounded-full w-6 h-6 inline-block mr-2"
@@ -41,7 +41,7 @@ export default function StatusPill({ status, user }: StatusPillProps) {
 						<span>{user.username}</span>
 					</div>
 				</div>
-			</DismissibleCard>
+			</FloatingCard>
 		</DialogTrigger>
 	);
 }

@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { DialogTrigger } from "react-aria-components";
-import DismissibleCard from "../DismissibleCard";
+import FloatingCard from "../FloatingCard";
 import Pill from "./Pill";
 
 export default function CurrentTime() {
@@ -50,9 +50,9 @@ export default function CurrentTime() {
 					{currentTime}
 				</span>
 			</Pill>
-			<DismissibleCard>
+			<FloatingCard>
 				<span>{currentDateTime}</span>
-			</DismissibleCard>
+			</FloatingCard>
 		</DialogTrigger>
 	);
 }

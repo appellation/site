@@ -1,7 +1,6 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import { useRef } from "react";
 import { DialogTrigger } from "react-aria-components";
-import DismissibleCard from "../DismissibleCard";
+import FloatingCard from "../FloatingCard";
 import GameCard from "./GameCard";
 import Pill from "./Pill";
 
@@ -29,9 +28,9 @@ export default function ActivityPill(props: ActivityPillProps) {
 				<p className="w-full truncate">{props.activity.name}</p>
 			</Pill>
 
-			<DismissibleCard>
+			<FloatingCard>
 				<GameCard activity={props.activity} />
-			</DismissibleCard>
+			</FloatingCard>
 		</DialogTrigger>
 	);
 }
