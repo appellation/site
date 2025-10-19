@@ -31,14 +31,12 @@ length of the payload, and the remaining bytes are the payload in JSON format
 This protocol applies bidirectionally.
 
 Negotating with the client is also not super complicated, and the official RPC
-docs are actually super useful for this because it works the same way. After
-requesting to authorize, the user is redirected to their Discord app where they
-can choose to allow the app to access their account. The app then goes through
-the regular OAuth2 flow to exchange the code with a regular access token. At
-this point, we're fully connected to the Discord app and can perform most RPC
-operations. Specifically, we're concerned about the
+docs are actually super useful for this because it works the same way.
+Specifically, we're concerned about the
 [`SET_ACTIVITY`](https://discord.com/developers/docs/topics/rpc#setactivity)
-command, which will let our application set the user's activity.
+command, which will let our application set the user's activity. This command
+actually doesn't require _any_ authentication, so we're good to go by just
+immediately connecting to the Discord IPC server.
 
 ## Connecting to Music
 
