@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
 import {
 	presetTypography,
-	presetUno,
+  presetWind4,
 	presetWebFonts,
 	presetIcons,
 } from "unocss";
@@ -17,7 +17,7 @@ export default defineConfig({
 		Unocss({
 			presets: [
 				presetIcons({ warn: true }),
-				presetUno({ dark: "media" }),
+				presetWind4({ dark: "media" }),
 				presetTypography(),
 				presetWebFonts({
 					provider: "bunny",

@@ -28,7 +28,7 @@ export default function StatusRow({
 			/>
 			{tidalActivity ? <TidalPill activity={tidalActivity} /> : null}
 			{activities.map((activity) => (
-				<ActivityPill activity={activity} />
+				<ActivityPill key={activity.id} activity={activity} />
 			))}
 		</div>
 	);
