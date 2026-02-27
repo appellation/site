@@ -67,7 +67,7 @@ function TidalCard({
 			<div>
 				<p className="text-lg/4 font-bold">{title}</p>
 				<p>{artist}</p>
-				<p className="text-sm/4 font-light">
+				<p className="text-sm/4 font-light font-mono tracking-tight">
 					{duration.toFormat("mm:ss")} - {total.toFormat("mm:ss")}
 				</p>
 			</div>

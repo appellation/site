@@ -25,7 +25,11 @@ export default defineConfig({
 						serif: {
 							name: "Roboto Slab",
 							weights: ["300", "400", "500", "700", "900"],
-						},
+            },
+            mono: {
+              name: "Roboto Mono",
+              weights: ["300"]
+						}
 					},
 				}),
 			],
