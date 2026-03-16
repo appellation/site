@@ -12,8 +12,8 @@
 		"lint": "eslint --fix . && prettier -w ."
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^12.6.12",
-		"@astrojs/react": "^4.4.2",
+		"@astrojs/cloudflare": "^13.1.1",
+		"@astrojs/react": "^5.0.0",
 		"@floating-ui/dom": "^1.7.4",
 		"@floating-ui/react-dom": "^2.1.6",
 		"@iconify-json/bi": "^1.2.7",
@@ -25,7 +25,7 @@
 		"@types/react-dom": "^19.2.3",
 		"@unocss/reset": "^66.5.12",
 		"animejs": "^4.3.6",
-		"astro": "^5.16.6",
+		"astro": "^6.0.4",
 		"clsx": "^2.1.1",
 		"discord-api-types": "^0.38.37",
 		"luxon": "^3.7.2",
@@ -37,13 +37,14 @@
 		"use-lanyard": "^1.7.0"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.6",
+		"@astrojs/check": "^0.9.7",
 		"@types/luxon": "^3.7.1",
 		"eslint": "^9.39.2",
 		"eslint-config-neon": "^0.2.9",
 		"prettier": "^3.7.4",
 		"prettier-plugin-astro": "^0.14.1",
 		"rehype-add-classes": "^1.0.0",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"wrangler": "^4.73.0"
 	}
 }

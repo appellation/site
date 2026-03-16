@@ -76,6 +76,10 @@ export default defineConfig({
 		prefetchAll: true,
 	},
 	vite: {
+		define: {
+			setImmediate: "setTimeout",
+			clearImmediate: "clearTimeout",
+		},
 		resolve: {
 			alias: import.meta.env.PROD && {
 				"react-dom/server": "react-dom/server.edge",
