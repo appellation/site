@@ -1,9 +1,11 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Pill from "./Pill";
 import FloatingCard from "../FloatingCard";
 import { DialogTrigger } from "react-aria-components";
-import { DateTime, Duration } from "luxon";
+import { Duration } from "luxon";
+import { animate, splitText } from "animejs";
+import type { TextSplitter } from "animejs";
 
 export type TidalPillProps = {
 	readonly activity: GatewayActivity;
@@ -46,6 +48,56 @@ export default function TidalPill({ activity }: TidalPillProps) {
 	);
 }
 
+function AnimatedDuration({ duration }: { duration: Duration }) {
+	const containerRef = useRef<HTMLSpanElement>(null);
+	const splitterRef = useRef<TextSplitter | null>(null);
+	const accessibleRef = useRef<HTMLElement | null>(null);
+
+	const formatted = duration.toFormat("mm:ss");
+
+	useLayoutEffect(() => {
+		const el = containerRef.current;
+		if (!el) return;
+		el.textContent = formatted;
+		splitterRef.current = splitText(el, {
+			chars: { clone: "bottom", wrap: true },
+		});
+		accessibleRef.current = el.firstChild as HTMLElement;
+	}, []);
+
+	useEffect(() => {
+		const splitter = splitterRef.current;
+		if (!splitter) return;
+
+		if (accessibleRef.current) accessibleRef.current.textContent = formatted;
+
+		const changed = splitter.chars.filter((charEl: HTMLElement, i: number) => {
+			const newChar = formatted[i];
+			if ((charEl.children[0] as HTMLElement).textContent === newChar)
+				return false;
+			(charEl.children[1] as HTMLElement).textContent = newChar;
+			return true;
+		});
+
+		if (!changed.length) return;
+
+		animate(changed, {
+			translateY: ["0%", "-100%"],
+			duration: 250,
+			ease: "outExpo",
+			onComplete: () => {
+				for (const charEl of changed as HTMLElement[]) {
+					(charEl.children[0] as HTMLElement).textContent =
+						formatted[splitter.chars.indexOf(charEl)];
+					charEl.style.transform = "translateY(0%)";
+				}
+			},
+		});
+	}, [formatted]);
+
+	return <span ref={containerRef} />;
+}
+
 function TidalCard({
 	largeImage,
 	title,
@@ -68,7 +120,7 @@ function TidalCard({
 				<p className="text-lg/4 font-bold">{title}</p>
 				<p>{artist}</p>
 				<p className="text-sm/4 font-light font-mono tracking-tight">
-					{duration.toFormat("mm:ss")} - {total.toFormat("mm:ss")}
+					<AnimatedDuration duration={duration} /> - {total.toFormat("mm:ss")}
 				</p>
 			</div>
 		</FloatingCard>
