@@ -54,8 +54,8 @@ function AnimatedDuration({ duration }: { duration: Duration }) {
 			],
 			composition: "replace",
 			delay: stagger(25, { from: "last" }),
-			onComplete: () => {
-				for (const charEl of changed as HTMLElement[]) {
+			onComplete: ({ targets }) => {
+				for (const charEl of targets) {
 					(charEl.children[0] as HTMLElement).textContent =
 						formatted[splitter.chars.indexOf(charEl)];
 					charEl.style.transform = "translateY(0%)";
