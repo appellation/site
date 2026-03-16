@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import Pill from "./Pill";
 import { DialogTrigger } from "react-aria-components";
 import { Duration } from "luxon";
+import FloatingCard from "../FloatingCard";
 
 const TidalCard = lazy(() => import("./TidalCard"));
 
@@ -25,7 +26,6 @@ export default function TidalPill({ activity }: TidalPillProps) {
 		return () => clearInterval(interval);
 	}, [activity.timestamps]);
 
-	activity.assets?.large_image;
 	return (
 		<DialogTrigger>
 			<Pill progress={progress}>
@@ -36,15 +36,17 @@ export default function TidalPill({ activity }: TidalPillProps) {
 				</span>
 			</Pill>
 
-			<Suspense>
-				<TidalCard
-					largeImage={activity.assets?.large_image}
-					title={activity.details!}
-					artist={activity.state!}
-					duration={Duration.fromMillis(ms)}
-					total={Duration.fromMillis(duration)}
-				/>
-			</Suspense>
+			<FloatingCard>
+				<Suspense>
+					<TidalCard
+						largeImage={activity.assets?.large_image}
+						title={activity.details!}
+						artist={activity.state!}
+						duration={Duration.fromMillis(ms)}
+						total={Duration.fromMillis(duration)}
+					/>
+				</Suspense>
+			</FloatingCard>
 		</DialogTrigger>
 	);
 }

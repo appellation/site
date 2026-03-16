@@ -73,7 +73,7 @@ export default function TidalCard({
 	const largeImageUrl = `https://media.discordapp.net/${largeImage?.slice(3)}`;
 
 	return (
-		<FloatingCard>
+		<>
 			<img src={largeImageUrl} className="w-16 h-16 rounded" />
 			<div>
 				<p className="text-lg/4 font-bold">{title}</p>
@@ -82,6 +82,6 @@ export default function TidalCard({
 					<AnimatedDuration duration={duration} /> - {total.toFormat("mm:ss")}
 				</p>
 			</div>
-		</FloatingCard>
+		</>
 	);
 }
