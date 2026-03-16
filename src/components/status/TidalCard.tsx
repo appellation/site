@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
-import FloatingCard from "../FloatingCard";
 import type { Duration } from "luxon";
-import { animate, splitText } from "animejs";
+import { animate, stagger, splitText } from "animejs";
 import type { TextSplitter } from "animejs";
 import { VisuallyHidden } from "react-aria-components";
 
@@ -15,10 +14,23 @@ function AnimatedDuration({ duration }: { duration: Duration }) {
 		const el = containerRef.current;
 		if (!el) return;
 		el.textContent = formatted;
-		splitterRef.current = splitText(el, {
-			chars: { clone: "bottom", wrap: true },
+		const splitter = splitText(el, {
+			chars: { clone: "bottom", wrap: "clip", class: "ticker-char" },
 			accessible: false,
 		});
+
+		splitter.addEffect(() =>
+			animate(splitter.chars, {
+				opacity: [0, 1],
+				translateY: ["100%", "0%"],
+				delay: stagger(30, { from: "center" }),
+				duration: 600,
+				ease: "outElastic(1, .6)",
+			}),
+		);
+
+		splitterRef.current = splitter;
+		return () => splitter.revert();
 	}, []);
 
 	useEffect(() => {
@@ -36,9 +48,12 @@ function AnimatedDuration({ duration }: { duration: Duration }) {
 		if (!changed.length) return;
 
 		animate(changed, {
-			translateY: ["0%", "-100%"],
-			duration: 250,
-			ease: "outExpo",
+			translateY: [
+				{ to: "-50%", duration: 100, ease: "inQuad" },
+				{ to: "-100%", duration: 200, ease: "outBack(2)" },
+			],
+			composition: "replace",
+			delay: stagger(25, { from: "last" }),
 			onComplete: () => {
 				for (const charEl of changed as HTMLElement[]) {
 					(charEl.children[0] as HTMLElement).textContent =
