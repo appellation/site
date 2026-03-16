@@ -1,4 +1,6 @@
 ---
+import "../app.css";
+import { Font } from "astro:assets";
 import Navbar from "../components/Navbar.astro";
 import { postTitle } from "../components/util/content";
 
@@ -30,6 +32,8 @@ const pageTitle = postTitle(Astro.props);
 		/>
 		<meta name="og:article:author" content={Astro.site} />
 
+		<Font cssVariable="--font-serif" preload />
+		<Font cssVariable="--font-mono" preload />
 		<title>{pageTitle} | Will Nelson</title>
 	</head>
 	<body
@@ -44,7 +48,7 @@ const pageTitle = postTitle(Astro.props);
 					<h1 class={subtitle ? "mb-0" : ""}>{title}</h1>
 					{
 						subtitle && (
-							<p class="mt-0 mb-4 italic color-stone-600 dark:color-stone-400 text-lg">
+							<p class="mt-0 mb-4 italic text-stone-600 dark:text-stone-400 text-lg">
 								{subtitle}
 							</p>
 						)

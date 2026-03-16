@@ -15,13 +15,13 @@ export default function StatusPill({ status, user }: StatusPillProps) {
 	const statusClass = useMemo(() => {
 		switch (status) {
 			case "online":
-				return "i-mdi-circle text-2xl text-green-500";
+				return "icon-[mdi--circle] text-2xl text-green-500";
 			case "idle":
-				return "i-mdi-moon-waxing-crescent text-2xl text-yellow-500";
+				return "icon-[mdi--moon-waxing-crescent] text-2xl text-yellow-500";
 			case "dnd":
-				return "i-mdi-minus-circle text-2xl text-red-500";
+				return "icon-[mdi--minus-circle] text-2xl text-red-500";
 			case "offline":
-				return "i-mdi-record-circle text-2xl";
+				return "icon-[mdi--record-circle] text-2xl";
 		}
 	}, [status]);
 

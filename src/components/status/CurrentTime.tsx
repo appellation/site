@@ -43,7 +43,7 @@ export default function CurrentTime() {
 	return (
 		<DialogTrigger>
 			<Pill>
-				<span className="i-mdi-clock-outline" />
+				<span className="icon-[mdi--clock-outline]" />
 				<span
 					suppressHydrationWarning // time can be different based on the client's timezone
 				>

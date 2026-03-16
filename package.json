@@ -21,9 +21,11 @@
 		"@iconify-json/fa-solid": "^1.2.2",
 		"@iconify-json/mdi": "^1.2.3",
 		"@iconify-json/simple-icons": "^1.2.65",
+		"@iconify/tailwind4": "^1.2.3",
+		"@tailwindcss/typography": "^0.5.19",
+		"@tailwindcss/vite": "^4.2.1",
 		"@types/react": "^19.2.7",
 		"@types/react-dom": "^19.2.3",
-		"@unocss/reset": "^66.5.12",
 		"animejs": "^4.3.6",
 		"astro": "^6.0.4",
 		"clsx": "^2.1.1",
@@ -33,7 +35,7 @@
 		"react-aria-components": "^1.14.0",
 		"react-dom": "^19.2.3",
 		"swr": "^2.3.8",
-		"unocss": "^66.5.12",
+		"tailwindcss": "^4.2.1",
 		"use-lanyard": "^1.7.0"
 	},
 	"devDependencies": {

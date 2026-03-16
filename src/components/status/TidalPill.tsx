@@ -29,7 +29,7 @@ export default function TidalPill({ activity }: TidalPillProps) {
 	return (
 		<DialogTrigger>
 			<Pill progress={progress}>
-				<span className="text-2xl i-simple-icons-tidal" />
+				<span className="text-2xl icon-[simple-icons--tidal]" />
 				<span className="w-full truncate">
 					<span>{activity.details}</span>
 					<span className="font-light text-sm"> &mdash; {activity.state}</span>

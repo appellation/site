@@ -11,7 +11,7 @@ const mainClasses = clsx([
 	"flex-col",
 	"justify-center",
 	"grow",
-	"ma",
+	"m-auto",
 	"px-4",
 	"max-w-2xl",
 ]);
@@ -33,16 +33,16 @@ const listArrowClasses = clsx(
 	"w-fit",
 	"text-stone-700",
 	"dark:text-stone-300",
-	"before:transition-left",
+	"before:transition-[left]",
 	"before:pointer-events-none",
 	"before:absolute",
 	"before:my-auto",
 	"before:inset-y-0",
 	"before:-left-8",
 	"hover:before:-left-6",
-	"before:i-fa-solid-arrow-right",
+	"before:icon-[fa-solid--arrow-right]",
 	"before:block",
-	"before:content-empty",
+	"before:content-['']",
 	"before:w-4",
 	"before:h-4",
 );
@@ -57,37 +57,37 @@ const listArrowClasses = clsx(
 		<nav class="flex gap-3 mt-6">
 			<IconButton
 				href="mailto:me@wnelson.dev"
-				iconClass="i-fa-solid-at hover:bg-violet-700"
+				iconClass="icon-[fa-solid--at] hover:bg-violet-700"
 				label="Email"
 			/>
 			<IconButton
 				href="/resume.pdf"
-				iconClass="i-mdi-resume hover:bg-slate-500"
+				iconClass="icon-[mdi--resume] hover:bg-slate-500"
 				label="Resume"
 			/>
 			<IconButton
 				href="https://github.com/appellation"
-				iconClass="i-simple-icons-github hover:bg-[#2da44e]"
+				iconClass="icon-[simple-icons--github] hover:bg-[#2da44e]"
 				label="Github"
 			/>
 			<IconButton
 				href="https://bsky.wnelson.dev"
-				iconClass="i-simple-icons-bluesky hover:bg-[rgb(0,133,255)]"
+				iconClass="icon-[simple-icons--bluesky] hover:bg-[rgb(0,133,255)]"
 				label="Bluesky"
 			/>
 			<IconButton
 				href="https://linkedin.com/in/williamonelson"
-				iconClass="i-simple-icons-linkedin hover:bg-[#0077B5]"
+				iconClass="icon-[simple-icons--linkedin] hover:bg-[#0077B5]"
 				label="LinkedIn"
 			/>
 			<IconButton
 				href="https://keybase.io/appellation"
-				iconClass="i-simple-icons-keybase hover:bg-[#ff6f21]"
+				iconClass="icon-[simple-icons--keybase] hover:bg-[#ff6f21]"
 				label="Keybase"
 			/>
 			<IconButton
 				href="https://tidal.com/browse/user/196996231"
-				iconClass="i-simple-icons-tidal hover:bg-white dark:hover:bg-black"
+				iconClass="icon-[simple-icons--tidal] hover:bg-white dark:hover:bg-black"
 				label="Tidal"
 			/>
 		</nav>

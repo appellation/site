@@ -1,4 +1,7 @@
 ---
+import "../app.css";
+import { Font } from "astro:assets";
+
 export interface Props {
 	title: string;
 }
@@ -29,6 +32,8 @@ const faviconUrl = new URL("/poggers.webp", Astro.url);
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@appellation_" />
 
+		<Font cssVariable="--font-serif" preload />
+		<Font cssVariable="--font-mono" preload />
 		<title>{title}</title>
 	</head>
 	<body

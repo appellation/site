@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+@plugin "@iconify/tailwind4";
+
+@theme {
+	--animate-bg-pulse: bg-pulse 4s ease-in-out infinite;
+	--spacing-18: 4.5rem;
+}
+
+@keyframes bg-pulse {
+	0%,
+	100% {
+		background-position-y: 0%;
+	}
+	50% {
+		background-position-y: 80%;
+	}
+}

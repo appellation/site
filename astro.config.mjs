@@ -1,64 +1,27 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
-import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig, fontProviders } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
-import {
-	presetTypography,
-  presetWind4,
-	presetWebFonts,
-	presetIcons,
-} from "unocss";
-import Unocss from "unocss/astro";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		react(),
-		Unocss({
-			presets: [
-				presetIcons({ warn: true }),
-				presetWind4({ dark: "media" }),
-				presetTypography(),
-				presetWebFonts({
-					provider: "bunny",
-					fonts: {
-						serif: {
-							name: "Roboto Slab",
-							weights: ["300", "400", "500", "700", "900"],
-            },
-            mono: {
-              name: "Roboto Mono",
-              weights: ["300"]
-						}
-					},
-				}),
-			],
-			injectReset: true,
-			theme: {
-				animation: {
-					durations: {
-						"bg-pulse": "4s",
-					},
-					timingFns: {
-						"bg-pulse": "ease-in-out",
-					},
-					counts: {
-						"bg-pulse": "infinite",
-					},
-					keyframes: {
-						"bg-pulse": `{
-            0%,
-            100% {
-              background-position-y: 0%;
-            }
-            50% {
-              background-position-y: 80%;
-            }
-          }`,
-					},
-				},
-			},
-		}),
+	integrations: [react()],
+	fonts: [
+		{
+			provider: fontProviders.bunny(),
+			name: "Roboto Slab",
+			cssVariable: "--font-serif",
+			weights: [300, 400, 500, 700, 900],
+			fallbacks: ["ui-serif", "Georgia", "serif"],
+		},
+		{
+			provider: fontProviders.bunny(),
+			name: "Roboto Mono",
+			cssVariable: "--font-mono",
+			weights: [300],
+			fallbacks: ["ui-monospace", "monospace"],
+		},
 	],
 	site: "https://wnelson.dev",
 	markdown: {
@@ -76,6 +39,7 @@ export default defineConfig({
 		prefetchAll: true,
 	},
 	vite: {
+		plugins: [tailwindcss()],
 		define: {
 			setImmediate: "setTimeout",
 			clearImmediate: "clearTimeout",
