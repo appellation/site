@@ -1,10 +1,10 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
-import type { Duration } from "luxon";
 import { animate, stagger, splitText } from "animejs";
 import type { TextSplitter } from "animejs";
+import type { Duration } from "luxon";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { VisuallyHidden } from "react-aria-components";
 
-function AnimatedDuration({ duration }: { duration: Duration }) {
+function AnimatedDuration({ duration }: { readonly duration: Duration }) {
 	const containerRef = useRef<HTMLSpanElement>(null);
 	const splitterRef = useRef<TextSplitter | null>(null);
 
@@ -30,20 +30,25 @@ function AnimatedDuration({ duration }: { duration: Duration }) {
 		);
 
 		splitterRef.current = splitter;
-		return () => splitter.revert();
+		return () => {
+			splitter.revert();
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
 		const splitter = splitterRef.current;
 		if (!splitter) return;
 
-		const changed = splitter.chars.filter((charEl: HTMLElement, i: number) => {
-			const newChar = formatted[i];
-			if ((charEl.children[0] as HTMLElement).textContent === newChar)
-				return false;
-			(charEl.children[1] as HTMLElement).textContent = newChar;
-			return true;
-		});
+		const changed = splitter.chars.filter(
+			(charEl: HTMLElement, idx: number) => {
+				const newChar = formatted[idx];
+				if ((charEl.children[0] as HTMLElement).textContent === newChar)
+					return false;
+				(charEl.children[1] as HTMLElement).textContent = newChar;
+				return true;
+			},
+		);
 
 		if (!changed.length) return;
 
@@ -79,17 +84,17 @@ export default function TidalCard({
 	duration,
 	total,
 }: {
-	largeImage?: string;
-	title: string;
-	artist: string;
-	duration: Duration;
-	total: Duration;
+	readonly artist: string;
+	readonly duration: Duration;
+	readonly largeImage?: string;
+	readonly title: string;
+	readonly total: Duration;
 }) {
 	const largeImageUrl = `https://media.discordapp.net/${largeImage?.slice(3)}`;
 
 	return (
 		<>
-			<img src={largeImageUrl} className="w-16 h-16 rounded" />
+			<img className="w-16 h-16 rounded" src={largeImageUrl} />
 			<div>
 				<p className="text-lg/4 font-bold">{title}</p>
 				<p>{artist}</p>

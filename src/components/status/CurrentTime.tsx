@@ -38,6 +38,7 @@ export default function CurrentTime() {
 			if (interval) clearInterval(interval);
 			clearTimeout(timeout);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

@@ -1,22 +1,23 @@
 import type { GatewayActivity } from "discord-api-types/v10";
-import { lazy, Suspense, useEffect, useState } from "react";
-import Pill from "./Pill";
-import { DialogTrigger } from "react-aria-components";
 import { Duration } from "luxon";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { DialogTrigger } from "react-aria-components";
 import FloatingCard from "../FloatingCard";
+import Pill from "./Pill";
 
-const TidalCard = lazy(() => import("./TidalCard"));
+const TidalCard = lazy(async () => import("./TidalCard"));
 
 export type TidalPillProps = {
 	readonly activity: GatewayActivity;
 };
 
-export default function TidalPill({ activity }: TidalPillProps) {
-	if (!activity.timestamps?.end || !activity.timestamps?.start) return null;
+type TidalPillInnerProps = {
+	readonly activity: GatewayActivity;
+	readonly duration: number;
+};
 
-	const duration = activity.timestamps.end - activity.timestamps.start;
+function TidalPillInner({ activity, duration }: TidalPillInnerProps) {
 	const calcMs = () => Date.now() - activity.timestamps!.start!;
-
 	const [ms, setMs] = useState(calcMs());
 	const progress = Math.min(ms / duration, 1);
 
@@ -24,6 +25,7 @@ export default function TidalPill({ activity }: TidalPillProps) {
 		setMs(calcMs());
 		const interval = setInterval(() => setMs(calcMs()), 1_000);
 		return () => clearInterval(interval);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [activity.timestamps]);
 
 	return (
@@ -39,14 +41,21 @@ export default function TidalPill({ activity }: TidalPillProps) {
 			<FloatingCard>
 				<Suspense>
 					<TidalCard
-						largeImage={activity.assets?.large_image}
-						title={activity.details!}
 						artist={activity.state!}
 						duration={Duration.fromMillis(ms)}
+						largeImage={activity.assets?.large_image}
+						title={activity.details!}
 						total={Duration.fromMillis(duration)}
 					/>
 				</Suspense>
 			</FloatingCard>
 		</DialogTrigger>
 	);
+}
+
+export default function TidalPill({ activity }: TidalPillProps) {
+	if (!activity.timestamps?.end || !activity.timestamps?.start) return null;
+
+	const duration = activity.timestamps.end - activity.timestamps.start;
+	return <TidalPillInner activity={activity} duration={duration} />;
 }

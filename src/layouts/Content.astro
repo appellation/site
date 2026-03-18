@@ -5,9 +5,9 @@ import Navbar from "../components/Navbar.astro";
 import { postTitle } from "../components/util/content";
 
 export interface Props {
-	title: string;
-	subtitle?: string;
 	publishDate: Date;
+	subtitle?: string;
+	title: string;
 }
 
 const { title, subtitle, publishDate } = Astro.props;
@@ -17,20 +17,20 @@ const pageTitle = postTitle(Astro.props);
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="utf8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/poggers.webp" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="manifest" href="/manifest.json" />
+		<meta charset="utf-8" />
+		<meta content="width=device-width" name="viewport" />
+		<link href="/poggers.webp" rel="icon" type="image/png" />
+		<meta content={Astro.generator} name="generator" />
+		<link href="/manifest.json" rel="manifest" />
 
-		<meta name="og:title" content={pageTitle} />
-		<meta name="og:url" content={Astro.url} />
-		<meta name="og:type" content="article" />
+		<meta content={pageTitle} name="og:title" />
+		<meta content={Astro.url} name="og:url" />
+		<meta content="article" name="og:type" />
 		<meta
-			name="og:article:published_time"
 			content={publishDate.toISOString()}
+			name="og:article:published_time"
 		/>
-		<meta name="og:article:author" content={Astro.site} />
+		<meta content={Astro.site} name="og:article:author" />
 
 		<Font cssVariable="--font-serif" preload />
 		<Font cssVariable="--font-mono" preload />

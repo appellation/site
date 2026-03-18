@@ -5,9 +5,10 @@ export type SpotifyEmbedProps = {
 export default function SpotifyEmbed(props: SpotifyEmbedProps) {
 	return (
 		<iframe
-			className="w-full h-20"
-			src={`https://open.spotify.com/embed/track/${props.trackId}`}
 			allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+			className="w-full h-20"
+			sandbox="allow-scripts allow-forms allow-popups"
+			src={`https://open.spotify.com/embed/track/${props.trackId}`}
 		/>
 	);
 }

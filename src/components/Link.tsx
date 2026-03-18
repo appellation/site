@@ -7,9 +7,8 @@ export type LinkProps = PropsWithChildren<{
 export default function Link({ href, children }: LinkProps) {
 	return (
 		<a
-			href={href}
-			rel="prefetch"
 			className="transition-colors hover:bg-stone-300 dark:hover:bg-stone-700 rounded px-1 cursor-pointer"
+			href={href}
 		>
 			{children}
 		</a>

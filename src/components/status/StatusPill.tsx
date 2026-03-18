@@ -1,12 +1,10 @@
-import type { GatewayActivity } from "discord-api-types/v10";
 import { useMemo } from "react";
-import FloatingCard from "../FloatingCard";
-import Pill from "./Pill";
 import { DialogTrigger } from "react-aria-components";
 import type { Types } from "use-lanyard";
+import FloatingCard from "../FloatingCard";
+import Pill from "./Pill";
 
 export type StatusPillProps = {
-	readonly customStatus?: GatewayActivity;
 	readonly status?: string;
 	readonly user: Types.DiscordUser;
 };
@@ -22,6 +20,8 @@ export default function StatusPill({ status, user }: StatusPillProps) {
 				return "icon-[mdi--minus-circle] text-2xl text-red-500";
 			case "offline":
 				return "icon-[mdi--record-circle] text-2xl";
+			default:
+				return undefined;
 		}
 	}, [status]);
 

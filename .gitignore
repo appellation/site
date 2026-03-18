@@ -2,6 +2,7 @@
 dist/
 .output/
 .wrangler/
+.astro/
 
 # dependencies
 node_modules/
@@ -23,4 +24,4 @@ firebase-service-account.json
 .DS_Store
 
 .vercel
-.astro
+.claude

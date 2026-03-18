@@ -10,6 +10,6 @@ export interface Props {
 const { iconClass, href, label } = Astro.props;
 ---
 
-<a href={href} aria-label={label} data-astro-prefetch="false">
+<a aria-label={label} data-astro-prefetch="false" href={href}>
 	<div class={clsx("text-3xl", "transition-colors", iconClass)}></div>
 </a>

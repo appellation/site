@@ -8,7 +8,7 @@ import TidalPill from "./TidalPill";
 export default function StatusRow({
 	initialPresence,
 }: {
-	initialPresence: Types.Presence;
+	readonly initialPresence: Types.Presence;
 }) {
 	const presence = useLanyardWS(USER_ID, { initialData: initialPresence });
 
@@ -28,7 +28,7 @@ export default function StatusRow({
 			/>
 			{tidalActivity ? <TidalPill activity={tidalActivity} /> : null}
 			{activities.map((activity) => (
-				<ActivityPill key={activity.id} activity={activity} />
+				<ActivityPill activity={activity} key={activity.id} />
 			))}
 		</div>
 	);

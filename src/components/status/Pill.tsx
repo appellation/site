@@ -32,11 +32,13 @@ export default function Pill({
 	);
 
 	return (
-		<Button {...container} ref={ref} className={clazz}>
+		<Button {...container} className={clazz} ref={ref}>
 			<span className="flex gap-2 items-center z-10 relative font-medium">
 				{children}
 			</span>
-			{progress != null ? <Progress progress={progress} /> : null}
+			{progress !== null && progress !== undefined ? (
+				<Progress progress={progress} />
+			) : null}
 		</Button>
 	);
 }

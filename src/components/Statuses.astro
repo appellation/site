@@ -4,8 +4,8 @@ import StatusRow from "./status/StatusRow";
 import { USER_ID } from "./util/constants";
 
 type RestResponse = {
-	success: boolean;
 	data: Types.Presence;
+	success: boolean;
 };
 
 const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
@@ -21,4 +21,4 @@ if (!body.success) {
 const initialPresence = body.data;
 ---
 
-<StatusRow initialPresence={initialPresence} client:load />
+<StatusRow client:load initialPresence={initialPresence} />
