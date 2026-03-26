@@ -22,7 +22,7 @@ export default function GameCard(props: Props) {
 					/>
 					{props.activity.assets?.small_image ? (
 						<img
-							className="absolute bottom-[-0.25rem] right-[-0.25rem] h-6 w-6 rounded-full border-3 border-white dark:border-black"
+							className="absolute -bottom-1 -right-1 h-6 w-6 rounded-full border-3 border-white dark:border-black"
 							src={makeAssetUrl(
 								props.activity.application_id!,
 								props.activity.assets!.small_image!,
